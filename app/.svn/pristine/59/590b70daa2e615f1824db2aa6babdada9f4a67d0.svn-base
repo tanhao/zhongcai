@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/tooltip.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+</head>
+<body>
+
+	<div class="doc-container">
+		<include file="Public:left"/>
+		<div class="doc-body">
+			<include file="Public:top"/>
+			<div class="doc-nav-info">众彩代理管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Players/index')}">直属玩家</a></div>
+			<div class="doc-body-info">
+				<div class="doc-head-search">
+					<h2 class="body-info-title" style="float:left;">玩家详情</h2>
+					<div class="doc-head-searchBox">
+						<form class="uk-form" method="get" id="searchForm">
+						    <input type="text" name="nickname" value="{$nickname}" placeholder="请输入玩家昵称">&nbsp;&nbsp;
+						    <button class="uk-button" type="button" onclick="document.getElementById('searchForm').submit()">搜索</button>
+						</form>
+					</div>
+				</div>
+				<table class="uk-table doc-table-agent">
+				    <thead>
+				        <tr>
+				            <th>序号</th>
+				            <th>玩家昵称</th>
+				            <th>账户余额</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    	<volist name="userList" id="data" key="key">
+				        <tr>
+				            <td>{$key}</td>
+				            <td>{$data['nickname']}</td>
+				            <td>{$data['balance']}</td>
+				        </tr>
+				        </volist>
+				    </tbody>
+				</table>
+				{$page_show}
+				<!-- 动态分页 -->
+				<!-- <ul class="uk-pagination" data-uk-pagination="{items:20, itemsOnPage:4}"></ul> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 引入jquery-2.1.4 -->
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<!-- 引入uikit.js -->
+	<script src="__PUBLIC__/Admin/js/uikit.min.js"></script>
+	<!-- 引入动态分页组件 -->
+	<script src="__PUBLIC__/Admin/js/components/pagination.min.js"></script>
+	<!-- 引入提示组件 -->
+	<script src="__PUBLIC__/Admin/js/components/tooltip.min.js"></script>
+	
+</body>
+</html>

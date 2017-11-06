@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>申请提现</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Settings/index')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 返回</a>
+			<h1 class="mui-title">申请提现</h1>
+		</header>
+		<div class="main">
+			<div class="mui-scroll">
+				<div class="mui-content">
+					<form class="mui-input-group" id="agent">
+						<div class="mui-table">
+							<div class="mui-table-view-cell">你当前可提现资金:{$agent['balance']}</div>
+						</div>
+						<div class="mui-input-row">
+							<label>提现金额</label>
+							<input type="text"  name="apply_cash" id="apply_cash" class="mui-input-text" placeholder="" value="">
+						</div>
+						<div class="mui-input-row">
+							<label>资金密码</label>
+							<input type="password" name="pay_password" id="pay_password" class="mui-input-password" placeholder="">
+						</div>
+						<div class="mui-button-row">
+							<a class="mui-btn mui-btn-red" id="submit">确定提现</a>
+						</div>
+					</form>		
+				</div>
+				
+			</div>
+		</div>
+		<script src="__PUBLIC__/Agent/js/mui.min.js "></script>
+		<script type="text/javascript">
+			mui.init();
+			document.getElementById('submit').addEventListener('tap',function(){
+				var apply_cash=document.getElementById('apply_cash').value;
+				var pay_password=document.getElementById('pay_password').value;
+				var min_draw = {:getConfig('min_draw')};
+				var max_draw = {:getConfig('max_draw')};
+				if(parseFloat(apply_cash).toString()=='NaN' || apply_cash.trim()==''){
+					mui.alert('请在提现金额输入数字');
+					return false;
+				}
+				if(parseFloat(apply_cash).toString()<min_draw){ 
+					mui.alert('提现金额不能少于'+min_draw);
+					return false;
+				}
+				if(parseFloat(apply_cash).toString()>max_draw){
+					mui.alert('提现金额不能大于'+max_draw);
+					return false;
+				}
+				if(!pay_password || pay_password.trim()==''){
+					mui.alert('请输入资金密码');
+					return false;
+				}
+				mui.confirm('确定要提现 '+apply_cash+"元 吗？",'系统提示',['取消','确定'],function(e){
+					if(e.index==1){
+						mui.ajax("{:U('Settings/draw')}",{
+					 		data:{
+					 			apply_cash:apply_cash,
+					 			pay_password:pay_password,
+					 			type:'draw',
+					 		},
+					 		dataType:'json',
+					 		type:'post',
+					 		timeout:10000, 
+					 		success:function(data){
+					 			if (data.code == 1) {
+					 				mui.alert('提现申请已提交,客服马上为你处理！','系统提示','返回',function(){
+										document.location=data.url;
+									});
+					 			} else {
+						 			mui.alert(data.msg);
+						 		}
+					 		}
+					 	});		
+					}
+				});
+			});
+
+			var zjPassword=<notempty name="agent['pay_password']">true<else/>false</notempty>;
+			if(!zjPassword){
+				mui.alert('请先设置自己密码','系统提示','返回',function(){
+					document.location="{:U('Settings/security')}";
+				});
+			}
+		</script>
+	</body>
+
+</html>

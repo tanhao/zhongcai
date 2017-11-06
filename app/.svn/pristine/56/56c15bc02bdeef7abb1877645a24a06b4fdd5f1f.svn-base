@@ -1,0 +1,30 @@
+.mui-bar .mui-btn {
+	font-size: 16px;
+	color: #FF5722;
+}
+
+.mui-table-view:first-child {
+	margin-top: 15px;
+}
+
+.mui-table-view:last-child {
+	margin-bottom: 30px;
+}
+
+.mui-table-view {
+	margin-top: 20px;
+}
+
+.mui-table-view span.mui-pull-right {
+	color: #999;
+}
+
+.mui-table-view-divider {
+	background-color: #efeff4;
+	font-size: 14px;
+}
+
+.mui-table-view-divider:before,
+.mui-table-view-divider:after {
+	height: 0;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>历史开奖</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Agent/css/mui.picker.min.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav"> 
+			<a href="{:U('Index/index')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 首页</a>
+			<h1 class="mui-title">历史开奖  <span style="font-size: 12px;">-北京赛车</span></h1>
+		</header>	
+		<div class="main">
+			<div class="bar-search">
+				<div class="mui-pull-right">
+					<input type="text" id="select_type" style="width: 120px;" value="{$lottery_name}"> <input type="text" id="dateBtn" value="{$date}" placeholder="指定日期" data-options='{"type":"date"}' style="width: 140px;"> 
+				</div>
+			</div>
+			<div class="mui-content">			
+				<div class="mui-scroll" style="padding: 5px 5px 5px 5px;">
+					<ul class="mui-table-view">
+						<volist name="list" id="data">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" href="{:U('Lottery/betDetail',['id'=>$data['id']])}">
+								<p>{$lottery_name} - {$data['issue']}期 <i class="app-icon icon-date"></i> {$data['add_time']|date="Y-m-d H:i",###}</p>
+								<p>
+									<volist name="data['lottery_number']" id="num">
+									<span class="mui-badge mui-badge-quyu">{$num}</span> 
+									</volist>
+									<i class="app-icon icon-money">{$data['bet_balance']}</i>
+								</p>
+							</a>
+						</li>	
+						</volist>	            
+					</ul>
+					<ul class="mui-pager mui-pagination-sm">
+					<li class=<if condition="$pageInfo['prev'] gt 0">"mui-previous"<else/>"mui-previous mui-disabled"</if>>
+						<a <if condition="$pageInfo['prev'] gt 0">href="{:U('Lottery/index',['page'=>$pageInfo['prev'],'lottery_id'=>$lottery_id,'date'=>$date])}"</if>><span class="app-icon icon-left"></span> 上页</a>
+					</li>
+					<li class=<if condition="$pageInfo['next'] gt 0">"mui-next"<else/>"mui-next mui-disabled"</if>>
+						<a <if condition="$pageInfo['next'] gt 0">href="{:U('Lottery/index',['page'=>$pageInfo['next'],'lottery_id'=>$lottery_id,'date'=>$date])}"</if>>下页 <span class="app-icon icon-right"></span></a>
+					</li>
+				</ul>
+					<!--加一个div防止最后一条显示不完整-->
+					<div style="height: 40px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="mui-content">
+
+		</div>
+	<script type="text/javascript" src="__PUBLIC__/Agent/js/mui.min.js" ></script>
+	<script src="__PUBLIC__/Agent/js/mui.picker.min.js"></script>	
+		<script type="text/javascript">
+			var data={};
+			var currDate="{$date}";//设定今天时间
+			var currUrl="{:U('Lottery/index',['lottery_id'=>$lottery_id])}";//设定默认地址
+			mui.toast('点击查看下注详细',{duration:'long',type:'div'})
+			mui('nav.mui-bar').on('tap','.mui-tab-item',function(){
+				var url=this.getAttribute('href');
+				var title=this.innerText;
+				currUrl=url;
+				document.getElementById('title').innerText="历史开奖 - "+title;
+				getLottery(url,currDate);
+			});
+			(function($,doc) { 
+				$.init();
+				var typePicker = new $.PopPicker();
+				typePicker.setData([{
+					value:'1',
+					text:'北京赛车'
+				},{
+					value:'2',
+					text:'重庆时时彩'
+				},{
+					value:'3',
+					text:'幸运飞艇'
+				}]);
+				var showUserPickerButton = doc.getElementById('select_type');
+					showUserPickerButton.addEventListener('tap', function(event) {
+						typePicker.show(function(items) {
+							doc.location="{:U('Lottery/index')}?lottery_id="+items[0].value+"&date={$date}";
+						});
+				}, false);
+			
+				var dateBtn=doc.getElementById('dateBtn');
+				var optionsJson = dateBtn.getAttribute('data-options') || '{}';
+				var options = JSON.parse(optionsJson); 
+				var picker=new $.DtPicker(options); 
+				dateBtn.addEventListener('tap', function() {
+					picker.show(function(rs) {
+						currDate=rs.text;
+						doc.location="{:U('Lottery/index')}?lottery_id={$lottery_id}&date="+currDate;
+					});
+				},false);
+				
+			})(mui,document); 
+			function getLottery(url,setDate){
+				url=url+'?date='+setDate
+				mui.get(url,data,function(e){
+					document.location=url+'?date='+setDate;
+				},'html');
+			}
+			 
+		</script>
+	</body>
+
+</html>

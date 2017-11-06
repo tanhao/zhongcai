@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>模板页面</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link href="__PUBLIC__/Agent/css/mui.picker.css" rel="stylesheet" />
+		<link href="__PUBLIC__/Agent/css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Agent/agentList')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 代理</a>
+			<h1 class="mui-title">新增代理</h1>
+		</header>
+	
+	<div class="mui-content">
+		<div class="mui-scroll" style="padding: 5px 5px 5px 5px;">
+			<form class="mui-input-group" id="agent" >
+				<div class="mui-input-row">
+					<label>登录账号</label>
+					<input type="text"  name="username" id="username" class="mui-input-text" placeholder="请输入4~12位字符">
+				</div>
+				<div class="mui-input-row">
+					<label>代理别名</label>
+					<input type="text" name="nickname" id="nickname" class="mui-input-text" placeholder="请输入2~12位字符">
+				</div>
+				<div class="mui-input-row">
+						<label>登录密码</label>
+						<input type="password" name="password" id="password" class="mui-input-password" placeholder="6至16位英文或数字">
+				</div>
+				<div class="mui-input-row">
+						<label>确认密码</label>
+						<input type="password" name="re_password" id="re_password" class="mui-input-password" placeholder="6至16位英文或数字">
+				</div>
+				<div class="mui-input-row">
+						<label>回佣返点</label>
+						<input type="text" name="commission" id="commission" class="mui-input-text" placeholder="0~{$max_rate}">						
+				</div>
+				<div class="mui-button-row">
+					<a class="mui-btn mui-btn-red" id="submit"><span class="app-icon icon-submit"></span> 确认新增</a>
+				</div>
+			</form>
+		</div>	
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Agent/js/mui.min.js" ></script>
+	<script src="__PUBLIC__/Agent/js/mui.picker.js"></script>		
+	<script src="__PUBLIC__/Agent/js/mui.poppicker.js"></script>	
+	<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var userPicker = new $.PopPicker();
+					userPicker.setData([
+					<volist name="rateList" id="data">
+					{
+						value: '{$data}',
+						text: '{$data}'
+					}, 
+					</volist>
+					]);
+					var fdBtn = doc.getElementById('commission');
+					var userResult = doc.getElementById('userResult');
+					fdBtn.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+							fdBtn.value=items[0].text
+						});
+					}, false);
+					
+				});
+				
+				//===================
+				var btn = document.getElementById("submit");
+			var username=document.getElementById('username');
+			var nickname=document.getElementById('nickname');
+			var password=document.getElementById('password');
+			var re_password=document.getElementById('re_password');
+			var commission = document.getElementById('commission');
+			//监听点击事件
+			btn.addEventListener("tap",function () {
+				var check = true;
+				if(!username.value || username.value.trim()==""){
+					var label = username.previousElementSibling;
+					check=false
+					mui.alert('请输入'+label.innerText);
+					return false;
+				}else if(!nickname.value || nickname.value.trim()==""){
+					var label = nickname.previousElementSibling;
+					check=false
+					mui.alert('请输入'+label.innerText);
+					return false;
+				}else if(!password.value || password.value.trim()==""){
+					var label = password.previousElementSibling;
+					check=false
+					mui.alert('请输入'+label.innerText);
+					return false;
+				}else if(!re_password.value || re_password.value.trim()==""){
+					var label = re_password.previousElementSibling;
+					check=false
+					mui.alert('请输入'+label.innerText);
+					return false;
+				}else if(password.value != re_password.value){
+					check=false
+					mui.alert('登录密码与确认密码不一致');
+					return false;
+				}else if(commission.value == 0){
+					check=false
+					mui.alert('请选择返点');
+					return false;
+				}
+				//校验通过，继续执行业务逻辑
+				if(check){
+				  console.log('提交'+commission.value);
+				  mui.ajax("{:U('Agent/addAgent')}",{
+						data:{
+							user_name:username.value,
+							nickname:nickname.value,
+							password:password.value,
+							rate:commission.value
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:3000,//超时时间设置为10秒；
+						success:function(data){
+
+							if(data.code==1){
+								mui.alert(data.msg,'','',function(){
+									mui.openWindow({
+									url: data.url,
+									id: 'agent',
+									show: {
+										aniShow: 'pop-in'
+									}
+								});
+									
+							});
+							}else{
+								mui.alert(data.msg);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							console.log(type);
+						}
+					});
+				}
+			});
+				
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>充值列表</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/mystyle.css" />
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	</head>
+
+	<body>
+		<div class="my-btn-box">
+			<form class="layui-form search-form" action="{:U('Pay/recharge')}" method="get">
+				<span class="fl">
+					 <div class="layui-form-item">
+					    <div class="layui-input-inline sl" style="width: 100px;">
+					      <select name="type">
+					        <option value="-1" <if condition="$type eq -1">selected</if>>全部类型</option>
+					        <option value="1" <if condition="$type eq 1">selected</if>>线下</option>
+					        <option value="2" <if condition="$type eq 2">selected</if>>支付宝</option>
+					        <option value="3" <if condition="$type eq 3">selected</if>>微信</option>
+					        <option value="4" <if condition="$type eq 4">selected</if>>其他</option>
+					      </select>
+					    </div>
+					    <div class="layui-input-inline sl" style="width: 100px;">
+					      <select name="sync">
+					        <option value="-1" <if condition="$sync eq -1">selected</if>>全部状态</option>
+					        <option value="0" <if condition="$sync eq 0">selected</if>>未到账</option>
+					        <option value="1" <if condition="$sync eq 1">selected</if>>已到账</option>
+					      </select>
+					    </div>
+					  </div>
+				</span>
+				<span class="fr">
+	     		   <span class="layui-form-label">搜索条件：</span>
+					<div class="layui-input-inline">
+						<input type="text" name="user_name" autocomplete="off" placeholder="请输入账号" class="layui-input" value="{$user_name}">
+					</div>
+					<button class="layui-btn mgl-20" type="submit">查询</button>
+				</span>
+    		</form>
+		</div>
+		<div class="layui-form">
+			<table class="layui-table"> 
+				<colgroup>
+					<col width="50">
+					<col width="100">
+					<col width="100">
+					<col width="100">
+					<col width="100">
+					<col width="100">
+					<col width="300">
+					<col width="160">
+					<col width="100">
+					<col width="100">
+					<col width="160">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>会员账号</th>
+						<th>当前余额</th>
+						<th>类型</th>
+						<th>金额</th>
+						<th>渠道名称</th>
+						<th>订单号/卡号</th>
+						<th>充值时间</th>
+						<th>到账金额</th>
+						<th>到账时间</th>
+						<th>状态</th>
+						<th>操作人</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="data">
+					<tr>
+						<td class="id">{$data['id']}</td>
+						<td class="user_name">{$data['user_name']}</td>
+						<td>{$data['balance']}</td>
+						<td>
+							<if condition="$data['type'] eq 1">
+							<a class="look-bank" data-id="{$data['bank_id']}" style="color: blue;">线下</a>
+							<elseif condition="$data['type'] eq 2"/>
+							支付宝
+							<else />
+							微信
+							</if>
+						</td>
+						<td class="recharge_cash">{$data['recharge_cash']}</td>
+						<td>{$data['wayName']}</td>
+						<td>{$data['account']}</td>
+						<td>{$data['add_time']|date="Y-m-d H:i:s",###}</td>
+						<td>{$data['real_cash']}</td>
+						<td><if condition="$data['pay_time']">{$data['pay_time']|date="Y-m-d H:i:s",###}</if></td>
+						<td><if condition="$data['sync'] eq 1">已到账<else/><font color="red">未到账</font></if></td>
+						<td>{$data['mm_name']}</td>
+						<td>
+							<if condition="$data['sync'] eq 0 and $data['type'] eq 1"><a class="layui-btn layui-btn-mini layui-btn-warm recharge-btn" data-balance="{$data['recharge_cash']}">充值</a></if>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<div id="demo1"></div>
+
+		<div id="form-content" style="display: none;">
+			<form class="layui-form" action="" style="padding: 20px;">
+			  <div class="layui-form-item">
+			    <div class="layui-inline">
+			      <label class="layui-form-label">充值金额</label>
+			      <div class="layui-input-inline">
+			        <input type="text" name="real_cash" lay-verify="required" autocomplete="off" class="layui-input">
+			      </div>
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="hidden" name="id">
+			      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+		<script src="__PUBLIC__/Cs/frame/layui/layui.js" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use(['form','laypage', 'layer','laydate'], function() {
+				var $ = layui.jquery,
+					form = layui.form(),laypage = layui.laypage,layer = layui.layer,laydate = layui.laydate;
+
+  				// 分页
+				laypage({
+    				cont: 'demo1',
+    				curr: {$pageInfo['page']},
+    				pages: {$pageInfo['page_count']}, //总页数
+    				groups: 5, //连续显示分页数
+    				jump: function(obj, first){
+				    	var page = obj.curr;
+				    	if (!first) {
+				    		location.href = "{:U('Pay/recharge')}?type={$type}&sync={$sync}&user_anme={$user_anme}&page="+page;
+				    	}
+				    }
+  				});
+				//全选
+				form.on('checkbox(allChoose)', function(data) {
+					var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+					child.each(function(index, item) {
+						item.checked = data.elem.checked;
+					});
+					form.render('checkbox');
+				});
+
+				$('.sl dd').click(function(){
+					var type = $(this).attr('lay-value');
+					$('.search-form').submit();
+				});
+
+				//充值
+				$('.recharge-btn').click(function(){
+					var user_name = $(this).parents('tr').find('.user_name').text();
+					var real_cash = $(this).parents('tr').find('.recharge_cash').text();
+					var id = $(this).parents('tr').find('.id').text();
+					$("#form-content input[name=real_cash]").val(real_cash);
+					$("#form-content input[name=id]").val(id);
+					layer.open({
+					  type: 1,
+					  title: '充值给'+user_name,
+					  closeBtn: 1,
+					  shadeClose: true,
+					  area:['400px','300px'],
+					  content: $('#form-content')
+					});
+				});
+
+				// 查看下线充值银行卡
+  				$('.look-bank').on('click',function(){
+  					var bank_id = $(this).attr('data-id');
+  					layer.open({
+						type:2,
+						title:'查看银行卡',
+						shadeClose:true,
+						shade:0.8,
+						area:['600px','550px'],
+						content:"{:U('Pay/bankInfo')}?bank_id="+bank_id
+					});
+  				});
+
+				//监听提交
+			  form.on('submit(demo1)', function(data){
+			    $.post("{:U('Pay/syncRecharge')}",data.field,function(res){
+			        if(res.code > 0){
+			            layer.msg(res.msg,{time:1800,icon: 1},function(){
+			                location.reload();
+			            });
+			        }else{
+			            layer.msg(res.msg,{time:1800,icon: 5});
+			        }
+			    },'json');
+			    return false;
+			  });
+			});
+		</script>
+
+	</body>
+
+</html>

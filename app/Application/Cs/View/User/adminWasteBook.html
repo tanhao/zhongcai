@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>收益记录</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/mystyle.css" />
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	</head>
+
+	<body>
+		<div class="my-btn-box">
+			<form class="layui-form" action="{:U('User/adminWasteBook')}">
+				<span class="fl">
+					 <div class="layui-form-item">
+					    <div class="layui-input-inline sl" style="width: 100px;">
+					      <select name="type" id="select-type">
+					        <option value="0" <if condition="$type eq 0">selected</if>>全部类型</option>
+					        <option value="1" <if condition="$type eq 1">selected</if>>佣金</option>
+					        <option value="2" <if condition="$type eq 2">selected</if>>提现</option>
+					        <option value="3" <if condition="$type eq 3">selected</if>>提现失败</option>
+					        <option value="4" <if condition="$type eq 4">selected</if>>退款</option>
+					      </select>
+					    </div>
+					  </div>
+				</span>
+				<input type="hidden" name="user_id" value="{$user_id}">
+    		</form>
+		</div>
+		<div class="layui-form">
+			<table class="layui-table"> 
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>交易类型</th>
+						<th>之前余额</th>
+						<th>交易金额</th>
+						<th>交易时间</th>
+						<th>流水账</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="data">
+					<tr>
+						<td>{$data['id']}</td>
+						<td>{$data['type_name']}</td>
+						<td align="right">{$data['before_balance']}</td>
+						<td align="right">{$data['change_balance']}</td>
+						<td>{$data['add_time']|date="Y-m-d H:i:s",###}</td>
+						<td align="right">{$data['after_balance']}</td>
+					</tr>
+					</list>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<div id="demo1"></div>
+		<script src="__PUBLIC__/Cs/frame/layui/layui.js" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use(['form','laypage', 'layer','laydate'], function() {
+				var $ = layui.jquery,
+					form = layui.form(),laypage = layui.laypage,layer = layui.layer,laydate = layui.laydate;
+				laypage({
+    				cont: 'demo1',
+    				curr: {$pageInfo['page']},
+    				pages: {$pageInfo['page_count']}, //总页数
+    				groups: 5, //连续显示分页数
+    				jump: function(obj, first){
+				    	var page = obj.curr;
+				    	var type = $('select').val();
+				    	if (!first) {
+				    		location.href = "{:U('User/adminWasteBook')}?user_id={$user_id}&type="+type+"&page="+page;
+				    	}
+				    }
+  				});
+
+  				$('.sl dd').click(function(){
+					$('form').submit();
+				});
+
+			});
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,556 @@
+[ 2017-10-08T14:04:16+08:00 ] 127.0.0.1 /api/test
+ERR: 无法加载控制器:Test
+
+[ 2017-10-08T14:05:00+08:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+NOTIC: [2] require_once(D:\WWW\app\ThinkPHP\Library\Vendor/api_sdk/vendor/autoload.php): failed to open stream: No such file or directory D:\WWW\app\ThinkPHP\Library\Vendor\phpSMS\SmsDemo.php 第 5 行.
+
+[ 2017-10-08T06:05:46+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: InvalidAccessKeyId.NotFound Specified access key is not found. HTTP Status: 404 RequestID: 020BA428-B5C4-48F0-B30D-7FD13E3490A5
+
+[ 2017-10-08T14:06:07+08:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T14:06:20+08:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T14:06:28+08:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T14:06:36+08:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:07:07+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: InvalidAccessKeyId.NotFound Specified access key is not found. HTTP Status: 404 RequestID: 15EB45FF-A647-4BAA-9DF1-CCCC63E3F78A
+
+[ 2017-10-08T06:08:41+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:10:30+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:10:31+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:10:43+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:22:14+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] Missing argument 1 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+NOTIC: [2] Missing argument 2 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:22:53+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] Missing argument 1 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+NOTIC: [2] Missing argument 2 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+ERR: Server unreachable: Errno: 7 Failed to connect to dysmsapi.aliyuncs.com port 80: Timed out
+
+[ 2017-10-08T06:23:05+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] Missing argument 1 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+NOTIC: [2] Missing argument 2 for sendSms(), called in D:\WWW\app\Application\Api\Controller\TestController.class.php on line 11 and defined D:\WWW\app\Application\Common\Common\function.php 第 124 行.
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 11B616BE-3525-4F7B-AB39-6AEECFF8E516
+
+[ 2017-10-08T06:26:01+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 2048807A-B8E4-48A6-8FE4-166EA066E686
+
+[ 2017-10-08T06:26:17+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: FC55C031-3E6E-4FF2-A895-2E4DADD19125
+
+[ 2017-10-08T06:26:46+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: DCDECB3D-0DCD-4782-B5AE-9B8F83ED1AFB
+
+[ 2017-10-08T06:27:29+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 5CA00C56-DBAC-47BE-8B66-D770E3AC1F89
+
+[ 2017-10-08T06:29:33+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 565CF6AE-C6D2-4140-8C53-FADFCDA2FCE5
+
+[ 2017-10-08T06:29:34+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: C7D1F55B-2209-43E4-AB00-2B409923B636
+
+[ 2017-10-08T06:29:48+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: InvalidAccessKeyId.NotFound Specified access key is not found. HTTP Status: 404 RequestID: BE4F6E09-E185-44AB-A13A-E05A2C1FD8E7
+
+[ 2017-10-08T06:29:54+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 14D5A342-4F4B-4C38-B35B-0961F47FA45D
+
+[ 2017-10-08T06:29:58+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: 031016B4-B966-4E1C-842D-A8FBD4135828
+
+[ 2017-10-08T06:30:03+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: SignatureDoesNotMatch Specified signature is not matched with our calculation. HTTP Status: 400 RequestID: B2B956B0-47B5-4425-817D-E28CBE0B15FD
+
+[ 2017-10-08T06:30:23+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:30:42+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:32:07+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:32:11+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:32:18+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:32:45+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:32:49+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T06:33:15+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.015625s ]
+INFO: [ app_end ] --END-- [ RunTime:0.015625s ]
+
+[ 2017-10-08T14:37:54+08:00 ] 127.0.0.1 /api/pay/onlineRecharge?client_id=7f0000010b5400000211&nonce_str=852438d026c018c4307b916406f98c62&pay_type=wechat&recharge_cash=232&token=af3994a0bfe62c38d051779f99734281&sign=efcc77b4756d1e11821e2485ea521421
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: Redis server went away
+
+[ 2017-10-08T14:38:04+08:00 ] 127.0.0.1 /api/pay/onlineRecharge?client_id=7f0000010b5400000211&nonce_str=852438d026c018c4307b916406f98c62&pay_type=wechat&recharge_cash=232&token=af3994a0bfe62c38d051779f99734281&sign=efcc77b4756d1e11821e2485ea521421
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.1250s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = 'af3994a0bfe62c38d051779f99734281' LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0938s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('0','0','Pay','onlineRecharge','{\"client_id\":\"7f0000010b5400000211\",\"nonce_str\":\"852438d026c018c4307b916406f98c62\",\"pay_type\":\"wechat\",\"recharge_cash\":\"232\",\"token\":\"af3994a0bfe62c38d051779f99734281\",\"sign\":\"efcc77b4756d1e11821e2485ea521421\"}','{\"code\":202,\"token\":null,\"message\":\"TOKEN无效\",\"data\":[]}','127.0.0.1','2017-10-08 14:38:04') [ RunTime:0.0156s ]
+
+[ 2017-10-08T06:59:20+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T07:04:35+00:00 ] 127.0.0.1 /api/test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-10-08T15:07:51+08:00 ] 127.0.0.1 /api/public/getToken/client_id/s
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0313s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `user_id` = '15074464718086' LIMIT 1   [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_user_token` (`user_id`,`is_temp`,`token`,`client_id`,`online`,`room_id`,`add_time`) VALUES ('15074464718086','1','5851e1668461c6c8c8c2c7d152061a9e','s','1','0','1507446471') [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0000s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('0','0','Public','getToken','{\"client_id\":\"s\"}','{\"code\":200,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"成功\",\"data\":[]}','127.0.0.1','2017-10-08 15:07:51') [ RunTime:0.0000s ]
+
+[ 2017-10-08T15:08:01+08:00 ] 127.0.0.1 /api/public/getToken/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `token` = 'a39248bb8a9f914acde5a5782bb7b595' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `user_id` = '15074464814326' LIMIT 1   [ RunTime:0.0000s ]
+SQL: INSERT INTO `zc_user_token` (`user_id`,`is_temp`,`token`,`client_id`,`online`,`room_id`,`add_time`) VALUES ('15074464814326','1','a39248bb8a9f914acde5a5782bb7b595','s','1','0','1507446481') [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('0','0','Public','getToken','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\"}','{\"code\":200,\"token\":\"a39248bb8a9f914acde5a5782bb7b595\",\"message\":\"成功\",\"data\":[]}','127.0.0.1','2017-10-08 15:08:01') [ RunTime:0.0000s ]
+
+[ 2017-10-08T15:08:12+08:00 ] 127.0.0.1 /api/public/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 非法操作:getVerifyCode
+
+[ 2017-10-08T15:08:17+08:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507446497',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0156s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\"}','{\"code\":201,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"参数错误\",\"data\":[]}','127.0.0.1','2017-10-08 15:08:17') [ RunTime:0.0000s ]
+
+[ 2017-10-08T15:08:31+08:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507446511',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\"}','{\"code\":201,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"参数错误\",\"data\":[]}','127.0.0.1','2017-10-08 15:08:31') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:08:51+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507446530',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0000s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":200,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"成功\",\"data\":[]}','127.0.0.1','2017-10-08 07:08:51') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:26:07+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0156s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507447567',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 174 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":200,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"成功\",\"data\":[]}','127.0.0.1','2017-10-08 07:26:07') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:31:57+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0156s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507447917',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 174 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":200,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"成功\",\"data\":[]}','127.0.0.1','2017-10-08 07:31:57') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:34:54+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0156s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448094',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 174 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:34:54') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:35:09+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448109',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0000s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:35:09') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:37:31+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448251',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:37:31') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:40:27+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448426',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:40:27') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:41:03+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448463',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:41:03') [ RunTime:0.0000s ]
+
+[ 2017-10-08T07:41:46+00:00 ] 127.0.0.1 /api/user/getVerifyCode/client_id/s/token/5851e1668461c6c8c8c2c7d152061a9e/user_name/13450223260/type/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='s',`online`='1',`add_time`='1507448505',`room_id`='0' WHERE `token` = '5851e1668461c6c8c8c2c7d152061a9e' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 175 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15074464718086','1','User','getVerifyCode','{\"client_id\":\"s\",\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"user_name\":\"13450223260\",\"type\":\"phone\"}','{\"code\":3011,\"token\":\"5851e1668461c6c8c8c2c7d152061a9e\",\"message\":\"发送短信失败\",\"data\":[]}','127.0.0.1','2017-10-08 07:41:46') [ RunTime:0.0156s ]
+

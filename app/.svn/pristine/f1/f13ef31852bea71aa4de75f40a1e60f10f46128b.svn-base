@@ -1,0 +1,78 @@
+body,p,button{
+	font-size: 12px;
+}
+input, select, textarea{
+	font-size: 12px;
+}
+.mui-bar-nav{
+	-webkit-box-shadow:0 0px 0px #ccc;	
+	box-shadow:0 0px 0px #ccc
+}
+.mui-btn.mui-icon{
+	font-size: 12px;
+}
+.mui-bar-nav {
+	background-color: #DD524D;
+	height: 40px;
+}
+.mui-bar-nav a {
+	color: #fff;
+}
+
+.mui-bar .mui-icon {
+	color: #fff;
+	padding-top: 15px;
+	font-size: 12px;
+}
+.mui-bar h1{
+	font-size: 16px;
+	color: #fff;
+	font-weight: 800;
+}
+.home{
+	padding-top: 40px;
+}
+.main{
+	padding-top: 40px;
+}
+.mui-table-view::before,.mui-table-view::after{
+	height: 0px;
+}
+.mui-table-view-cell::after{
+	left: 0px;
+}
+.bar-search{
+	padding: 5px 0px 0px 5px;
+	height: 35px;
+}
+.bar-search input,.bar-search button,form input{
+	height: 30px;
+	font-size: 12px;
+}
+.main button{
+	background-color: #e57373;
+	color: #FFF;
+
+}
+	
+.mui-pager li a{
+	background-color: #e57373;
+	color: #fff;
+}
+.mui-btn, button, input[type=button], input[type=reset], input[type=submit]{
+	font-size: 12px;
+}
+.icon-username{
+	font-size: 14px;
+	color:#EE9BB9;
+}
+.content-bottom{
+	padding-bottom: 50px;
+}
+.mui-badge{
+	font-size: 12px;
+}
+.mui-badge-quyu{
+	background-color: #EE9BB9;
+	color: #fff;
+}

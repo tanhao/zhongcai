@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>直属玩家</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="__PUBLIC__/Ag/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/app.css" />
+		<style>
+			.mui-navigate-right,h4{
+				color: #FF5722;
+			}
+			.mui-off-canvas-right {
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a href="{:U('Index/index')}" class="mui-icon mui-icon-home mui-pull-left"></a> 
+		    <a id="searchBtn" class="mui-icon mui-action-menu mui-icon-search mui-pull-right"></a>
+			<h1 class="mui-title">直属玩家</h1>  
+		</header>
+		<div class="mui-content">
+			<div class="mui-scroll">							
+			   	<ul class="mui-table-view">
+			   		<notempty name="list">
+			   			<volist name="list" id="data">
+			            <li class="mui-table-view-cell">
+			                <a>
+			                    <h4>{$data['user_name']}</h4>           
+			                    <p class='mui-ellipsis'>余额: {$data['balance']} <span class="mui-pull-right">{$data['add_time']|date="Y-m-d",###}</span></p>
+			                </a>	                
+			            </li>
+			            </volist>
+			        <else/>
+			            <li class="mui-table-view-divider">
+			                	暂无注册玩家，请大力推广哦！
+			            </li>
+			        </notempty>
+			    </ul> 
+			    <if condition="$pageInfo['prev'] gt 0 or $pageInfo['next'] gt 0">
+			   	<ul class="mui-table-view">
+			       	<li class="mui-table" style="height: 30px;padding:10px 10px 10px 10px;">
+			       		<if condition="$pageInfo['prev'] gt 0">
+			       		<a class="mui-pull-left" href="{:U('User/userList',['page'=>$pageInfo['prev']])}">上页</a> 
+			       		</if>
+			       		<if condition="$pageInfo['next'] gt 0">
+			       		<a class="mui-pull-right" href="{:U('User/userList',['page'=>$pageInfo['next']])}">下页</a>
+			       		</if>		    
+			       	</li>
+			    </ul>
+			    </if>
+		    </div>
+		</div>
+		<script src="__PUBLIC__/Ag/js/mui.min.js"></script> 
+		<script type="text/javascript">
+			mui.init({swipeBack: false,});	
+			//弹出搜索对话
+			document.getElementById('searchBtn').addEventListener('tap',function(e){
+				e.detail.gesture.preventDefault(); 
+				var btnArray=['取消','查询'];
+				mui.prompt('输入要查询的账号','账号查询','查找玩家',btnArray,function(e){
+					if(e.index==1){
+						location.href = "{:U('User/userlist')}?user_name="+e.value;
+						//提交搜索
+						//test.php为测试返回响应，可改为对应页面地址
+						// mui.post('test.php',{
+						// 	type:'search_user',
+						// 		keyword:e.value
+						// 	},function(data){
+						// 		//服务器返回响应
+						// 		//console.log(data.start);
+						// 		mui.openWindow({
+						// 			url: data.url,
+						// 			id: 'home_new',
+						// 			show: {
+						// 				aniShow: 'pop-in'
+						// 			}
+						// 		});
+						// 	},'json'
+						// );
+					}
+				})
+			});
+		</script>
+	</body>
+</html>

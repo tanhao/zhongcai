@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>下属代理报表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="__PUBLIC__/Ag/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/app.css" />
+		<style>
+			.mui-navigate-right,h4{
+				color: #FF5722;
+			}
+			.mui-off-canvas-right {
+				color: #fff;
+			}
+			.mui-bar .player{
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.search-bar{
+				display: inline-flex;
+				width: 100%;
+				padding-left: 1px;
+				padding-right: 1px;
+			}
+			.mui-table-view-cell h4{
+				font-size: 14px;
+				color: #6D6D72;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a href="{:U('Index/index')}" class="mui-icon mui-icon-home mui-pull-left"></a> 
+		    <a href="{:U('Report/players')}" class="mui-icon mui-pull-right player">直属玩家</a>
+			<h1 class="mui-title">下属代理</h1>  
+		</header>
+		
+		<div class="mui-content">
+			<div class="search-bar">
+				<div class="mui-input-row" style="height:40px; flex-grow:4;">
+					<input type="text" id="searchKey" class="mui-input-clear s_font-size2" placeholder="查询下属代理" maxlength="100" value="{$user_name}" style="height:100%; padding-right:32px;"/>
+				</div>
+				<div style="height:40px; flex-grow:1;">
+					<input type="button" id="searchBtn" value="搜索" class="u_btn" style="width:100%; height:100%;"/>
+				</div>
+			</div>
+			<div style="height: 30px;padding:5px;">
+				<p>总收入金额:<span class="mui-badge mui-badge-danger mui-pull-right">{$total_income}</span></p>
+			</div>
+			<div class="mui-scroll">
+				<!-- 搜索栏 -->
+
+			   	<ul class="mui-table-view">
+			   		<volist name="list" id="data">
+			            <li class="mui-table-view-cell">
+			                <a>
+			                    <h4>{$data['user_name']}<span class="mui-pull-right" style="font-weight: 500;">{$data['count']}笔 -下注金额:{$data['bet_balance']}</span></h4> 
+			                    <p><span class="mui-badge mui-badge-warning">玩家</span> 流水:{$data['win_balance']}<span class="mui-pull-right">输赢:{$data['profit_balance']}</span></p>
+			                    <p><span class="mui-badge mui-badge-primary">代理</span> {$data['rate']}%<span class="mui-pull-right">佣金:{$data['commission']}</span></p>
+			                    <p><span class="mui-badge mui-badge-purple">我的</span> {$data['myrate']}%<span class="mui-pull-right">佣金:{$data['mycommission']}</span></p>
+			                </a>	                
+			            </li>
+			        </volist>
+			   	</ul> 
+			   	<if condition="$pageInfo['prev'] gt 0 or $pageInfo['next'] gt 0">
+			   	<ul class="mui-table-view">
+			       	<li class="mui-table" style="height: 30px;padding:10px 10px 10px 10px;">
+			       		<if condition="$pageInfo['prev'] gt 0">
+			       		<a class="mui-pull-left" href="{:U('Report/agent',['page'=>$pageInfo['prev']])}">上页</a> 
+			       		</if>
+			       		<if condition="$pageInfo['next'] gt 0">
+			       		<a class="mui-pull-right" href="{:U('Report/agent',['page'=>$pageInfo['next']])}">下页</a>
+			       		</if>		    
+			       	</li>
+			    </ul>
+			    </if>
+		    </div>
+		</div> 
+		<script src="__PUBLIC__/Ag/js/mui.min.js"></script> 
+		<script type="text/javascript">
+			mui.init({swipeBack: false,});	
+			//弹出搜索对话
+			document.getElementById('searchBtn').addEventListener('tap',function(e){
+				var searchKey=document.getElementById('searchKey');
+				location.href = "{:U('Report/agent')}?user_name="+searchKey.value;
+				// if(!searchKey.value || searchKey.value.trim()==""){
+				// 	mui.alert('请输入下属代理账号进行搜索');
+				// }else{
+				// 	mui.post('test.php',{
+				// 			type:'search_agent',
+				// 				keyword:e.value
+				// 		},function(data){
+				// 				//服务器返回响应
+				// 				//console.log(data.start);
+				// 			mui.openWindow({
+				// 				url: data.url,
+				// 				id: 'home_new',
+				// 				show: {
+				// 						aniShow: 'pop-in'
+				// 				}
+				// 			});
+				// 		},'json'
+				// 	);
+				// }
+			});
+		</script>
+	</body>
+</html>

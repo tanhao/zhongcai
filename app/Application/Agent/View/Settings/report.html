@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>财务报表</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+		<style>
+			.mui-table-view::before, .mui-table-view::after{
+				height: 1px;
+			}
+			.mui-table-view{
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Settings/index')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 中心</a>
+			<h1 class="mui-title">财务报表</h1>
+		</header>
+		<div class="mui-content">
+				<div class="mui-scroll">
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a href="{:U('Settings/profitLog')}" class="mui-navigate-right">收益记录</a>
+						</li>
+					</ul>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a href="{:U('Settings/drawLog')}" class="mui-navigate-right">提现记录</a>
+						</li>
+					</ul>	
+			</div>
+		</div>				
+	</body>
+</html>

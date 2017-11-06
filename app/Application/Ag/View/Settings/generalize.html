@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="__PUBLIC__/Ag/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/app.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/settings.css" />
+		<script>
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Settings/index')}" class="mui-left mui-btn  mui-btn-link mui-btn-nav mui-pull-left"><span class="mui-icon mui-icon-left-nav"></span>设置</a>
+		    <h1 class="mui-title">我的推广</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">安全码：<span class="mui-pull-right">{$agent['invite_code']}</span></li>
+				</ul>
+			</div>
+			<div style="text-align: center; margin: 0 auto;padding-top: 30px;">
+					<img alt="" src="__PUBLIC__/Ag/images/222.png" style="margin: 0 auto;" width="290" />
+			</div>
+				
+			<div class="mui-table">
+				<p style="text-align: center;">识别图中二维码下载客户端</p>
+			</div>
+		</div>
+		<script src="__PUBLIC__/Ag/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

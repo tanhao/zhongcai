@@ -1,0 +1,24 @@
+body{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.my-btn-box {
+    height: 38px;
+    margin: 10px;
+}
+/* tools */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.none {
+    display: none;
+}
+
+.block {
+    display: block;
+}

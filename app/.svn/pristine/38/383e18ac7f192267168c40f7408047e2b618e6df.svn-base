@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+</head>
+<body>
+
+	<div class="doc-container">
+		<include file="Public:left"/>
+		<div class="doc-body">
+			<include file="Public:top"/>
+			<div class="doc-nav-info">众彩代理管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Index/index')}">首页</a></div>
+			<div class="doc-body-info">
+				<h2 class="body-info-title">账户信息</h2>
+				<if condition="$invite_code">
+				<ul class="body-info-ma">
+					<li class="doc-item-ma">
+						<h3>安全码</h3>
+						<p class="index-create-info">{$invite_code}</p>
+					</li>
+					<li class="doc-item-ma">
+						<h3>推广二维码</h3>
+						<div class="doc-create-ma"><img src="__PUBLIC__/Admin/images/ma.jpg" /></div>
+					</li>
+				</ul>
+				<else/>
+				<ul class="body-info-ma">
+					<li class="doc-item-ma">
+						<h3>安全码</h3>
+						<a href="{:U('Index/index',['create_code'=>1])}" class="uk-button uk-button-primary doc-btn-ma uk-button-large uk-width-1-6">点击生成</a>
+					</li>
+					<li class="doc-item-ma">
+						<h3>推广二维码</h3>
+						<div class="doc-create-ma">请先生成安全码</div>
+					</li>
+				</ul>
+				</if>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,205 @@
+/*********************5.30 -doc***************/
+.doc-container {width:100%;height:100%;position:absolute;top:0;left:0;}
+.doc-nav {width:12%;height:100%;float:left;background:#293541;position:relative;}
+.doc-body {width:88%;height:100%;float:right;background:#fff;position:relative;}
+.doc-nav-list {list-style:none;margin:0;padding:0;position:absolute;top:0;width:100%;height:100%;padding-top:53px;box-sizing:border-box;}
+.nav-logo {width:100%;height:53px;background:url('../images/logo.png') center;display:block;background-size:cover;position:absolute;z-index:2;}
+.doc-nav-list > li {width:100%;text-align:center;line-height:4.4;border-bottom:solid 1px #39495a;}
+.doc-nav-list a {font-size:1.4em;color:#fff;padding-left:29px;}
+.doc-nav-list a:hover {color:#fff;text-decoration:none;opacity:1;}
+.doc-nav-list .doc-nav-01 {background:url('../images/icon_01.png') no-repeat left;opacity:.4;}
+.doc-nav-list .doc-nav-02 {background:url('../images/icon_02.png') no-repeat left;opacity:.4;}
+.doc-nav-list .doc-nav-03 {background:url('../images/icon_03.png') no-repeat left;opacity:.4;}
+.doc-nav-list .doc-nav-04 {background:url('../images/icon_04.png') no-repeat 1%;opacity:.4;padding-left:32px;}
+.doc-nav-list .doc-nav-05 {background:url('../images/icon_05.png') no-repeat 1%;opacity:.4;}
+.doc-nav-list .doc-nav-06 {background:url('../images/icon_06.png') no-repeat left;opacity:.4;}
+.doc-nav-list .doc-nav-07 {background:url('../images/icon_07.png') no-repeat left;opacity:.4;}
+.doc-nav-list .doc-nav-08 {background:url('../images/icon_08.png') no-repeat left;opacity:.4;}
+.doc-nav-list .navActive {opacity:1;}
+.doc-head {width:100%;height:53px;background:url('../images/body_title.png') no-repeat 2% center #293541;}
+.doc-head-info {float:right}
+.index-create-info {font-size:4em;margin-top:90px;}
+.doc-head-date {float:right;position:relative;border-left:solid 1px #2c2e33;background:url('../images/nav_bg.png') repeat-y left;cursor:default;padding:0 18px;height:45px;padding-top:8px;}
+.doc-head-date p {font-size:2em;color:#fff;margin:0;font-weight:bold;}
+.doc-head-date span {font-size:1.4em;color:#dbdbdb;}
+.doc-head-list {overflow:hidden;list-style:none;margin:0;padding:0;font-size:1.2em;float:left}
+.doc-head-list span a {color:#fff;}
+.doc-head-list span a:hover {text-decoration:none;}
+.doc-head-list > li {float:left;padding:0 18px;line-height:53px;}
+.doc-head-list > li > a {color:#c2c2c2;}
+.doc-head-list > li > a:hover {color:#00b0f0;text-decoration:none;}
+.doc-head-list > li:nth-child(2) {border-left:solid 1px #2c2e33;background:url('../images/nav_bg.png') repeat-y left;}
+.doc-head-user {color:#fff;}
+.doc-head-user span {padding:4px 13px;background:#4b4f56;border-radius:5px;}
+.doc-nav-list .navActive {color:#fff;}
+.doc-nav-info {font-size:1.2em;color:#4c4c4c;line-height:3.6;background:#f7f7f7;text-indent:2%;}
+.doc-nav-info a {color:#00b0f0;}
+/*.uk-modal-dialog {padding:0;border-radius:7px;overflow:hidden;}
+.uk-modal-dialog .uk-form {padding-bottom:40px;}
+.doc-dialog-title {font-size:1.6em;background:#f0f0f0;line-height:2.4;text-indent:1.2em;margin-bottom:40px;}
+.uk-modal-dialog>.uk-close:first-child {position:absolute;right:20px;top:20px;font-size:1.4em;}*/
+.doc-nav-info a:hover {text-decoration:none;}
+.doc-body-info {padding:0 2%;box-sizing:border-box;  overflow: hidden;}
+.doc-head-search {overflow:hidden;margin-top:10px;}
+.doc-body-info .body-info-title {font-size:1.6em;color:#383838;}
+.doc-head-searchBox {float:left;}
+.doc-head-searchBox input {min-width:240px;}
+.doc-head-searchBox button {padding:0 26px;}
+.doc-body-info .body-info-ma {list-style:none;margin:0;padding:0;background:#f5f5f5;overflow:hidden;text-align:center;padding-top:50px;padding-bottom:70px;}
+.doc-body-info .doc-item-ma {width:50%;float:left;}
+.doc-body-info .doc-item-ma > h3 {color:#333;font-size:2em;}
+.doc-body-info .doc-create-ma {width:170px;line-height:170px;height:170px;background:#e6e6e6;text-align:center;display:inline-block;color:#666;font-size:14px;margin-top:40px;}
+.doc-body-info .doc-btn-ma {margin-top:90px;font-size:12px;}
+.doc-table-agent i {font-size:1.6em;}
+.doc-table-agent th {background:#f0f0f0;line-height:1}
+.doc-table-agent tr {line-height:2;border-bottom:solid 1px #f1f1f1;}
+.uk-modal-dialog .uk-modal-header {font-size:1.6em;line-height:30px;}
+.uk-modal-dialog button {font-size:12px;}
+/*#changePass label,#addAgent label,#lottery label,.doc-draw-form label,#member label, {min-width:70px;display:inline-block;text-align:left}
+#changePass .uk-form-row,#addAgent .uk-form-row,#lottery .uk-form-row,#member label, {text-align:center;}
+#addAgent .uk-form-row,#lottery .uk-form-row,#member .uk-form-row {margin-bottom:30px;}*/
+.doc-agent-list {overflow:hidden;float:left;}
+.doc-agent-list > a {margin-right:14px;border-radius:20px;padding:0 26px;font-size:12px;}
+.doc-agent-search {float:right;}
+.doc-agent-search > form {float:left;}
+.doc-agent-search > a {font-size:12px;}
+.doc-head-agent {overflow:hidden; margin-top: 14px;}
+.doc-table-agent > thead {border-top:solid 1px #dbdbdb;}
+.doc-agent-search i {cursor:pointer;pointer-events:auto!important;right:10px;opacity:.7;}
+.doc-agent-search .uk-form-icon:not(.uk-form-icon-flip)>input {padding-left:15px!important;min-width:240px;}
+.doc-agent-search i:hover {opacity:1;}
+.doc-head-history > h3 {float:left;font-size:1.4em;line-height:2;min-width:70px;}
+.doc-head-history .uk-button-group {}
+.doc-head-history .uk-button-group a {margin:0 8px;font-size:12px;border-radius:4px;border:solid 1px #e5e5e5;padding:0 26px;}
+.doc-head-history .doc-head-back {float:right;padding:0 26px;font-size:12px;}
+.doc-head-reportSearch {overflow:hidden;margin:16px 0;}
+.doc-head-reportSearch h3 {font-size:1.2em;display:inline-block;position:relative;top:2px;}
+.doc-head-reportSearch .reportInput {min-width:240px;text-indent:4px;line-height:1.4}
+.doc-head-reportSearch button {padding:0 26px;font-size:12px;}
+.body-info-title b {color:#f00;}
+.doc-draw-form {text-align:center;margin:50px auto;}
+.doc-draw-form .uk-form-row {margin:22px 0;}
+.doc-draw-form p {color:#f00;margin:20px 0;}
+.doc-draw-form button {font-size:12px;}
+.doc-user-count a {border-radius:20px!important;}
+
+
+/*充值管理*/
+.charge-search{float: left;}
+.charge-list-head th{}
+.charge-list-content td{vertical-align: middle;}
+.charge-list-content td:nth-child(5){color: red;}
+.charge-button{border: 1px #a6a6a6 solid;border-radius: 4px; 
+  background-image: -moz-linear-gradient( 90deg, rgb(239,239,239) 0%, rgb(245,245,245) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(239,239,239) 0%, rgb(245,245,245) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(239,239,239) 0%, rgb(245,245,245) 100%);
+ width: 76px;height: 28px; display: inline-block; color: #a3a3a3; text-align: center; line-height: 28px; cursor: pointer;}
+ .charge-button-active{border: 1px #018fc3 solid;border-radius: 4px; 
+    background-image: -moz-linear-gradient( 90deg, rgb(0,142,198) 0%, rgb(0,179,244) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(0,142,198) 0%, rgb(0,179,244) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(0,142,198) 0%, rgb(0,179,244) 100%);
+ width: 76px;height: 28px; display: inline-block; color: #fff; text-align: center; line-height: 28px; cursor: pointer;}
+.charge-button-active:hover{opacity: 0.8}
+
+/*输入打款金额探矿*/
+.charge-money{width: 30%; /*padding-top: 2%; padding-left: 5%;padding-right: 5%;*/ background: #fff; margin: 10% auto;}
+.charge-prompt{ padding:10% 10% 10% 10%;}
+.charge-prompt>input{width: 100%; font-size: 18px;}
+.confirm-button{ box-sizing: border-box; width: 100%; overflow: hidden; margin-top: 5%;}
+.confirm-button span:nth-child(1){width: 50%; float: left; background: #dbdbdb; height: 55px; color: #333;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.pass-confirm-button span{width: 100%;background: #dbdbdb; height: 55px; color: #333;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.confirm-button span:nth-child(1):hover{opacity: 0.8}
+.confirm-button span:nth-child(2):hover{opacity: 0.8}
+.confirm-button span:nth-child(2){width: 50%; float: left; background: #0091c9; height: 55px; color: #fff;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.charge-2{color: #fff !important;background: #0091c9 !important;}
+/*人工开奖探矿*/
+.lottery{width: 30%; /*padding-top: 2%; padding-left: 5%;padding-right: 5%;*/ background: #fff; margin: 10% auto;}
+.lottery-prompt{ padding:0% 10% 0% 15%;}
+.lottery-prompt>input{width: 90%; font-size: 16px; margin-top: 5%;}
+.confirm-button{ box-sizing: border-box; width: 100%; overflow: hidden;}
+.confirm-button span:nth-child(1){width: 50%; float: left; background: #dbdbdb; height: 55px; color: #333;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.confirm-button span:nth-child(1):hover{opacity: 0.8}
+.confirm-button span:nth-child(2):hover{opacity: 0.8}
+.confirm-button span:nth-child(2){width: 50%; float: left; background: #0091c9; height: 55px; color: #fff;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.lottery-2{color: #fff !important;background: #0091c9 !important;}
+/*代理管理*/
+.agent-search {float:left;}
+.agent-search input {min-width:240px; font-size: 12px;}
+.agent-search button {padding:0 26px;}
+.doc-table-agent a{color: #00b0f0}
+/*修改密码*/
+.change-Pass {padding:0;border-radius:7px;overflow:hidden;}
+.change-Pass .uk-form {padding-bottom:40px;}
+.doc-dialog-title {font-size:1.6em;background:#f0f0f0;line-height:2.4;text-indent:1.2em;margin-bottom:40px;}
+.change-Pass>.uk-close:first-child {position:absolute;right:20px;top:20px;font-size:1.4em;}
+
+
+/*用户管理*/
+.doc-table-user i {font-size:1.6em;}
+.doc-table-user th {background:#f0f0f0;line-height:1}
+.doc-table-user tr {line-height:2;border-bottom:solid 1px #f1f1f1;}
+.doc-table-user > thead {border-top:solid 1px #dbdbdb;}
+.doc-table-user a{color: #00b0f0}
+.user-list-content td{vertical-align: middle;}
+.user-list-content td:nth-child(5){color: red;}
+
+/*表报收益*/
+.report-content{width: 100%;height: 330px; background: #f2f2f2; padding-top: 7%; box-sizing: border-box;}
+/*历史开奖*/
+.doc-body-history{margin-top: 15px;}
+.open-lottery{float: right;}
+.uk-button-group{float: left;}
+.doc-head-history{overflow: hidden;}
+.lottery .lottery-choose a {margin:0 8px;font-size:12px;border-radius:4px;border:solid 1px #e5e5e5;padding:0 26px; display: inline-block;}
+.active-lottery{margin:0 8px;font-size:12px;border-radius:4px;border:solid 1px #e5e5e5;padding:0 26px; display: inline-block;}
+.lottery-choose{margin: 0 auto; width: 82%; padding-top: 8%;}
+.lottery-prompt{ padding-top: 0 !important; padding-bottom: 0 !important;}
+
+/*数据统计*/
+.static-nav{float: left;}
+.static-time{float: right;}
+/*员工账号*/
+.member{width: 30%; /*padding-top: 2%; padding-left: 5%;padding-right: 5%;*/ background: #fff; margin: 10% auto;}
+.member-prompt{ padding:0 10% 0 15%;}
+.member-prompt>input{width: 90%; font-size: 16px; margin-top: 5%;}
+.confirm-button{ box-sizing: border-box; width: 100%; overflow: hidden;}
+.confirm-button span:nth-child(1){width: 50%; float: left; background: #dbdbdb; height: 55px; color: #333;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.confirm-button span:nth-child(1):hover{opacity: 0.8}
+.confirm-button span:nth-child(2):hover{opacity: 0.8}
+.confirm-button span:nth-child(2){width: 50%; float: left; background: #0091c9; height: 55px; color: #fff;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.member-2{color: #fff !important;background: #0091c9 !important;}
+.member .member-choose a {margin:0 8px;font-size:12px;border-radius:4px;border:solid 1px #e5e5e5;padding:0 26px; display: inline-block;}
+.member-choose{margin: 0 auto; width: 42%; padding-top: 8%;}
+/*员工账号修改密码*/
+#member-changePass label{min-width:70px;display:inline-block;text-align:left}
+#member-changePass .uk-form-row{text-align:center;}
+/*代理账号修改密码*/
+#agent-changePass label{min-width:70px;display:inline-block;text-align:left}
+#agent-changePass .uk-form-row{text-align:center;}
+/*用户管理修改密码*/
+#user-changePass label{min-width:70px;display:inline-block;text-align:left}
+#user-changePass .uk-form-row{text-align:center;}
+
+
+.open-msg{float: right;margin-top: 14px;}
+/*发布公告*/
+.msg{width: 30%; /*padding-top: 2%; padding-left: 5%;padding-right: 5%;*/ background: #fff; margin: 10% auto;}
+.msg-prompt{ padding:0 10% 0 15%;}
+.msg-prompt>textarea{width: 90%; font-size: 12px; margin-top: 5%; resize: none; height: 130px;}
+.confirm-button{ box-sizing: border-box; width: 100%; overflow: hidden;}
+.confirm-button span:nth-child(1){width: 50%; float: left; background: #dbdbdb; height: 55px; color: #333;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.confirm-button span:nth-child(1):hover{opacity: 0.8}
+.confirm-button span:nth-child(2):hover{opacity: 0.8}
+.confirm-button span:nth-child(2){width: 50%; float: left; background: #0091c9; height: 55px; color: #fff;
+cursor: pointer; font-size: 16px; text-align: center; line-height: 55px; display: inline-block;}
+.msg-2{color: #fff !important;background: #0091c9 !important;}
+.msg .msg-choose a {margin:0 8px;font-size:12px;border-radius:4px;border:solid 1px #e5e5e5;padding:0 26px; display: inline-block;}
+.msg-choose{margin: 0 auto; width: 42%; padding-top: 8%;}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>绑定银行卡</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Settings/index')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 返回</a>
+			<h1 class="mui-title">绑定银行卡</h1>
+		</header>
+		<div class="main">
+			<div class="mui-scroll">
+				<div class="mui-content">
+					<form class="mui-input-group" id="agent">
+						<div class="mui-input-row">
+							<label>开户银行</label>
+							<input type="text" name="bank_name" id="bank_name" class="mui-input-text" placeholder="中国工商" value="{$agent['bank_name']}">
+						</div>
+						<div class="mui-input-row">
+							<label>开户支行</label>
+							<input type="text" name="branch_bank" id="branch_bank" class="mui-input-text" placeholder="地区支行" value="{$agent['branch_bank']}">
+						</div>
+						<div class="mui-input-row">
+							<label>开户人名</label>
+							<input type="text" name="real_name" id="real_name" class="mui-input-text" placeholder="银行卡持有人姓名" value="{$agent['real_name']}">
+						</div>
+						<div class="mui-input-row">
+							<label>银行账号</label>
+							<input type="text" name="account_number" id="account_number" class="mui-input-text" placeholder="卡号或账号" value="{$agent['account_number']}">
+						</div>
+						<div class="mui-button-row">
+							<a class="mui-btn mui-btn-red" id="submit2">确认修改</a>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+		<script src="__PUBLIC__/Agent/js/mui.min.js "></script>
+		<script type="text/javascript">
+			//修改提现信息
+			document.getElementById('submit2').addEventListener('tap',function(){
+				var bank_name = document.getElementById('bank_name').value;
+				var branch_bank = document.getElementById('branch_bank').value;
+				var real_name = document.getElementById('real_name').value;
+				var account_number = document.getElementById('account_number').value;
+				if (bank_name.trim() == '') {
+					mui.alert("开户银行不能为空");
+					return false;
+				}
+				if (branch_bank.trim() == '') {
+					mui.alert("开户支行不能为空");
+					return false;
+				}
+				if (real_name.trim() == '') {
+					mui.alert("开户人名不能为空");
+					return false;
+				}
+				if (account_number.trim() == '') {
+					mui.alert("银行账号不能为空");
+					return false;
+				}
+				mui.ajax("{:U('Settings/editBank')}",{
+			 		data:{
+			 			bank_name:bank_name,
+			 			branch_bank:branch_bank,
+			 			real_name:real_name,
+			 			account_number:account_number,
+			 		},
+			 		dataType:'json',
+			 		type:'post',
+			 		timeout:10000, 
+			 		success:function(data){
+			 			if (data.code == 1) {
+			 				location.href=data.url;
+			 				mui.alert(data.msg);
+			 			} else {
+				 			mui.alert(data.msg);
+				 		}
+			 		}
+			 	});
+			});
+		</script>
+	</body>
+
+</html>

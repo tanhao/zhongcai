@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>资金提现</title>
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/mui.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/app.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/settings.css" />
+
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Settings/index')}" class="mui-left mui-btn  mui-btn-link mui-btn-nav mui-pull-left"><span class="mui-icon mui-icon-left-nav"></span>设置</a>
+		    <h1 class="mui-title">资金提现</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>开户银行</label>
+						<input type="text" name="bank_name" id="bank_name" class="mui-input-text" placeholder="工商银行" value="{$agent['bank_name']}">
+					</div>
+					<div class="mui-input-row">
+						<label>开户支行</label>
+						<input type="text" name="branch_bank" id="branch_bank" class="mui-input-text" placeholder="地区支行" value="{$agent['branch_bank']}">
+					</div>
+					<div class="mui-input-row">
+						<label>开户人名</label>
+						<input type="text" name="real_name" id="real_name" class="mui-input-text" placeholder="银行卡持有人姓名" value="{$agent['real_name']}">
+					</div>
+					<div class="mui-input-row">
+						<label>银行账号</label>
+						<input type="text" name="account_number" id="account_number" class="mui-input-text" placeholder="卡号或账号" value="{$agent['account_number']}">
+					</div>
+					<div class="mui-button-row">
+						<a class="mui-btn mui-btn-red" id="submit2">确认修改</a>
+					</div>
+				</form>	
+			</div>		
+			<div class="mui-card" style="margin-top: 20px;">
+				<form class="mui-input-group" id="agent">
+					<div class="mui-input-row">
+						<label>提现金额</label>
+						<input type="text" name="apply_cash" id="apply_cash" class="mui-input-text" placeholder="" value="">
+					</div>
+					<div class="mui-input-row">
+						<label>资金密码</label>
+						<input type="password" name="pay_password" id="pay_password" class="mui-input-password" placeholder="">
+					</div>
+					<div class="mui-button-row">
+						<a class="mui-btn mui-btn-red" id="submit">确定提现</a>
+					</div>
+				</form>
+						
+			</div>
+		</div>	
+		<script src="__PUBLIC__/Ag/js/mui.min.js "></script>
+		<script>
+			mui.init();
+			var zjPassword = true;
+			var zjPassword=<notempty name="agent['pay_password']">true<else/>false</notempty>;
+			if(!zjPassword){
+				mui.alert('请先设置自己密码','系统提示','返回',function(){
+					document.location="{:U('Settings/security')}";
+				});
+			}
+			//如果没有设置资金密码则跳转到安全重新
+
+			//修改提现信息
+			document.getElementById('submit2').addEventListener('tap',function(){
+				var bank_name = document.getElementById('bank_name').value;
+				var branch_bank = document.getElementById('branch_bank').value;
+				var real_name = document.getElementById('real_name').value;
+				var account_number = document.getElementById('account_number').value;
+				if (bank_name.trim() == '') {
+					mui.alert("开户银行不能为空");
+					return false;
+				}
+				if (branch_bank.trim() == '') {
+					mui.alert("开户支行不能为空");
+					return false;
+				}
+				if (real_name.trim() == '') {
+					mui.alert("开户人名不能为空");
+					return false;
+				}
+				if (account_number.trim() == '') {
+					mui.alert("银行账号不能为空");
+					return false;
+				}
+				mui.ajax("{:U('Settings/draw')}",{
+			 		data:{
+			 			bank_name:bank_name,
+			 			branch_bank:branch_bank,
+			 			real_name:real_name,
+			 			account_number:account_number,
+			 			type:'editDraw',
+			 		},
+			 		dataType:'json',
+			 		type:'post',
+			 		timeout:10000, 
+			 		success:function(data){
+			 			if (data.code == 1) {
+			 				mui.alert(data.msg);
+			 			} else {
+				 			mui.alert(data.msg);
+				 		}
+			 		}
+			 	});
+			});
+			
+			//=============
+			//确认提现
+			document.getElementById('submit').addEventListener('tap',function(){
+				var apply_cash=document.getElementById('apply_cash').value;
+				var pay_password=document.getElementById('pay_password').value;
+				var min_draw = {:getConfig('min_draw')};
+				var max_draw = {:getConfig('max_draw')};
+				if(parseFloat(apply_cash).toString()=='NaN' || apply_cash.trim()==''){
+					mui.alert('请在提现金额输入数字');
+					return false;
+				}
+				if(parseFloat(apply_cash).toString()<min_draw){ 
+					mui.alert('提现金额不能少于'+min_draw);
+					return false;
+				}
+				if(parseFloat(apply_cash).toString()>max_draw){
+					mui.alert('提现金额不能大于'+max_draw);
+					return false;
+				}
+				if(!pay_password || pay_password.trim()==''){
+					mui.alert('请输入资金密码');
+					return false;
+				}
+				mui.confirm('确定要提现 '+apply_cash+"元 吗？",'系统提示',['取消','确定'],function(e){
+					if(e.index==1){
+						mui.ajax("{:U('Settings/draw')}",{
+					 		data:{
+					 			apply_cash:apply_cash,
+					 			pay_password:pay_password,
+					 			type:'draw',
+					 		},
+					 		dataType:'json',
+					 		type:'post',
+					 		timeout:10000, 
+					 		success:function(data){
+					 			if (data.code == 1) {
+					 				mui.alert('提现申请已提交,客服马上为你处理！','系统提示','返回',function(){
+										document.location=data.url;
+									});
+					 			} else {
+						 			mui.alert(data.msg);
+						 		}
+					 		}
+					 	});		
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

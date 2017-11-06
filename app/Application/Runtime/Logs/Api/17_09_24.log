@@ -1,0 +1,93 @@
+[ 2017-09-24T15:18:56+08:00 ] 127.0.0.1 /api/room/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/
+ERR: Redis server went away
+
+[ 2017-09-24T15:19:12+08:00 ] 127.0.0.1 /api/room/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: Redis server went away
+
+[ 2017-09-24T15:19:21+08:00 ] 127.0.0.1 /api/room/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0313s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='f',`online`='1',`add_time`='1506237561' WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' [ RunTime:0.0469s ]
+ERR: 非法操作:roomList
+
+[ 2017-09-24T15:19:30+08:00 ] 127.0.0.1 /api/index/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='f',`online`='1',`add_time`='1506237570',`room_id`='0' WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 146 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15062375054760','1','Index','roomList','{\"client_id\":\"f\",\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\"}','{\"code\":201,\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\",\"message\":\"参数错误\",\"data\":[]}','127.0.0.1','2017-09-24 15:19:30') [ RunTime:0.0000s ]
+
+[ 2017-09-24T15:19:46+08:00 ] 127.0.0.1 /api/index/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/room_id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='f',`online`='1',`add_time`='1506237586',`room_id`='0' WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 146 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0000s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15062375054760','1','Index','roomList','{\"client_id\":\"f\",\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\",\"room_id\":\"1\"}','{\"code\":201,\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\",\"message\":\"参数错误\",\"data\":[]}','127.0.0.1','2017-09-24 15:19:46') [ RunTime:0.0000s ]
+
+[ 2017-09-24T15:20:28+08:00 ] 127.0.0.1 /api/index/roomList/client_id/f/token/9ab873d0bb1e99dbbba8edb61c8b551b/lottery_id/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `zc_user_token` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `zc_user_token` WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `zc_user_token` SET `client_id`='f',`online`='1',`add_time`='1506237628',`room_id`='0' WHERE `token` = '9ab873d0bb1e99dbbba8edb61c8b551b' [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `zc_game` [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `zc_site` [ RunTime:0.0625s ]
+SQL: SHOW COLUMNS FROM `zc_lottery` [ RunTime:0.0313s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 1 LIMIT 1   [ RunTime:0.0313s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 3 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 4 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 5 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 6 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 7 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 8 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 9 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 10 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 11 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 12 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 13 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 14 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 15 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 16 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 17 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 18 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 19 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 21 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 22 LIMIT 1   [ RunTime:0.0156s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 23 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `zc_user_token` WHERE `online` = 1 AND `room_id` = 24 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant 　APP_DEBUG - assumed '　APP_DEBUG' D:\WWW\app\Application\Common\Common\function.php 第 146 行.
+SQL: SHOW COLUMNS FROM `zc_request_action_log` [ RunTime:0.0156s ]
+SQL: INSERT INTO `zc_request_action_log` (`user_id`,`is_temp`,`controller`,`action`,`param`,`return`,`ip`,`add_time`) VALUES ('15062375054760','1','Index','roomList','{\"client_id\":\"f\",\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\",\"lottery_id\":\"1\"}','{\"code\":200,\"token\":\"9ab873d0bb1e99dbbba8edb61c8b551b\",\"message\":\"成功\",\"data\":{\"nickname\":\"*D2069\",\"balance\":\"0.00\",\"gameList\":[{\"game_id\":\"1\",\"game_name\":\"牌九\",\"lottery_id\":\"1\",\"must_host\":\"0\",\"zone_count\":\"5\",\"levelList\":[{\"level_name\":\"底注 10\",\"site_type\":1,\"roomList\":[{\"site_id\":\"1\",\"site_name\":\"新葡京1\",\"site_type\":\"1\",\"game_id\":\"1\",\"max_member\":\"99\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"100000.00\",\"game_name\":\"牌九\",\"room_id\":\"1\",\"online_count\":0},{\"site_id\":\"2\",\"site_name\":\"新葡京2\",\"site_type\":\"1\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牌九\",\"room_id\":\"2\",\"online_count\":0},{\"site_id\":\"3\",\"site_name\":\"新葡京3\",\"site_type\":\"1\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牌九\",\"room_id\":\"3\",\"online_count\":0},{\"site_id\":\"4\",\"site_name\":\"新葡京4\",\"site_type\":\"1\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牌九\",\"room_id\":\"4\",\"online_count\":0},{\"site_id\":\"5\",\"site_name\":\"新葡京5\",\"site_type\":\"1\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牌九\",\"room_id\":\"5\",\"online_count\":0}]},{\"level_name\":\"底注 100\",\"site_type\":2,\"roomList\":[{\"site_id\":\"6\",\"site_name\":\"永利皇宫1\",\"site_type\":\"2\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"牌九\",\"room_id\":\"6\",\"online_count\":0},{\"site_id\":\"7\",\"site_name\":\"永利皇宫2\",\"site_type\":\"2\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"牌九\",\"room_id\":\"7\",\"online_count\":0}]},{\"level_name\":\"体验场\",\"site_type\":3,\"roomList\":[{\"site_id\":\"8\",\"site_name\":\"体验场\",\"site_type\":\"3\",\"game_id\":\"1\",\"max_member\":\"100\",\"less_host_banlance\":\"200.00\",\"max_host_banlance\":\"500.00\",\"max_bet_banlance\":\"200.00\",\"game_name\":\"牌九\",\"room_id\":\"8\",\"online_count\":0}]}]},{\"game_id\":\"2\",\"game_name\":\"牛牛\",\"lottery_id\":\"1\",\"must_host\":\"0\",\"zone_count\":\"2\",\"levelList\":[{\"level_name\":\"底注 10\",\"site_type\":1,\"roomList\":[{\"site_id\":\"9\",\"site_name\":\"新葡京1\",\"site_type\":\"1\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牛牛\",\"room_id\":\"9\",\"online_count\":0},{\"site_id\":\"10\",\"site_name\":\"新葡京2\",\"site_type\":\"1\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牛牛\",\"room_id\":\"10\",\"online_count\":0},{\"site_id\":\"11\",\"site_name\":\"新葡京3\",\"site_type\":\"1\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牛牛\",\"room_id\":\"11\",\"online_count\":0},{\"site_id\":\"12\",\"site_name\":\"新葡京4\",\"site_type\":\"1\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牛牛\",\"room_id\":\"12\",\"online_count\":0},{\"site_id\":\"13\",\"site_name\":\"新葡京5\",\"site_type\":\"1\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"牛牛\",\"room_id\":\"13\",\"online_count\":0}]},{\"level_name\":\"底注 100\",\"site_type\":2,\"roomList\":[{\"site_id\":\"14\",\"site_name\":\"永利皇宫1\",\"site_type\":\"2\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"牛牛\",\"room_id\":\"14\",\"online_count\":0},{\"site_id\":\"15\",\"site_name\":\"永利皇宫2\",\"site_type\":\"2\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"牛牛\",\"room_id\":\"15\",\"online_count\":0}]},{\"level_name\":\"体验场\",\"site_type\":3,\"roomList\":[{\"site_id\":\"16\",\"site_name\":\"体验场\",\"site_type\":\"3\",\"game_id\":\"2\",\"max_member\":\"100\",\"less_host_banlance\":\"200.00\",\"max_host_banlance\":\"500.00\",\"max_bet_banlance\":\"200.00\",\"game_name\":\"牛牛\",\"room_id\":\"16\",\"online_count\":0}]}]},{\"game_id\":\"3\",\"game_name\":\"三公\",\"lottery_id\":\"1\",\"must_host\":\"0\",\"zone_count\":\"5\",\"levelList\":[{\"level_name\":\"底注 10\",\"site_type\":1,\"roomList\":[{\"site_id\":\"17\",\"site_name\":\"新葡京1\",\"site_type\":\"1\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"三公\",\"room_id\":\"17\",\"online_count\":0},{\"site_id\":\"18\",\"site_name\":\"新葡京2\",\"site_type\":\"1\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"三公\",\"room_id\":\"18\",\"online_count\":0},{\"site_id\":\"19\",\"site_name\":\"新葡京3\",\"site_type\":\"1\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"三公\",\"room_id\":\"19\",\"online_count\":0},{\"site_id\":\"20\",\"site_name\":\"新葡京4\",\"site_type\":\"1\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"三公\",\"room_id\":\"20\",\"online_count\":0},{\"site_id\":\"21\",\"site_name\":\"新葡京5\",\"site_type\":\"1\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"10000.00\",\"max_host_banlance\":\"50000.00\",\"max_bet_banlance\":\"10000.00\",\"game_name\":\"三公\",\"room_id\":\"21\",\"online_count\":0}]},{\"level_name\":\"底注 100\",\"site_type\":2,\"roomList\":[{\"site_id\":\"22\",\"site_name\":\"永利皇宫1\",\"site_type\":\"2\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"三公\",\"room_id\":\"22\",\"online_count\":0},{\"site_id\":\"23\",\"site_name\":\"永利皇宫2\",\"site_type\":\"2\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"30000.00\",\"max_host_banlance\":\"500000.00\",\"max_bet_banlance\":\"30000.00\",\"game_name\":\"三公\",\"room_id\":\"23\",\"online_count\":0}]},{\"level_name\":\"体验场\",\"site_type\":3,\"roomList\":[{\"site_id\":\"24\",\"site_name\":\"体验场\",\"site_type\":\"3\",\"game_id\":\"3\",\"max_member\":\"100\",\"less_host_banlance\":\"200.00\",\"max_host_banlance\":\"500.00\",\"max_bet_banlance\":\"200.00\",\"game_name\":\"三公\",\"room_id\":\"24\",\"online_count\":0}]}]}]}}','127.0.0.1','2017-09-24 15:20:28') [ RunTime:0.0000s ]
+

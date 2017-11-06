@@ -1,0 +1,18 @@
+<div class="doc-head">
+				<div class="doc-head-info">
+					<ul class="doc-head-list">
+						<li class="doc-head-user">欢迎您：<span>{$mm_name}</span></li>
+						<if condition="in_array('Message', $privilege)">
+						<li><a href="{:U('Message/index')}">公告管理</a></li>
+						</if>
+						<if condition="in_array('Log', $privilege)">
+						<li><a href="{:U('Log/log')}">登录日志</a></li>
+						</if>
+						<li><a href="{:U('Login/logout')}">退出</a></li>
+					</ul>
+					<div class="doc-head-date">
+						<p>{$year}</p>
+						<span>{$monthday}</span>
+					</div>
+				</div>
+			</div>

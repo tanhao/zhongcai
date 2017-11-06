@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 389891 */
+  src: url('../fonts/iconfont.eot');
+  src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/iconfont.woff') format('woff'),
+  url('../fonts/iconfont.ttf') format('truetype'),
+  url('../fonts/iconfont.svg#iconfont') format('svg');
+}
+.app-icon {
+  font-family:"iconfont" !important;
+  font-size:12px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-agents:before{content:"\e605" ;}
+
+.icon-player:before{content:"\e76e" ;}
+.icon-bets:before{content:"\e61e" ;}
+.icon-result:before{content:"\e658" ;}
+.icon-shouyi:before{content:"\e63b" ;}
+.icon-lishizhudan:before{content:"\e6ae" ;}
+.icon-notice:before{content:"\e62e" ;}
+.icon-generalize:before{content: "\e7bf";}
+.icon-setting:before{content: "\e68a";}
+
+.icon-laba:before{content: "\e6d1";}
+.icon-left:before{content: "\e601";}
+.icon-right:before{content: "\e600";}
+.icon-left-nav:before{content: "\e692";}
+.icon-right-nav:before{content: "\e69d";}
+.icon-add:before{content: "\e602";}
+.icon-sousuo:before{content: "\e603";}
+.icon-username:before{content: "\e613";}
+.icon-submit:before{content: "\e66a";}
+.icon-edit:before{content: "\e83f";}
+.icon-date:before{content:"\e643";}
+.icon-yongjin:before{content:"\e66c";}
+.icon-money:before{content:"\e614";}
+.icon-xiala:before{content:"\e7e2";}

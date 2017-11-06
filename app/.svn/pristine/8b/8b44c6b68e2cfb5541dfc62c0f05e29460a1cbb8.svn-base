@@ -1,0 +1,86 @@
+body{
+	color: #6D6D72;
+}
+body,p,button{
+	font-size: 12px;
+}
+.mui-bar-nav{
+	-webkit-box-shadow:0 0px 0px #ccc;	
+	box-shadow:0 0px 0px #ccc
+}
+.mui-btn.mui-icon{
+	font-size: 12px;
+}
+.mui-bar-nav {
+	background-color: #DD524D;
+	height: 40px;
+}
+.mui-bar-nav a {
+	color: #fff;
+	font-weight: 200px;
+}
+
+.mui-bar .mui-icon {
+	color: #fff;
+	padding-top: 15px;
+	font-size: 12px;
+}
+.mui-bar h1{
+	font-size: 18px;
+	color: #fff;
+	font-weight: 800;
+}
+.mui-search-bar{
+	padding-top: 40px;
+	background-color: #EEEEEE;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.bar-search input{
+	height: 32px;
+	font-size: 12px;
+}
+.mui-bar .mui-btn-nav.mui-pull-left .mui-icon-left-nav{
+	margin-right: -11px;
+}
+			
+button[type=button]{
+	color: #fff;
+	background-color: #DD524D;
+	height: 32px;
+	font-weight: 200px;
+}
+.mui-btn, button, input[type=button], input[type=reset], input[type=submit]{
+	font-size: 12px;
+}
+.mui-bar-nav.mui-bar .appfont{
+	margin-right:-10px;
+	margin-left:-10px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.mui-pager a{
+	color: #EE7D7A;
+}
+.bar-search{
+	position:absolute;
+	background-color: #DDDDDD;
+	padding-top: 44px;
+	width: 100%;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-bottom: 20px;
+}
+
+.mui-table-view::before{
+	height: 0px;
+}
+.mui-table-view-cell::after{
+	background-color: #F2F2F2;
+	height: 10px;
+	left: 0px;
+}
+.mui-table-view::after{
+	height: 0px;
+}
+			

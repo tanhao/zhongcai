@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/tooltip.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/datepicker.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+</head>
+<body>
+
+	<div class="doc-container">
+		<include file="Public:left"/>
+		<div class="doc-body">
+			<include file="Public:top"/>
+			<div class="doc-nav-info">众彩代理管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('User/bank')}">银行卡</a></div>
+			<div class="doc-body-info">
+				<h2 class="body-info-title">账户信息</h2>
+				<div class="doc-draw-form uk-width-1-2">
+				<form class="uk-form" action="{:U('User/bank')}" method="post">
+				    <fieldset>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户名</label>
+	        	 			<input type="text" class="uk-width-3-5" name="real_name" value="{$adminInfo['real_name']}" placeholder="" required>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">银行账户</label>
+	        	 			<input type="text" class="uk-width-3-5" name="account_number" value="{$adminInfo['account_number']}" placeholder="" required>
+				        </div>
+						<div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户行</label>
+	        	 			<input type="text" class="uk-width-3-5" name="bank_name" value="{$adminInfo['bank_name']}" placeholder="" required>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户支行</label>
+	        	 			<input type="text" class="uk-width-3-5" name="branch_bank" value="{$adminInfo['branch_bank']}" placeholder="" required>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">资金密码</label>
+	        	 			<input type="password" class="uk-width-3-5" name="pay_password" value="" placeholder="请输入6-15位英文字母或数字">
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">确认密码</label>
+	        	 			<input type="password" class="uk-width-3-5" name="re_pay_password" value="" placeholder="再次输入资金密码">
+				        </div>
+			        	<button class="uk-button uk-button-primary uk-width-1-5" type="submit">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			        	<button class="uk-button uk-width-1-5" type="button" onclick="window.history.back()">返回</button>
+				    </fieldset>
+				    
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 引入jquery-2.1.4 -->
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<!-- 引入uikit.js -->
+	<script src="__PUBLIC__/Admin/js/uikit.min.js"></script>
+	<!-- 引入动态分页组件 -->
+	<script src="__PUBLIC__/Admin/js/components/pagination.min.js"></script>
+	<!-- 引入提示组件 -->
+	<script src="__PUBLIC__/Admin/js/components/tooltip.min.js"></script>
+	<!-- 引入日期组件 -->
+	<script src="__PUBLIC__/Admin/js/components/datepicker.min.js"></script>
+	
+</body>
+</html>

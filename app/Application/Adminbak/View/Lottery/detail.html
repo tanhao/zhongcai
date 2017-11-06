@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/tooltip.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+</head>
+<body>
+
+	<div class="doc-container">
+		<include file="Public:left"/>
+		<div class="doc-body">
+			<include file="Public:top"/>
+			<div class="doc-nav-info">众彩代理管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Lottery/index')}">历史开奖</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Lottery/index',array('lottery_id'=>$lotteryInfo['lottery_id']))}">{$lotteryInfo['lottery_name']}</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="">{$gameInfo['name']}</a></div>
+			<div class="doc-body-info">
+				<h2 class="body-info-title">历史开奖</h2>
+				<div class="doc-head-history">
+					<h3>游戏玩法：</h3>
+					<div class="uk-button-group">
+					<volist name="gameList" id="data" key="key">
+					<if condition="$data['selected'] eq 1">
+						<a class="uk-button uk-button-primary" href="{:U('Lottery/detail',array('id'=>$lotteryInfo['id'],'game_id'=>$data['game_id']))}">{$data['name']}</a>
+					<else/>
+						<a class="uk-button" href="{:U('Lottery/detail',array('id'=>$lotteryInfo['id'],'game_id'=>$data['game_id']))}">{$data['name']}</a>
+					</if>
+				    </volist>
+					</div>
+					<a class="uk-button doc-head-back" href="{:U('Lottery/index',array('lottery_id'=>$lotteryInfo['lottery_id']))}">返回</a>
+				</div>
+				<table class="uk-table doc-table-agent">
+				    <thead>
+				        <tr>
+				        	<volist name="grid" id="data" key="key">
+				        	<th>{$data['name']}</th>
+				            </volist>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr>
+				        	<volist name="grid" id="data" key="key">
+				            <th>{$data['value']}</th>
+				            </volist>
+				        </tr>
+				    </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- 引入jquery-2.1.4 -->
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<!-- 引入uikit.js -->
+	<script src="__PUBLIC__/Admin/js/uikit.min.js"></script>
+	<!-- 引入动态分页组件 -->
+	<script src="__PUBLIC__/Admin/js/components/pagination.min.js"></script>
+	<!-- 引入提示组件 -->
+	<script src="__PUBLIC__/Admin/js/components/tooltip.min.js"></script>
+	
+</body>
+</html>

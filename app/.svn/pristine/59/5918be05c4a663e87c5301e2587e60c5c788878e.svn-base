@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>报表收益</title>
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/mui.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/appfont.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Agent/css/apps.css" />
+		<style>
+			.mui-badge{
+				font-size: 12px;
+			}
+			.mui-badge-quyu{
+				background-color: #EE9BB9;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a href="{:U('Index/index')}" class="mui-left mui-btn-nav mui-pull-left"><span class="mui-icon app-icon icon-left-nav"></span> 首页</a>
+			<a href="{:U('Report/players')}" class="mui-btn-nav mui-pull-right"><span class="mui-icon app-icon icon-username"></span> 玩家</a>
+			<h1 class="mui-title">代理收益</h1>
+		</header>
+		<div class="main">
+			<div class="bar-search">
+				<div class="mui-pull-right">
+					<input type="text" id="searchKey" placeholder="账号或呢称" style="width: 140px;" value="{$user_name}"> <button type="button" id="searchBtn" class="mui-btn app-icon icon-sousuo">搜索</button>
+				</div>
+			</div>
+			<div class="mui-content">
+				<div class="mui-scroll" style="padding: 5px 5px 5px 5px;">
+					<ul class="mui-table-view">
+						<volist name="list" id="data">
+						<li class="mui-table-view-cell">
+					        <a>
+					            <p><i class="app-icon icon-username"></i>{$data['nickname']}<span class="mui-pull-right">{$data['count']}笔 <i class="app-icon icon-money"></i>下注:{$data['bet_balance']}</span></p> 
+					            <p><i class="app-icon icon-username"></i>玩家  <i class="app-icon icon-money"></i>流水:{$data['win_balance']}<span class="mui-pull-right">输赢:{$data['profit_balance']}</span></p>
+					            <p><i class="app-icon icon-username"></i>下级  {$data['rate']}%<span class="mui-pull-right"><i class="app-icon icon-yongjin"></i>{$data['commission']}</span></p>
+					            <p><i class="app-icon icon-username"></i>我的  {$data['myrate']}%<span class="mui-pull-right"><i class="app-icon icon-yongjin"></i>{$data['mycommission']}</span></p>
+					        </a>	                
+					    </li>
+					   	</volist>    
+					</ul>
+					<ul class="mui-pager mui-pagination-sm">
+						<li class=<if condition="$pageInfo['prev'] gt 0">"mui-previous"<else/>"mui-previous mui-disabled"</if>>
+							<a <if condition="$pageInfo['prev'] gt 0">href="{:U('Report/agent',['page'=>$pageInfo['prev']])}"</if>><span class="app-icon icon-left"></span> 上页</a>
+						</li>
+						<li class=<if condition="$pageInfo['next'] gt 0">"mui-next"<else/>"mui-next mui-disabled"</if>>
+							<a <if condition="$pageInfo['next'] gt 0">href="{:U('Report/agent',['page'=>$pageInfo['next']])}"</if>>下页 <span class="app-icon icon-right"></span></a>
+						</li>
+					</ul>
+				<!--加一个div防止最后一条显示不完整-->
+				<div style="height: 40px;"></div>	
+				</div>
+			</div>
+			
+			</div>
+		
+	<script type="text/javascript" src="__PUBLIC__/Agent/js/mui.min.js" ></script>
+	<script type="text/javascript">
+			mui.init({swipeBack: false,});	
+			//弹出搜索对话
+			document.getElementById('searchBtn').addEventListener('tap',function(e){
+				var searchKey=document.getElementById('searchKey');
+				location.href = "{:U('Report/agent')}?user_name="+searchKey.value;
+			});
+		</script>
+	</body>
+
+</html>

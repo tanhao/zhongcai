@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>银行卡管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/mystyle.css" />
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	</head>
+
+	<body>
+		<div class="my-btn-box">
+			<form class="layui-form" action="">
+				<span class="fl">
+					 <div class="layui-form-item sl">
+					    <div class="layui-input-inline" style="width: 150px;">
+					      <select name="controller">
+					      	<volist name="controllerList" id="data">
+					      	<option value="{$data['controller']}" {$data['selected']}>{$data['name']}</option>
+					      	</volist>
+					      </select>
+					    </div>
+					    <div class="layui-input-inline" style="width: 150px;">
+					      <select name="type">
+					        <volist name="typeList" id="data">
+					      	<option value="{$data['type']}" {$data['selected']}>{$data['name']}</option>
+					      	</volist>
+					      </select>
+					    </div>
+					    <div class="layui-input-inline" style="width: 100px;">
+        				<input name="add_time" class="layui-input" id="date" onclick="layui.laydate({elem: this})" type="text" placeholder="yyyy-mm-dd" autocomplete="off" lay-verify="date" value="{$add_time}">
+      					</div>
+					  </div>
+				</span>
+				<span class="fr">
+	     		   <span class="layui-form-label">搜索条件：</span>
+					<div class="layui-input-inline">
+						<input type="text" name="user_name" autocomplete="off" placeholder="请输入账号" class="layui-input" value="{$user_name}">
+					</div>
+					<button class="layui-btn mgl-20">查询</button>
+				</span>
+    		</form>
+		</div>
+		<div class="layui-form">
+			<table class="layui-table"> 
+				<!-- <colgroup>
+					<col width="50">
+					<col width="100">
+					<col width="100">
+					<col width="120">
+					<col>
+					<col width="200">
+					<col>
+				</colgroup> -->
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>后台账号</th>
+						<th>操作模块</th>
+						<th>操作类型</th>
+						<th>操作详细</th>
+						<th>时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="data">
+					<tr>
+						<td>{$data['id']}</td>
+						<td>{$data['user_name']}</td>
+						<td>{$data['controller_name']}</td>
+						<td>{$data['type_name']}</td>
+						<td>{$data['content']}</td>
+						<td>{$data['add_time']|date='Y-m-d H:i:s',###}</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<div id="demo1"></div>
+		<script src="__PUBLIC__/Cs/frame/layui/layui.js" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use(['form','laypage', 'layer','laydate'], function() {
+				var $ = layui.jquery,
+					form = layui.form(),laypage = layui.laypage,layer = layui.layer,laydate = layui.laydate;
+				// 分页
+				laypage({
+    				cont: 'demo1',
+    				curr: {$pageInfo['page']},
+    				pages: {$pageInfo['page_count']}, //总页数
+    				groups: 5, //连续显示分页数
+    				jump: function(obj, first){
+				    	var page = obj.curr;
+				    	if (!first) {
+				    		location.href = "{:U('Manage/actLog')}?user_name={$user_name}&controller={$controller}&type={$type}&add_time={$add_time}&page="+page;
+				    	}
+				    }
+  				});
+
+				$('.sl dd').click(function(){
+					var type = $(this).attr('lay-value');
+					$('form').submit();
+				});
+
+			});
+		</script>
+
+	</body>
+
+</html>

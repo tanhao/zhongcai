@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>下注详细</title>
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Ag/css/app.css" />
+		<link href="__PUBLIC__/Ag/css/mui.picker.css" rel="stylesheet" />
+		<link href="__PUBLIC__/Ag/css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/Ag/css/app.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />-->
+		<style>
+			.mui-popover {
+				height: 480px;
+			}
+			h4.mui-ellipsis{
+				color: #FF5722;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a> 
+		    <h1 class="mui-title">下注详细</h1>
+		</header>
+		<div class="mui-content">
+				<div class="mui-scroll">
+				    <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+				    	<volist name="list" id="data">
+				        <li class="mui-table-view-cell">
+				            <div class="mui-table">
+				                <div class="mui-table-cell mui-col-xs-10">
+				                    <h4 class="mui-ellipsis">{$data['lottery_name']}-{$data['issue']}期  {$data['site_name']}-{$data['game_name']} </h4>
+				                    <h5>玩家：{$data['user_name']} ({$data['nickname']})</h5>
+				                    <p class="mui-h6 mui-ellipsis">区域: {$data['zone']}  金额: {$data['balance']}</p>
+				                </div>
+				                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+				                    <span class="mui-h5">{$data['add_time']|date="Y-m-d H:i"}</span>
+				                </div>
+				            </div>
+				        </li>
+				    	</volist>
+				    </ul>
+			</div>
+		
+		</div>
+		<script src="__PUBLIC__/Ag/js/mui.min.js"></script>
+		<script>
+
+		</script>
+	</body>
+
+</html>

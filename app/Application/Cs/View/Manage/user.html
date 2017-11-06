@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>帐号管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="__PUBLIC__/Cs/frame/mystyle.css" />
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	</head>
+
+	<body>
+		<div class="my-btn-box">
+			<span class="fl">
+        		<a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>
+        		<a href="{:U('Manage/addUser')}" class="layui-btn btn-add btn-default" id="btn-add-bank">添加</a>
+    		</span>
+    		<form action="{:U('Manage/user')}" method="get">
+    		<span class="fr">
+     		   <span class="layui-form-label">搜索条件：</span>
+				<div class="layui-input-inline">
+					<input type="text" name="user_name" autocomplete="off" placeholder="请输入账号或别名" class="layui-input" value="{$user_name}">
+				</div>
+				<button class="layui-btn mgl-20" type="submit">查询</button>
+			</span>
+			</form>
+		</div>
+		<div class="layui-form">
+			<table class="layui-table"> 
+				<thead>
+					<tr>
+						<th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+						<th>ID</th>
+						<th>登陆账号</th>
+						<th>别名</th>
+						<th>权限</th>
+						<th>注册日期</th>
+						<th>登陆IP</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="data">
+					<tr>
+						<td><input name="id" type="checkbox" lay-skin="primary" value="{$data['user_id']}"></td>
+						<td>{$data['user_id']}</td>
+						<td>{$data['user_name']}</td>
+						<td>{$data['nickname']}</td>
+						<td>
+						<if condition="$data['auth']">
+						<a class="layui-btn layui-btn-mini layui-btn-warm look-auth" data-auth='{$data["auth"]}'>查看</a>
+						</if>
+						</td>
+						</td>
+						<td>{$data['add_time']|date="Y-m-d",###}</td>
+						<td>{$data['login_ip']}</td>
+						<td>
+							<a href="{:U('Manage/editUser',['user_id'=>$data['user_id']])}" class="layui-btn layui-btn-mini layui-btn-warm btn-edit-bank">修改</a>
+							<a href="#" class="layui-btn layui-btn-mini layui-btn-warm btn-del-bank" data-id="{$data['user_id']}">删除</a>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<div id="demo1"></div>
+
+		<script src="__PUBLIC__/Cs/frame/layui/layui.js" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use(['form','layer','laypage'], function() {
+				var $ = layui.jquery,form = layui.form(),layer = layui.layer,laypage = layui.laypage;
+
+				// 分页
+				laypage({
+    				cont: 'demo1',
+    				curr: {$pageInfo['page']},
+    				pages: {$pageInfo['page_count']}, //总页数
+    				groups: 5, //连续显示分页数
+    				jump: function(obj, first){
+				    	var page = obj.curr;
+				    	if (!first) {
+				    		location.href = "{:U('Manage/user')}?page="+page;
+				    	}
+				    }
+  				});
+
+  				// 删除
+  				$('.btn-del-bank').click(function(){
+  					var user_id = $(this).attr('data-id');
+  					$.post("{:U('Manage/delUser')}",{user_id:user_id},function(res){
+  						if(res.code > 0){
+				            layer.msg(res.msg,{time:1800,icon: 1},function(){
+				                location.href = res.url;
+				            });
+				        }else{
+				            layer.msg(res.msg,{time:1800,icon: 5});
+				        }
+  					},'json');
+  				});
+
+  				// 批量删除
+  				$('#btn-delete-all').click(function(){
+			        var ids = $("input:checkbox[name=id]:checked").map(function(index,elem) {
+			            return $(elem).val();
+			        }).get().join(',');
+			        if (ids) {
+			        	$.post("{:U('Manage/delUser')}",{user_id:ids},function(res){
+	  						if(res.code > 0){
+					            layer.msg(res.msg,{time:1800,icon: 1},function(){
+					                location.href = res.url;
+					            });
+					        }else{
+					            layer.msg(res.msg,{time:1800,icon: 5});
+					        }
+	  					},'json');
+			        }
+  				});
+	  				
+
+				//全选
+				form.on('checkbox(allChoose)', function(data) {
+					var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+					child.each(function(index, item) {
+						item.checked = data.elem.checked;
+					});
+					form.render('checkbox');
+				});
+
+				// 查看权限
+  				$('.look-auth').click(function(){
+  					var auth = $(this).data('auth');
+  					var content = '<div style="margin:0 20px"><table class="layui-table"><thead><tr><th>模块名称</th><th>权限</th></thead><tbody>';
+  					for(var i=0;i<auth.length;i++){
+						var trstr = '<tr><td>'+auth[i]['name']+'</td><td>'+auth[i]['auth']+'</td></tr>'
+						content += trstr;
+					}
+					content += '</tbody></table></div>';
+	
+  					layer.open({
+						type:1,
+						title:'查看权限',
+						shadeClose:true,
+						shade:0.8,
+						btn: '关闭',
+						btnAlign: 'c',
+						area:['auto', 'auto'],
+						content: content
+					});
+  				});
+
+			});
+		</script>
+
+	</body>
+
+</html>

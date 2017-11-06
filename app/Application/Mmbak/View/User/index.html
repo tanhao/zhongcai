@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="__PUBLIC__/Mm/css/uikit.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Mm/css/normalize.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Mm/css/main.css">
+</head>
+
+<body>
+    <div class="doc-container">
+        <include file="Public:left"/>
+        <div class="doc-body">
+            <include file="Public:top"/>
+            <div class="doc-nav-info">众彩内部管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('User/index')}">用户管理</a></div>
+            <div class="doc-body-info">
+                <div class="doc-head-search">
+                    <div class="doc-head-searchBox charge-search">
+                        <form class="uk-form" action="{:U(User/index)}" action="get">
+                            <input type="text" name="nickname" placeholder="请输入玩家昵称" value="{$nickname}">&nbsp;&nbsp;
+                            <button class="uk-button" type="submit">搜索</button>
+                        </form>
+                    </div>
+                </div>
+                <table class="uk-table doc-table-user">
+                    <thead>
+                        <tr class="charge-list-head">
+                            <th>序号</th>
+                            <th>玩家昵称</th>
+                            <th>账户余额</th>
+                            <th>用户输赢</th>
+                            <th>提现记录</th>
+                            <th>充值记录</th>
+                            <th>近期密码修改操作人</th>
+                            <th>密码管理</th>
+                            <th>管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="userList" id="data" key="key">
+                        <tr class="user-list-content">
+                            <td>{$key}</td>
+                            <td class="nickname">{$data['nickname']}</td>
+                            <td>{$data['balance']}</td>
+                            <td>{$data['profit_balance']}</td>
+                            <td><a href="{:U('Draw/userList',array('nickname'=>$data['nickname']))}">查看</a></td>
+                            <td><a href="{:U('Index/index',array('nickname'=>$data['nickname']))}">查看</a></td>
+                            <td id="action_name_{$data['user_id']}">{$data['action_name']}</td>
+                            <td><a data-uk-modal data-id="{$data['user_id']}" href="#user-changePass" class="edit-password-btn">修改密码</a></td>
+                            <td>
+                                <if condition="$data['status'] eq 1">
+                                    <a href="{:U('User/freeze', array('user_id'=>$data['user_id'],'status'=>0))}" onclick="if(!confirm('冻结后，该玩家将无法提现、下注、充值，是否确认冻结该账号？')) return false;">冻结</a>
+                                <else/>
+                                    <a style="color:red;" href="{:U('User/freeze', array('user_id'=>$data['user_id'],'status'=>1))}">解除冻结</a>
+                                </if>
+                                |
+                                <if condition="$data['login_status'] eq 1">
+                                    <a href="{:U('User/stopLogin', array('user_id'=>$data['user_id'], 'status'=>0))}" onclick="if(!confirm('禁止登陆后，该玩家将无法登陆，是否确认禁止该账号登陆？')) return false;">禁止登录</a>
+                                <else/>
+                                    <a style="color:red;" href="{:U('User/stopLogin', array('user_id'=>$data['user_id'], 'status'=>1))}">允许登录</a>
+                                </if>
+                                |
+                                    <a href="{:U('User/delete', array('user_id'=>$data['user_id']))}" onclick="if(!confirm('删号后，该账号将从平台抹除且账户余额转入平台账号，是否确认删除该账号？')) return false;">删号</a>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                {$page_show}
+                <!-- 动态分页 -->
+                <!-- <ul class="uk-pagination" data-uk-pagination="{items:20, itemsOnPage:4}"></ul> -->
+            </div>
+        </div>
+    </div>
+    <!-- 修改密码窗口 -->
+    <div id="user-changePass" class="uk-modal">
+        <div class="uk-modal-dialog change-Pass">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form">
+                <fieldset>
+                    <!-- <legend>修改密码</legend> -->
+                    <h2 class="doc-dialog-title">密码修改</h2>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label uk-width-1-6" for="">玩家账号</label>
+                        <input type="text" id="nickname" class="uk-width-3-5" disabled>
+                    </div>
+                    <div class="uk-form-row">
+                        <label class="uk-form-label uk-width-1-6" for="">登录密码</label>
+                        <input type="password" class="uk-width-3-5" id="password">
+                    </div>
+                   <div class="uk-form-row">
+                        <label class="uk-form-label uk-width-1-6" for="">提现密码</label>
+                        <input type="password" class="uk-width-3-5" id="pay-password">
+                    </div>
+                    <div class="uk-form-row">
+                        <input type="hidden" id="user_id" class="uk-width-3-5">
+                        <button id="save-btn" class="uk-button uk-button-primary uk-width-1-6" type="button">保存</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入jquery-2.1.4 -->
+    <script src="__PUBLIC__/Mm/js/jquery.min.js"></script>
+    <!-- 引入uikit.js -->
+    <script src="__PUBLIC__/Mm/js/uikit.min.js"></script>
+    <!-- 引入动态分页组件 -->
+    <script src="__PUBLIC__/Mm/js/components/pagination.min.js"></script>
+    <!-- 引入提示组件 -->
+    <script src="__PUBLIC__/Mm/js/components/tooltip.min.js"></script>
+    <script type="text/javascript">
+        $('.edit-password-btn').click(function(){
+            var user_id = $(this).attr('data-id');
+            var nickname = $(this).parents('tr').find('.nickname').text();
+            $('#user_id').val(user_id);
+            $('#nickname').val(nickname);
+            $('#user-changePass').show();
+        });
+        $('#save-btn').click(function(){
+            var user_id = $('#user_id').val();
+            var password = $('#password').val();
+            var pay_password = $('#pay-password').val();
+            if (!password || !pay_password) {
+                return;
+            }
+            $.post("{:U('User/editPassword')}",{user_id:user_id,password:password,pay_password:pay_password},function(data){
+                if (data.code == 0) {
+                    $('#action_name_'+user_id).text(data.data)
+                    $('#password').val('');
+                    $('#pay-password').val('');
+                    $('#user-changePass').hide();
+                } else {
+                    alert(data.msg);
+                }
+            },'json');
+        });
+    </script>
+</body>
+
+</html>

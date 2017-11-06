@@ -1,0 +1,53 @@
+<div class="doc-nav">
+			<a href="#none" class="nav-logo"></a>
+			<ul class="doc-nav-list">
+				<if condition="in_array('Index', $privilege)">
+					<li><a href="{:U('Index/index')}" class="doc-nav-01 
+					<if condition='$controller_name eq Index'>navActive</if>">充值管理</a></li>
+				</if>
+				<if condition="in_array('Draw', $privilege)">
+                	<li><a href="{:U('Draw/userList')}" class="doc-nav-02 
+					<if condition='$controller_name eq Draw'>navActive</if>">提现管理</a></li>
+				</if>
+				<if condition="in_array('Agent', $privilege)">
+                	<li><a href="{:U('Agent/index')}" class="doc-nav-03 
+					<if condition='$controller_name eq Agent'>navActive</if>">代理管理</a></li>
+				</if>
+				<if condition="in_array('User', $privilege)">
+                	<li><a href="{:U('User/index')}" class="doc-nav-04 
+					<if condition='$controller_name eq User'>navActive</if>">用户管理</a></li>
+				</if>
+				<if condition="in_array('Report', $privilege)">
+                	<li><a href="{:U('Report/index')}" class="doc-nav-05 
+					<if condition='$controller_name eq Report'>navActive</if>">报表收益</a></li>
+				</if>
+				<if condition="in_array('Lottery', $privilege)">
+                	<li><a href="{:U('Lottery/index')}" class="doc-nav-06 
+					<if condition='$controller_name eq Lottery'>navActive</if>">历史开奖</a></li>
+				</if>
+				<if condition="in_array('Stat', $privilege)">
+                	<li><a href="{:U('Stat/increase')}" class="doc-nav-07 
+					<if condition='$controller_name eq Stat'>navActive</if>">数据统计</a></li>
+				</if>
+				<if condition="in_array('Mm', $privilege)">
+                	<li><a href="{:U('Mm/index')}" class="doc-nav-08 
+					<if condition='$controller_name eq Mm'>navActive</if>">员工账号</a></li>
+				</if>
+				<if condition="in_array('Account', $privilege)">
+                	<li><a href="{:U('Account/index')}" class="doc-nav-08 
+					<if condition='$controller_name eq Account'>navActive</if>">账户管理</a></li>
+				</if>
+				<if condition="in_array('System', $privilege)">
+                	<li><a href="{:U('System/index')}" class="doc-nav-08 
+					<if condition='$controller_name eq System'>navActive</if>">系统设置</a></li>
+				</if>
+				<if condition="in_array('Actionlog', $privilege)">
+                	<li><a href="{:U('Actionlog/index')}" class="doc-nav-08 
+					<if condition='$controller_name eq Actionlog'>navActive</if>">操作日志</a></li>
+				</if>
+<!-- 				<if condition="in_array('Stop', $privilege)">
+                	<li><a href="{:U('Stop/server')}" class="doc-nav-08 
+					<if condition='$controller_name eq Stop'>navActive</if>">更停管理</a></li>
+				</if> -->
+			</ul>
+		</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/tooltip.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/components/datepicker.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/main.css">
+</head>
+<body>
+
+	<div class="doc-container">
+		<include file="Public:left"/>
+		<div class="doc-body">
+			<include file="Public:top"/>
+			<div class="doc-nav-info">众彩代理管理后台&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Draw/index')}">账户提款</a></div>
+			<div class="doc-body-info">
+				<h2 class="body-info-title">直属玩家报表 [ 总收入金额：<b>{$all_income}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已提款金额：<b>{$draw_balance}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;剩余提款金额：<b>{$adminInfo['balance']}</b> ]</h2>
+			</div>
+			<div class="doc-draw-form uk-width-1-2">
+				<form class="uk-form" action="{:U('Draw/index')}" method="post">
+				    <fieldset>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户名</label>
+	        	 			<input type="text" class="uk-width-3-5" placeholder="{$adminInfo['real_name']}" disabled>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">银行账户</label>
+	        	 			<input type="text" class="uk-width-3-5" placeholder="{$adminInfo['account_number']}" disabled>
+				        </div>
+						<div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户行</label>
+	        	 			<input type="text" class="uk-width-3-5" placeholder="{$adminInfo['bank_name']}" disabled>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">开户支行</label>
+	        	 			<input type="text" class="uk-width-3-5" placeholder="{$adminInfo['branch_bank']}" disabled>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">提现金额</label>
+	        	 			<input type="text" class="uk-width-3-5" name="apply_cash" placeholder="请输入大于10的整数" required>
+				        </div>
+				        <div class="uk-form-row">
+				        	<label class="uk-form-label uk-width-1-6" for="">资金密码</label>
+	        	 			<input type="text" class="uk-width-3-5" name="pay_password" placeholder="请输入资金密码" required>
+				        </div>
+				        <p>*尊敬的代理，提款请联系客服QQ：{:getConfig('cs_qq')}，客服微信：{:getConfig('cs_wx')}</p>
+			        	<button class="uk-button uk-button-primary uk-width-3-5" type="submit">提交</button>
+				    </fieldset>
+				    
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+
+	</script>
+	<!-- 引入jquery-2.1.4 -->
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<!-- 引入uikit.js -->
+	<script src="__PUBLIC__/Admin/js/uikit.min.js"></script>
+	<!-- 引入动态分页组件 -->
+	<script src="__PUBLIC__/Admin/js/components/pagination.min.js"></script>
+	<!-- 引入提示组件 -->
+	<script src="__PUBLIC__/Admin/js/components/tooltip.min.js"></script>
+	<!-- 引入日期组件 -->
+	<script src="__PUBLIC__/Admin/js/components/datepicker.min.js"></script>
+	
+</body>
+</html>

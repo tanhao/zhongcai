@@ -1,0 +1,21 @@
+<div class="doc-nav">
+			<a href="#none" class="nav-logo"></a>
+			<ul class="doc-nav-list">
+				<li><a href="{:U('Index/index')}" class="doc-nav-01 
+				<if condition='$controller_name eq Index'>navActive</if>">后台首页</a></li>
+				<li><a href="{:U('Agent/index')}" class="doc-nav-02
+				<if condition='$controller_name eq Agent'>navActive</if>">直属代理</a></li>
+				<li><a href="{:U('Players/index')}" class="doc-nav-03
+				<if condition='$controller_name eq Players'>navActive</if>">直属玩家</a></li>
+				<li><a href="{:U('Lottery/index')}" class="doc-nav-04
+				<if condition='$controller_name eq Lottery'>navActive</if>">历史开奖</a></li>
+				<li><a href="{:U('Report/index')}" class="doc-nav-05
+				<if condition='$controller_name eq Report'>navActive</if>">报表收益</a></li>
+				<li><a href="{:U('Draw/index')}" class="doc-nav-06
+				<if condition='$controller_name eq Draw'>navActive</if>">账户提款</a></li>
+				<li><a href="{:U('Bet/index')}" class="doc-nav-07
+				<if condition='$controller_name eq Bet'>navActive</if>">历史下注</a></li>
+				<li><a href="{:U('Stat/increase')}" class="doc-nav-08
+				<if condition='$controller_name eq Stat'>navActive</if>">数据统计</a></li>
+			</ul>
+		</div>

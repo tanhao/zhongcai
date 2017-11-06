@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/uikit.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/normalize.css" />
+	<style>
+		.doc-login {width:100%;height:100%;position:absolute;background:url('__PUBLIC__/Admin/images/login_bg.jpg') center;top:0;left:0;background-size:cover;}
+		.login-box {width:35%;position:absolute;left:50%;margin-left:-15%;top:22%;max-width:500px;}
+		.login-box > form {padding:36px 90px;background:#fff;}
+		.login-title {overflow:hidden;margin:10px 0;}
+		.login-title > a {float:left;}
+		.login-title > h2 {float:left;color:#fff;line-height:43px;font-size:2.8em;}
+	</style>
+</head>
+<body>
+
+	<div class="doc-login">
+		<div class="login-box">
+			<div class="login-title">
+				<a href="#"><img src="__PUBLIC__/Admin/images/logo.jpg" /></a>
+				<h2>&nbsp;&nbsp;众彩代理管理系统</h2>
+			</div>
+			<form class="uk-panel uk-panel-box uk-form" id="myform" method="post">
+                <div class="uk-form-row">
+                    <div class="uk-form-icon uk-width-1-1">
+					    <i class="uk-icon-user"></i>
+					    <input class="uk-width-1-1 uk-form-large"  type="text" name="user_name" placeholder="请输入用户名" required>
+					</div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-icon uk-width-1-1">
+					    <i class="uk-icon-lock"></i>
+					    <input class="uk-width-1-1 uk-form-large"  type="password" name="password" placeholder="请输入密码" required>
+					</div>
+                </div>
+                <div class="uk-form-row">
+                	<input class="uk-width-1-2 uk-form-large" type="text" name="verify_code" placeholder="请输入验证码" required>&nbsp;&nbsp;&nbsp;&nbsp;
+                	<a><img onclick="this.src='/Admin/Login/verifyCode.html?t='+Date.parse(new Date());" src="{:U('Login/verifyCode')}" /></a>
+                </div>
+                <div class="uk-form-row">
+                    <input class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit" value="登陆">
+                </div>
+            </form>
+		</div>
+	</div>
+	
+</body>
+</html>
