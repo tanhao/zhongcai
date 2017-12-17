@@ -84,6 +84,32 @@ class OpenController extends Controller {
             ]);
         }
     }
+    
+    private function getJsonPost($apiPath,$postData = false ){
+    	$ch = curl_init();// 设置浏览器的特定header
+    	if(isset($postData) && !empty($postData)){
+    		curl_setopt($ch, CURLOPT_POST, 1);
+    		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData );// post的变量
+    	}
+    	curl_setopt($ch, CURLOPT_URL, $apiPath);
+    	if(isset($headerInfo) && !empty($headerInfo) ){
+    		curl_setopt($ch, CURLOPT_HTTPHEADER , $headerInfo) ;  // 在HTTP请求头中"Referer: "的内容。
+    	}else{
+    		curl_setopt($ch, CURLOPT_REFERER,"https://www.baidu.com");
+    		curl_setopt($ch, CURLOPT_ENCODING, "gzip, deflate, sdch");
+    		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0');
+    	}
+    	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    	curl_setopt($ch, CURLOPT_TIMEOUT,30);
+    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//302redirect
+    	$html = curl_exec($ch);
+    	curl_close($ch);
+    	if(isset($html) && trim($html) != "" ){
+    		return  $html;
+    	}else{
+    		return  "{}";
+    	}
+    }
 
     private function getOpenData($url) {
         $result = [];
@@ -95,7 +121,7 @@ class OpenController extends Controller {
                 case '2': $lottery_name = "时时彩";break;
                 case '3': $lottery_name = "幸运飞艇";break;
             }
-            file_put_contents(APP_PATH.'Runtime/lottery.txt',  "[ ".date('Y-m-d H:i:s')." ]{$lottery_name}开奖异常！", FILE_APPEND);
+	        file_put_contents(APP_PATH.'Runtime/lottery.txt',  "[ ".date('Y-m-d H:i:s')." ]{$lottery_name}开奖异常！{$this->nowTime}== ".time()."\n", FILE_APPEND);
             $issue = getIssue($this->lottery_id);
             $result = [
                 'expect'=> $issue,
@@ -113,11 +139,14 @@ class OpenController extends Controller {
                 $this->action_name = $result['action_name'];//人工开奖客服
             }
         }
-        if(empty($result)) {
+        if(true || empty($result)) {
             // 购买API开奖
             $result = json_decode(api_curl($url), true);
+        	//$result = json_decode($this->getJsonPost($url,null), true);
+            $jsondata = $result ? json_encode($result) : 'NOT FIND ……… NULL DATA ; '. $url ; 
             $result = isset($result['data'][0]) ? $result['data'][0] : [];
             $result = !empty($result) && $result['opentimestamp'] > $this->nowTime ? $result : [];
+            file_put_contents(APP_PATH.'Runtime/lottery.txt',  "[ ".date('Y-m-d H:i:s')." ]{$this->lottery_id}采集成功！{$this->nowTime}------ ".$result['opentimestamp'].$jsondata."\n", FILE_APPEND);
             if(empty($result)) {
                 // 自己去网站抓的开奖
                 $result = M('push_lottery_result')->where(['lottery_id'=>$this->lottery_id])->order('id desc')->find();
