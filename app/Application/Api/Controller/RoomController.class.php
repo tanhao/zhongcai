@@ -867,6 +867,7 @@ class RoomController extends BaseController {
      */
 	public function switchRoomList() {
 		$result = array();
+		$result['id'] = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
 		$result['nickname'] = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
 		$result['balance'] = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
 		$lottery_id = I('get.lottery_id', '', 'intval');
