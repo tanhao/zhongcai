@@ -709,10 +709,12 @@ class UserController extends BaseController {
         if (empty($date) || !preg_match('/^\d{4}\-\d{1,2}\-\d{1,2}$/', $date)) {
             $date = date('Y-m-d');
         }
+        $id = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
         $user_name = C('IS_TEMP') ? C('USER_ID') : $this->userInfo['user_name'];
         $nickname = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
         $balance = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
         $result = [
+            'id'=> $id,
             'user_name'=> $user_name,
             'nickname'=> $nickname,
             'balance'=> $balance,
