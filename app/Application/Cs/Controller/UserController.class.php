@@ -10,9 +10,12 @@ class UserController extends BaseController {
     	$pid = I('get.pid',0,'intval');
         $admin_user = D('admin_user');
         // 查询条件
-        $where = [];
+        $where =$where2 =  [];
         if (!empty($user_name)) {
-            $where['user_name'] = $user_name;
+             $where2['user_name'] = array("eq",$user_name);
+    		 $where2['user_id'] = array("eq",$user_name);
+    		 $where2['_logic'] = 'OR';
+    		$where['_complex'] = $where2 ; //联合查询
         }
         if ($rate != -1) {
             if ($rate == -2) {
@@ -349,8 +352,14 @@ class UserController extends BaseController {
     public function user() {
         $user_name = I('get.user_name');
         $where = [];
-        if (!empty($user_name)) $where['user_name'] = $user_name;
+        //array(array('gt',3),array('lt',10), 'or');
+        if (!empty($user_name)){
+        		 $where['user_name'] = array("eq",$user_name);
+        		 $where['user_id'] = array("eq",$user_name);
+        		 $where['_logic'] = 'OR';
+        }
         $user = M('user');
+        //where("id=%d and username='%s' and xx='%f'",array($id,$username,$xx))
         $count = $user->where($where)->count();
         $pageInfo = setPage($count);
         $list = $user->where($where)->limit($pageInfo['limit'])->order('user_id desc')->select();
@@ -552,5 +561,134 @@ class UserController extends BaseController {
         $this->assign('list', $list);
         $this->assign('pageInfo', $pageInfo);
         $this->display();
+    }
+    /**
+     * 对用户进行加钱操作
+     */
+    public function userJiaMinsMoney(){
+    	$user_id = I('get.user_id', 0, 'intval');
+    	$ispost = false ;
+    	if(!isset($user_id) || empty($user_id)){
+    		$ispost = true ;
+    		$user_id = I('post.user_id', 0, 'intval');
+    	}
+
+    	$userObj = M('user');
+    	$userBcard = M('bank_card');
+    	$user_money = 0 ;
+    	if(isset($user_id) && $user_id > 0){
+    		$uinfo = $userObj->where(['user_id'=>$user_id])->find();
+    		if(!$uinfo || empty($uinfo['user_id'])) {
+    			if($ispost){
+    				$this->ajaxOutput("非法操作", 0, U('User/user'));
+    			}else{
+    				exit("非法操作");
+    			}
+    		}
+    		$user_money = isset($uinfo['balance']) ? floatval($uinfo['balance']): 0.0;
+    		//获取用户的银行卡信息
+    		$userBand = M('bank_card')->where(['user_id'=>$user_id])->find();
+    		if(!$userBand || empty($userBand['bank_id'])){ //没有银行卡
+    			$userBand = array('bank_name'=> '中国银行','real_name'=> @$uinfo['user_name'],"account_number"=> '88888888') ; //默认一个
+    			$lstId = M('bank_card')->add($userBand); //添加默认卡信息
+    			if(isset($lstId) && intval($lstId)>0){ $userBand["bank_id"] = $lstId ; }
+    			/* if($ispost){
+    				$this->ajaxOutput("很抱歉，当前用户没有绑定银行卡信息，操作失败", 0, U('User/user'));
+    			}else{
+    				exit("很抱歉，当前用户没有绑定银行卡信息，操作失败。");
+    			} */
+    		}
+    		if(IS_POST){  //操作内容保存
+    			$handType = I('post.handerType','IN','trim');
+    			$handDing = 1 ; // I('post.isDing','1','intval');
+    			$user_amonut_money = I('post.user_amount',0.0,'trim');
+    			$user_sn_out = I('post.user_out_sn','','htmlspecialchars,trim');
+    			if(!isset($user_amonut_money) || floatval($user_amonut_money) <= 0){
+    				$this->ajaxOutput("交易金额必须大于0，操作失败", 0, U('User/user'));
+    			}
+    			$admin_Name = (isset($this->csUserInfo) && isset($this->csUserInfo["user_name"]) ) ?  $this->csUserInfo['user_name'] : 'cs-admin';
+    			$commonData = array(
+						"user_id" => $user_id,"user_name"=> @$uinfo['user_name'],"type"=> 1,'sync'=>0,"add_time"=>time(),
+						"account_number"=> isset($userBand['account_number'])	? trim($userBand['account_number']):'' ,
+						"bank_name"=> isset($userBand['bank_name'])	? trim($userBand['bank_name']): '' ,
+						"real_name"=> isset($userBand['real_name'])	? trim($userBand['real_name']): '' ,
+    			);
+
+    			$handName = "后台充值";
+    			$res_num = 0 ;
+    			// 开户事务
+    			M()->startTrans();
+    			if($handType && $handType == 'OUT'){
+    					$lastBlance = bcsub($user_money,$user_amonut_money, 2);
+    					if( ! $user_money || $lastBlance< 0){
+		    				$this->ajaxOutput("用户余额不足 ，操作失败", 0, U('User/user'));
+		    			}
+    					$handName = "后台扣款";
+
+    					$commonData["type"] = 1 ; 		 //代理(=2)还是用户(=1)
+    					$commonData["branch_bank"] = isset($userBand['branch_bank'])	? trim($userBand['branch_bank']): '-' ;
+    					$commonData["apply_cash"] =  floatval($user_amonut_money);  	//提现金额
+    					$commonData["real_cash"]  =  floatval($user_amonut_money);
+    					$commonData["sync"] = 1 ; 		 //同意提款/ /sync=0  申请中，1-同意提款，2-取消，3-有问题 
+    					$commonData["cs_name"]  = $admin_Name;
+    					$commonData["sync_time"]  = time();  //同步时间
+
+    					$res_num = M('draw_cash')->add($commonData);				 //添加记录信息
+    					//添加资金记录
+    					$recodeInfo = array("user_id"=> $user_id,"before_balance"=>$user_money,"after_balance" => $lastBlance ,"change_balance"=> - floatval($user_amonut_money),"type"=> 2,"add_time"=> time() );
+    					$userEditData = array("balance"=> $lastBlance);
+    					$ret_unum  = M('user')->where(['user_id'=> $user_id])->save($userEditData);
+    					$ret_rcos  = M('user_waste_book')->add($recodeInfo);
+    					if(!($res_num && $ret_rcos  && $ret_unum )){
+    							 M()->rollback();
+               					 $this->ajaxOutput('扣款操失败');
+    					}
+    			}else{
+    				$lastBlance = bcadd($user_money,$user_amonut_money, 2);
+    				$recodeInfo = array(
+    						//"user_id" => $user_id,"user_name"=> @$uinfo['user_name'],"type"=> 1,'sync'=>0,
+    						"recharge_cash"=> floatval($user_amonut_money),
+    						"order_sn"=>$user_sn_out,  //外部订单号
+    						"bank_id"=> isset($userBand['bank_id'])	? trim($userBand['bank_id']): 0 ,
+    						//"account_number"=> isset($userBand['account_number'])	? trim($userBand['account_number']):'' ,
+    						"message"=> '后台充值',
+    						//"add_time"=>time()
+    				);
+    				$recodeInfo = $commonData ? array_merge($commonData , $recodeInfo)  : $commonData ;
+    				if(isset($handDing) && $handDing === 1){ //要立即生效
+    					$recodeInfo["sync"]=1;
+    					$recodeInfo["real_cash"]=floatval($user_amonut_money);
+    					$recodeInfo["mm_name"]=$admin_Name;
+    					$recodeInfo["pay_time"]=time();
+    					$res_num =  M('recharge')->add($recodeInfo); //添加记录信息
+    					//添加资金记录
+    					$recodeInfo = array("user_id"=> $user_id,"before_balance"=>$user_money,"after_balance" => $lastBlance ,"change_balance"=> floatval($user_amonut_money),"type"=> 4,"add_time"=> time() );
+    					$userEditData = array("balance"=> $lastBlance);
+    					$ret_unum  = M('user')->where(['user_id'=> $user_id])->save($userEditData);
+    					$ret_rcos  = M('user_waste_book')->add($recodeInfo);
+    					if(!($res_num && $ret_rcos  && $ret_unum )){
+    						M()->rollback();
+    						$this->ajaxOutput('加款操失败');
+    					}
+    				}else{
+    					$res_num =  M('recharge')->add($recodeInfo); //添加记录信息
+    				}
+    			}
+    			if(isset($res_num) && intval($res_num) >0){
+    				M()->commit();
+    				$this->addAtionLog("后台操作会员{$uinfo['user_name']}  {$handName}；金额：￥{$user_amonut_money}");
+    				$this->ajaxOutput("操作成功", 1, U('User/user'));
+    			}else{
+    				 $this->ajaxOutput("操作失败");
+    			}
+    		}else{
+    			$this->assign('user_id', $user_id);
+    			$this->assign('userInfo', $uinfo);
+    			$this->assign('user_blance_money', $user_money);
+    			$this->display();
+    		}
+    	}else{
+    		exit("非法操作,暂无用户信息");
+    	}
     }
 }
