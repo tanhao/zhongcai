@@ -24,7 +24,7 @@
     		<span class="fr">
      		   <span class="layui-form-label">搜索条件：</span>
 				<div class="layui-input-inline">
-					<input type="text" autocomplete="off" placeholder="请输入账号" name="user_name" class="layui-input" value="{$user_name}">
+					<input type="text" autocomplete="off" placeholder="支持账号/用户ID查询" name="user_name" class="layui-input" value="{$user_name}">
 				</div>
 				<button class="layui-btn mgl-20">查询</button>
 			</span>
@@ -61,13 +61,15 @@
 						<td>
 							<a class="layui-btn layui-btn-mini layui-btn-warm view-users" data-id="{$data['user_id']}">查看/编辑</a>
 							<if condition="$data['status'] eq 1">
-							<a class="layui-btn layui-btn-mini layui-btn-warm frost-user"  data-id="{$data['user_id']}">冻结</a>
+								<a class="layui-btn layui-btn-mini layui-btn-warm user-b-jiamis-money" data-id="{$data['user_id']}" style="background:#e22409;">加减款</a>
+								<a class="layui-btn layui-btn-mini layui-btn-warm frost-user"  data-id="{$data['user_id']}">冻结</a>
 							<else/>
-							<a class="layui-btn layui-btn-mini layui-btn-danger unfreeze-user"  data-id="{$data['user_id']}">解除冻结</a>
+								<a class="layui-btn layui-btn-mini layui-btn-danger unfreeze-user"  data-id="{$data['user_id']}">解除冻结</a>
 							</if>
 							<a class="layui-btn layui-btn-mini layui-btn-warm user-log" data-id="{$data['user_id']}">用户日志</a>
-							<a class="layui-btn layui-btn-mini layui-btn-warm user-b-log" data-id="{$data['user_id']}">账变记录</a></td>
-					</tr>
+							<a class="layui-btn layui-btn-mini layui-btn-warm user-b-log" data-id="{$data['user_id']}">账变记录</a> 
+							</td>
+						</tr>
 					</volist>
 				</tbody>
 			</table>
@@ -115,6 +117,20 @@
 						content:"{:U('User/userWasteBook')}?user_id="+user_id
 					});
   				});
+
+  				// 用户加减款
+  				$('.user-b-jiamis-money').on('click',function(){
+  					var user_id = $(this).attr('data-id');
+  					layer.open({
+						type:2,
+						title:'加减用户资金',
+						shadeClose:true,
+						shade:0.8,
+						area:['500px','400px'],
+						content:"{:U('User/userJiaMinsMoney')}?user_id="+user_id
+					});
+  				});
+
   				// 用户日志
   				$('.user-log').on('click',function(){
   					var user_id = $(this).attr('data-id');
