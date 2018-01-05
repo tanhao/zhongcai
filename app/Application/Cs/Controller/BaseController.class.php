@@ -47,7 +47,7 @@ class BaseController extends Controller {
         107 => ['name'=>'操作日志','list'=>['Manage-actLog']],
         // 用户管理
         201 => ['name'=>'代理列表','list'=>['User-agent','User-freezeAgent','User-unfreezeAgent','User-addAgent','User-editAgent','User-adminWasteBook','User-agentRank']],
-        202 => ['name'=>'会员列表','list'=>['User-user','User-freezeUser','User-unfreezeUser','User-addUser','User-editUser','User-userWasteBook']],
+        202 => ['name'=>'会员列表','list'=>['User-user','User-freezeUser','User-unfreezeUser','User-addUser','User-editUser','User-userWasteBook','User-userJiaMinsMoney']], //添加用户加款操作
         203 => ['name'=>'登录日志','list'=>['User-userLog']],
         // 游戏管理
         301 => ['name'=>'房间管理','list'=>['Game-room','Game-onlineUser','Game-editRoom']],
