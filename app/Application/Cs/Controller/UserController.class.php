@@ -676,6 +676,10 @@ class UserController extends BaseController {
     			}
     			if(isset($res_num) && intval($res_num) >0){
     				M()->commit();
+    				$client_id = M('user_token')->where(['user_id'=> $user_id])->getField('client_id');
+	                // 推送用户余额给用户
+	                sendToClient($client_id, CodeEnum::LEFT_BALANCE, ['balance'=> $lastBlance]);
+    				
     				$this->addAtionLog("后台操作会员{$uinfo['user_name']}  {$handName}；金额：￥{$user_amonut_money}");
     				$this->ajaxOutput("操作成功", 1, U('User/user'));
     			}else{
