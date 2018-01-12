@@ -28,6 +28,17 @@
 			    <div class="layui-input-inline sl" style="width: 120px;">
 			      <select name="rate">
 			      	<option value="-1" <if condition="$rate eq -1">selected</if>>全部代理</option>
+			        <option value="2.0" <if condition="$rate eq 2.0">selected</if>>2.0</option>
+			        <option value="1.8" <if condition="$rate eq 1.8">selected</if>>1.8</option>
+			        <option value="1.6" <if condition="$rate eq 1.6">selected</if>>1.6</option>
+			        <option value="1.4" <if condition="$rate eq 1.4">selected</if>>1.4</option>
+			        <option value="1.35" <if condition="$rate eq 1.35">selected</if>>1.35</option>
+			        <option value="1.3" <if condition="$rate eq 1.3">selected</if>>1.3</option>
+			        <option value="1.25" <if condition="$rate eq 1.25">selected</if>>1.25</option>
+			        <option value="1.2" <if condition="$rate eq 1.2">selected</if>>1.2</option>
+			        <option value="1.15" <if condition="$rate eq 1.15">selected</if>>1.15</option>
+			        <option value="1.1" <if condition="$rate eq 1.1">selected</if>>1.1</option>
+			        <option value="1.05" <if condition="$rate eq .05">selected</if>>1.05</option>
 			        <option value="1.0" <if condition="$rate eq 1.0">selected</if>>1.0</option>
 			        <option value="0.8" <if condition="$rate eq 0.8">selected</if>>0.8</option>
 			        <option value="0.6" <if condition="$rate eq 0.6">selected</if>>0.6</option>
@@ -149,7 +160,7 @@
 						title:'编辑代理',
 						shadeClose:true,
 						shade:0.8,
-						area:['600px','550px'],
+						area:['451px','550px'],
 						content:"{:U('User/editAgent')}?user_id="+user_id
 					});
   				});
@@ -161,7 +172,7 @@
 						title:'新添代理',
 						shadeClose:true,
 						shade:0.8,
-						area:['600px','550px'],
+						area:['451px','550px'],
 						content:"{:U('User/addAgent')}"
 					});
   				});
@@ -174,7 +185,7 @@
 						title:'收益记录',
 						shadeClose:true,
 						shade:0.8,
-						area:['650px','550px'],
+						area:['800px','550px'],
 						content:"{:U('User/adminWasteBook')}?user_id="+user_id
 					});
   				});
