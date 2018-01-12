@@ -18,7 +18,7 @@
 			<span class="fl">
         		<div class="layui-form-item">
 					<a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量冻结</a>
-      				<a href="{:U('User/addUser')}" class="layui-btn btn-add btn-default" id="btn-add-article">新增会员</a>
+      				<a class="layui-btn btn-add btn-default" id="btn-add-user">新增会员</a>
 				</div>
     		</span>
     		<span class="fr">
@@ -93,6 +93,20 @@
 				    	}
 				    }
   				});
+				
+				// 新添用户
+  				$('#btn-add-user').on('click',function(){
+  					layer.open({
+						type:2,
+						title:'新添代理',
+						shadeClose:true,
+						shade:0.8,
+						area:['451px','550px'],
+						content:"{:U('User/addUser')}"
+					});
+  				});
+				
+				
   				// 编辑用户
   				$('.view-users').on('click',function(){
   					var user_id = $(this).attr('data-id');
@@ -101,7 +115,7 @@
 						title:'编辑代理',
 						shadeClose:true,
 						shade:0.8,
-						area:['400px','535px'],
+						area:['451px','535px'],
 						content:"{:U('User/editUser')}?user_id="+user_id
 					});
   				});
