@@ -24,7 +24,7 @@
     		<span class="fr">
      		   <span class="layui-form-label">搜索条件：</span>
 				<div class="layui-input-inline">
-					<input type="text" autocomplete="off" placeholder="支持账号/用户ID查询" name="user_name" class="layui-input" value="{$user_name}">
+					<input type="text" autocomplete="off" placeholder="支持账号/会员ID查询" name="user_name" class="layui-input" value="{$user_name}">
 				</div>
 				<button class="layui-btn mgl-20">查询</button>
 			</span>
@@ -66,7 +66,7 @@
 							<else/>
 								<a class="layui-btn layui-btn-mini layui-btn-danger unfreeze-user"  data-id="{$data['user_id']}">解除冻结</a>
 							</if>
-							<a class="layui-btn layui-btn-mini layui-btn-warm user-log" data-id="{$data['user_id']}">用户日志</a>
+							<a class="layui-btn layui-btn-mini layui-btn-warm user-log" data-id="{$data['user_id']}">会员日志</a>
 							<a class="layui-btn layui-btn-mini layui-btn-warm user-b-log" data-id="{$data['user_id']}">账变记录</a> 
 							</td>
 						</tr>
@@ -94,11 +94,11 @@
 				    }
   				});
 				
-				// 新添用户
+				// 新添会员
   				$('#btn-add-user').on('click',function(){
   					layer.open({
 						type:2,
-						title:'新添用户',
+						title:'新添会员',
 						shadeClose:true,
 						shade:0.8,
 						area:['451px','550px'],
@@ -107,12 +107,12 @@
   				});
 				
 				
-  				// 编辑用户
+  				// 编辑会员
   				$('.view-users').on('click',function(){
   					var user_id = $(this).attr('data-id');
   					layer.open({
 						type:2,
-						title:'编辑用户',
+						title:'编辑会员',
 						shadeClose:true,
 						shade:0.8,
 						area:['451px','535px'],
@@ -132,12 +132,12 @@
 					});
   				});
 
-  				// 用户加减款
+  				// 会员加减款
   				$('.user-b-jiamis-money').on('click',function(){
   					var user_id = $(this).attr('data-id');
   					layer.open({
 						type:2,
-						title:'加减用户资金',
+						title:'加减会员资金',
 						shadeClose:true,
 						shade:0.8,
 						area:['500px','400px'],
@@ -145,12 +145,12 @@
 					});
   				});
 
-  				// 用户日志
+  				// 会员日志
   				$('.user-log').on('click',function(){
   					var user_id = $(this).attr('data-id');
   					layer.open({
 						type:2,
-						title:'用户日志',
+						title:'会员日志',
 						shadeClose:true,
 						shade:0.8,
 						area:['800px','800px'],
