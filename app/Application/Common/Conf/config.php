@@ -29,7 +29,7 @@ return array(
          '__UPLOADS__'   => '/Static/Uploads'
     ),
     // 代理分钱模式：1-输赢都分配，2-赢才分配
-	'PATTERN' => 1,
+	'PATTERN' => 2,
     // 安全KEY
     'SECRET_KEY'	=> '2b27690b4907bad30a67a59a383368cb',
     // 域名
