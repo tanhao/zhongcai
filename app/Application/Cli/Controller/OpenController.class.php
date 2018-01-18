@@ -403,7 +403,7 @@ class OpenController extends Controller {
                         }
                     }
                 }
-                $hostInfo['commission'] = C('PATTERN')==1 ? bcmul($win_balance+$lost_balance, $rate/2, 2) : bcmul($win_balance, $rate, 2);// 代理佣金
+                $hostInfo['commission'] = C('PATTERN')==1 ? bcmul($win_balance+$lost_balance, $rate/1, 2) : bcmul($win_balance, $rate, 2);// 代理佣金
                 $hostInfo['deduction'] = bcmul($win_balance, $rate, 2);// 玩家扣除
                 // cal_balance
                 foreach ($zoneDetailSort as $key => $value) {
@@ -420,6 +420,10 @@ class OpenController extends Controller {
                     }
                 }
             }
+            
+            //有庄家的情况下就自动申请下庄；2018 - 01-06
+            $hostInfo["status"] = 2  ; // 申请下庄           
+            
         } else {
             // 没有庄家的情况
             $half_balance = $totalBet/2;
@@ -588,7 +592,7 @@ class OpenController extends Controller {
             foreach ($userBetList as $zone => $value) {
                 $cal_balance = bcdiv(bcmul($value, $zoneDetailSort[$zone]['cal_balance'], 2), $zoneDetailSort[$zone]['balance'], 2);
                 $final_balance = $cal_balance <= $value ? $cal_balance : bcadd($value, ($cal_balance - $value) * (1-$rate), 2);
-                $commission = C('PATTERN')==1 ? bcmul(abs(bcsub($cal_balance, $value, 2)), $rate/2) : bcsub($cal_balance, $final_balance, 2);//佣金
+                $commission = C('PATTERN')==1 ? bcmul(abs(bcsub($cal_balance, $value, 2)), $rate/1) : bcsub($cal_balance, $final_balance, 2);//佣金
                 $tempInfo['bet_balance'] = bcadd($tempInfo['bet_balance'] , $value, 2);
                 $tempInfo['profit_balance'] = bcadd($tempInfo['profit_balance'] , bcsub($final_balance, $value, 2), 2);
                 $tempInfo['final_balance'] = bcadd($tempInfo['final_balance'] , $final_balance, 2);
