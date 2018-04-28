@@ -23,7 +23,7 @@
 					        <option value="1" <if condition="$type eq 1">selected</if>>线下</option>
 					        <option value="2" <if condition="$type eq 2">selected</if>>支付宝</option>
 					        <option value="3" <if condition="$type eq 3">selected</if>>微信</option>
-					        <option value="4" <if condition="$type eq 4">selected</if>>其他</option>
+					        <option value="4" <if condition="$type eq 4">selected</if>>代充</option>
 					      </select>
 					    </div>
 					    <div class="layui-input-inline sl" style="width: 100px;">
@@ -75,8 +75,10 @@
 							<a class="look-bank" data-id="{$data['bank_id']}" style="color: blue;">线下</a>
 							<elseif condition="$data['type'] eq 2"/>
 							支付宝
-							<else />
+							<elseif condition="$data['type'] eq 3"/>
 							微信
+							<else />
+							代充
 							</if>
 						</td>
 						<td class="recharge_cash">{$data['recharge_cash']}</td>
@@ -117,7 +119,7 @@
 			    <div class="layui-inline">
 			      <label class="layui-form-label">开户人：</label>
 			      <div class="layui-input-inline">
-			        <input type="text" name="real_name" lay-verify="required" autocomplete="off" class="layui-input" disabled style="border: 0">
+			        <input type="text" name="real_name"  autocomplete="off" class="layui-input" disabled style="border: 0">
 			      </div>
 			    </div>
 			  </div>
