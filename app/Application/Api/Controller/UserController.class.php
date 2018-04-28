@@ -666,6 +666,55 @@ class UserController extends BaseController {
         $this->addUserLog('充值', "线下充值{$recharge_cash}");
         $this->ajaxReturn(output(CodeEnum::SUCCESS));
     }
+	
+	
+	/**
+     * @desc  支付宝微信代充（线下）
+     * @param recharge_cash     充值资金
+     * @param pay_type    		代充方式
+     * @param client_id         客户端ID
+     * @param token             用户TOKEN
+     * @return int
+     */
+    public function daichong() {
+        $recharge_cash = I('get.recharge_cash', '', 'floatval');
+        $pay_type = I('get.pay_type');
+        if (empty($recharge_cash) || empty($pay_type)) {
+            $this->ajaxReturn(output(CodeEnum::PARAM_ERROR));
+        }
+        // 充值金额范围
+        $min_recharge = getConfig('min_recharge');
+        $max_recharge = getConfig('max_recharge');
+        if ($recharge_cash < $min_recharge || $recharge_cash > $max_recharge) {
+            $this->ajaxReturn(output(CodeEnum::RECHARGE_BALANCE_ERROR,[],[$min_recharge,$max_recharge]));
+        }
+		$bank_id = redisCache()->get(CacheEnum::RECHARGE_BANK_ID . $this->userInfo['user_id']);
+        $random_code = redisCache()->get(CacheEnum::RECHARGE_RANDOM . $this->userInfo['user_id']);
+        $random_code = isset($random_code) ? (string)$random_code : '';
+		if($pay_type=='alipay'){
+			$bank_name='支付宝-线下';
+			$account_number=getConfig('cz_zfb');
+		}else{
+			$bank_name='微信-线下';
+			$account_number=getConfig('cz_wx');
+		}
+		
+        M('Recharge')->add([
+            'user_id' => $this->userInfo['user_id'],
+            'bank_id' => -1,
+            'user_name' => $this->userInfo['user_name'],
+            'recharge_cash' => $recharge_cash,
+            'account_number' => $account_number,
+            'bank_name' => $bank_name,
+            'real_name' => '',
+            'message' => $random_code,
+            'type' => 4,
+            'sync' => 0,
+            'add_time' => time()
+        ]);
+        $this->addUserLog('充值', "线下代充{$recharge_cash}");
+        $this->ajaxReturn(output(CodeEnum::SUCCESS));
+    }
 
     /**
      * @desc 获取充值信息
@@ -709,12 +758,10 @@ class UserController extends BaseController {
         if (empty($date) || !preg_match('/^\d{4}\-\d{1,2}\-\d{1,2}$/', $date)) {
             $date = date('Y-m-d');
         }
-        $id = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
         $user_name = C('IS_TEMP') ? C('USER_ID') : $this->userInfo['user_name'];
         $nickname = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
         $balance = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
         $result = [
-            'id'=> $id,
             'user_name'=> $user_name,
             'nickname'=> $nickname,
             'balance'=> $balance,
@@ -803,20 +850,20 @@ class UserController extends BaseController {
             'list' => $list,
         ]));
     }
-    
-   /**
+	
+	 /**
      * @desc 获取代充微信，与随机码
      * @param client_id     客户端ID
      * @param token         用户TOKEN
      * @return int
      */
     public function getDaichongInfo() {
-		$code=time()%10000;
-		$code=$code<1000?$code*10:$code;
+		$random_code = strtolower(getRandChar(4));
+        redisCache()->set(CacheEnum::RECHARGE_RANDOM . $this->userInfo['user_id'], $random_code);
         $this->ajaxReturn(output(CodeEnum::SUCCESS, [
             'cz_wx' => getConfig('cz_wx'),
 			'cz_zfb' => getConfig('cz_zfb'),
-            'random_code' => $code,
+            'random_code' => $random_code,
         ]));
     }
 }
