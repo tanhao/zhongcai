@@ -803,4 +803,17 @@ class UserController extends BaseController {
             'list' => $list,
         ]));
     }
+    
+    /**
+     * @desc 获取充微信，与随机码
+     * @param client_id     客户端ID
+     * @param token         用户TOKEN
+     * @return int
+     */
+    public function getHandleRechargeInfo() {
+        $this->ajaxReturn(output(CodeEnum::SUCCESS, [
+            'cz_wx' => getConfig('cz_wx'),
+            'random_code' => '1234',
+        ]));
+    }
 }
