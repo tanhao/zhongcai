@@ -804,13 +804,13 @@ class UserController extends BaseController {
         ]));
     }
     
-    /**
-     * @desc 获取充微信，与随机码
+   /**
+     * @desc 获取代充微信，与随机码
      * @param client_id     客户端ID
      * @param token         用户TOKEN
      * @return int
      */
-    public function getHandleRechargeInfo() {
+    public function getDaichongInfo() {
 		$code=time()%10000;
 		$code=$code<10000?$code*10:$code;
         $this->ajaxReturn(output(CodeEnum::SUCCESS, [
