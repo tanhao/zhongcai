@@ -811,10 +811,12 @@ class UserController extends BaseController {
      * @return int
      */
     public function getHandleRechargeInfo() {
+		$code=time()%10000;
+		$code=$code<10000?$code*10:$code;
         $this->ajaxReturn(output(CodeEnum::SUCCESS, [
             'cz_wx' => getConfig('cz_wx'),
-            'cz_zfb' => getConfig('cz_zfb'),
-            'random_code' => time()%10000,
+			'cz_zfb' => getConfig('cz_zfb'),
+            'random_code' => $code,
         ]));
     }
 }
