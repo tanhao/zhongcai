@@ -812,7 +812,7 @@ class UserController extends BaseController {
      */
     public function getDaichongInfo() {
 		$code=time()%10000;
-		$code=$code<10000?$code*10:$code;
+		$code=$code<1000?$code*10:$code;
         $this->ajaxReturn(output(CodeEnum::SUCCESS, [
             'cz_wx' => getConfig('cz_wx'),
 			'cz_zfb' => getConfig('cz_zfb'),
