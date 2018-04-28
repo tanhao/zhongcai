@@ -16,8 +16,10 @@ class ManageController extends BaseController {
             $announcement_url = I('post.announcement_url', '', 'htmlspecialchars,trim');
             $cs_qq = I('post.cs_qq', '', 'htmlspecialchars,trim');
             $cs_wx = I('post.cs_wx', '', 'htmlspecialchars,trim');
+	    $cz_wx = I('post.cz_wx', '', 'htmlspecialchars,trim');
+	    $cz_zfb = I('post.cz_zfb', '', 'htmlspecialchars,trim');
             $rate = I('post.rate', '', 'htmlspecialchars,floatval');
-            if (!in_array($system_maintenance, [0,1]) || empty($announcement) || empty($announcement_url) || empty($cs_qq) || empty($cs_wx) || $rate >= 1 || $rate <= 0) {
+            if (!in_array($system_maintenance, [0,1]) || empty($announcement) || empty($announcement_url) || empty($cs_qq) || empty($cs_wx) ||  empty($cz_wx) ||  empty($cs_zfb) || $rate >= 1 || $rate <= 0) {
                 $this->ajaxOutput('参数错误');
             }
             // 抽水比例
@@ -37,6 +39,8 @@ class ManageController extends BaseController {
             M('config')->where(['config_sign'=>'announcement_url'])->save(['config_value'=> $announcement_url]);
             M('config')->where(['config_sign'=>'cs_qq'])->save(['config_value'=> $cs_qq]);
             M('config')->where(['config_sign'=>'cs_wx'])->save(['config_value'=> $cs_wx]);
+	    M('config')->where(['config_sign'=>'cz_wx'])->save(['config_value'=> $cz_wx]);
+	    M('config')->where(['config_sign'=>'cz_zfb'])->save(['config_value'=> $cz_zfb]);
             $redis = redisCache();
             $redis->delete(CacheEnum::CONFIG);
             $systemInfo = M('config')->select();
