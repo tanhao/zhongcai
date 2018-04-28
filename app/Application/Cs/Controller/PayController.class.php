@@ -23,13 +23,13 @@ class PayController extends BaseController {
         $db_prefix = C('DB_PREFIX');
         $list = $recharge->join("as r left join {$db_prefix}user as u on r.user_id=u.user_id")->where($where)->field("u.balance,r.*")->order('r.id desc')->limit($pageInfo['limit'])->select();
         foreach ($list as $key => $value) {
-        	$typeName = $value['type'] == 1 ? "线下" : ($value['type'] == 2 ? "支付宝" : "微信");
+        	$typeName = $value['type'] == 1 ? "线下" : ($value['type'] == 2 ? "支付宝" : ($value['type'] == 3 ? "支付宝" : "代充"));
         	$list[$key]['typeName'] = $typeName;
-        	$wayName = $value['type'] == 1 ? $value['bank_name'] : ($value['type'] == 2 ? "支付宝" : "微信");
+        	$wayName = $value['type'] == 1 ? $value['bank_name'] : ($value['type'] == 2 ? "支付宝" : ($value['type'] == 3 ? "微信" : $value['bank_name'] ));
         	$list[$key]['wayName'] = $wayName;
-        	$account = $value['type'] == 1 ? $value['account_number']."({$value['real_name']})" : "订单号:{$value['order_sn']}";
+        	$account = $value['type'] == 1 ? $value['account_number']."({$value['real_name']})" : ($value['type'] == 4 ? $value['account_number'] : "订单号:{$value['order_sn']}");
         	$list[$key]['account'] = $account;
-            $list[$key]['show_button'] = $value['type'] == 1 && $value['sync'] == 0 && (empty($value['mm_name']) || $value['mm_name'] == session('cs_name')) ? true : false;
+            $list[$key]['show_button'] = (($value['type'] == 1 && $value['sync'] == 0) || ($value['type'] == 4 && $value['sync'] == 0)) && (empty($value['mm_name']) || $value['mm_name'] == session('cs_name')) ? true : false;
         }
         $this->assign('type', $type);
         $this->assign('sync', $sync);
@@ -59,7 +59,7 @@ class PayController extends BaseController {
             if (empty($rechargeInfo)) {
                 $this->ajaxOutput('充值信息不存在');
             }
-            if ($rechargeInfo['type'] != 1) {
+            if ($rechargeInfo['type'] != 1 && $rechargeInfo['type'] != 4) {
                 $this->ajaxOutput('只有线下充值才能手动充值');
             }
             if ($rechargeInfo['sync'] != 0) {
@@ -87,7 +87,7 @@ class PayController extends BaseController {
             if (empty($rechargeInfo)) {
                 $this->ajaxOutput('充值信息不存在');
             }
-            if ($rechargeInfo['type'] != 1) {
+            if ($rechargeInfo['type'] != 1 && $rechargeInfo['type'] != 4 ) {
                 $this->ajaxOutput('只有线下充值才能手动充值');
             }
             if ($rechargeInfo['sync'] != 0) {
