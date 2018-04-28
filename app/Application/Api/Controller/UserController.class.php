@@ -813,7 +813,7 @@ class UserController extends BaseController {
     public function getHandleRechargeInfo() {
         $this->ajaxReturn(output(CodeEnum::SUCCESS, [
             'cz_wx' => getConfig('cz_wx'),
-            'random_code' => '1234',
+            'random_code' => time()%10000,
         ]));
     }
 }
