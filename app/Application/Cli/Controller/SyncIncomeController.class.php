@@ -18,10 +18,11 @@ class SyncIncomeController extends Controller {
 		$list = $betLog->where(['sync'=> 0])->field('id,user_id,issue,is_host,bet_balance,profit_balance,commission,add_time')->select();
 		foreach ($list as $key => $value) {
 			$win_balance = bcdiv($value['commission'], $this->rate, 2);  //抽水总钱；
+			/*
 			if (C('PATTERN') == 1) {
 				$win_balance = bcmul($win_balance, 2, 2);
 			}
-			
+			*/
 			
 			//查询当前用户所有代理用户，取用户的基础数据来算起			
 			$adminList = $this->getAdminList($value['user_id'], $value['commission']);
