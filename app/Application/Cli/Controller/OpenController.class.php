@@ -592,7 +592,7 @@ class OpenController extends Controller {
             foreach ($userBetList as $zone => $value) {
                 $cal_balance = bcdiv(bcmul($value, $zoneDetailSort[$zone]['cal_balance'], 2), $zoneDetailSort[$zone]['balance'], 2);
                 $final_balance = $cal_balance <= $value ? $cal_balance : bcadd($value, ($cal_balance - $value) * (1-$rate), 2);
-                $commission = C('PATTERN')==1 ? bcmul(abs(bcsub($cal_balance, $value, 2)), $rate/1) : bcsub($cal_balance, $final_balance, 2);//佣金
+                $commission = C('PATTERN')==1 ? bcmul(abs(bcsub($cal_balance, $value, 2)), $rate/1, 2) : bcsub($cal_balance, $final_balance, 2);//佣金
                 $tempInfo['bet_balance'] = bcadd($tempInfo['bet_balance'] , $value, 2);
                 $tempInfo['profit_balance'] = bcadd($tempInfo['profit_balance'] , bcsub($final_balance, $value, 2), 2);
                 $tempInfo['final_balance'] = bcadd($tempInfo['final_balance'] , $final_balance, 2);
