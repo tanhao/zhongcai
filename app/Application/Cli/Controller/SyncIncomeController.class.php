@@ -15,7 +15,7 @@ class SyncIncomeController extends Controller {
 		$adminIncome = M('admin_income');
 		$adminUser = M('admin_user');
 		$adminWasteBook = M('admin_waste_book');
-		$list = $betLog->where(['sync'=> 0])->field('id,user_id,issue,is_host,bet_balance,profit_balance,commission,add_time')->select();
+		$list = $betLog->where(['sync'=> 0])->field('id,user_id,issue,is_host,bet_balance,profit_balance,commission,add_time,bet_detail')->select();
 		foreach ($list as $key => $value) {
 			$win_balance = bcdiv($value['commission'], $this->rate, 2);  //抽水总钱；
 			/*
@@ -24,8 +24,17 @@ class SyncIncomeController extends Controller {
 			}
 			*/
 			
+			//coder 20180516
+			$betJson=json_decode($value['bet_detail'],true);
+			$realComm=0;
+			foreach ($betJson as $betInfo) {
+				if($betInfo["win_balance"]>=0){
+				   $realComm = bcadd($realComm,$betInfo["commission"],2);
+				}
+			}
+			
 			//查询当前用户所有代理用户，取用户的基础数据来算起			
-			$adminList = $this->getAdminList($value['user_id'], $value['commission']);
+			$adminList = $this->getAdminList($value['user_id'], $value['commission'],$realComm);
 			//print_r($adminList);exit ;
 			foreach ($adminList as $k => $v) {
 				$adminIncome->add([
@@ -59,7 +68,7 @@ class SyncIncomeController extends Controller {
 	}
 
 	// 根据用户ID获取全部的代理ID和佣金率
-	private function getAdminList($user_id, $all_commission) {
+	private function getAdminList($user_id, $all_commission, $realComm) {
 		// 找出user对应的所有的代理
 		$invite_code = M('user')->where(['user_id'=> $user_id])->getField('invite_code');  //找出用户的上一级直接代理；
 		
@@ -96,7 +105,8 @@ class SyncIncomeController extends Controller {
 					$tempSum = bcadd($tempSum, $userComs, 2);
 					//var_dump($userComs . '  ==='.$userRate );
 			}else{
-					$userComs = bcsub($all_commission, $tempSum, 2);  //最后一个是公司入账
+				//$userComs = bcsub($all_commission, $tempSum, 2);  //最后一个是公司入账
+				$userComs = bcsub($realComm, $tempSum, 2);  //最后一个是公司入账
 			}
 			$last_rate = $value['rate'];
 			$adminList[$key]['commission'] = $userComs;  //$commission  用户抽水金额
