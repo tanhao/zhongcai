@@ -71,13 +71,9 @@ class ReportController extends BaseController {
 	    	$list[$key]['profit_balance'] = !empty($incomeInfo['profit_balance']) ? $incomeInfo['profit_balance'] : "0.00";
 	    	$list[$key]['win_balance'] = !empty($incomeInfo['win_balance']) ? $incomeInfo['win_balance'] : "0.00";
 	    	$list[$key]['commission'] = !empty($incomeInfo['commission']) ? $incomeInfo['commission'] : "0.00";
-		/*
-	    	$list[$key]['myrate'] = $this->getRateToAdmin(0, $value['user_id']);
-	    	$list[$key]['mycommission'] = bcdiv(bcmul($list[$key]['win_balance'], $list[$key]['rate'], 4), 100, 2);
-		*/
-		$myrate=$this->getRateToAdmin(0, $value['user_id']);
+	    	$myrate=$this->getRateToAdmin(0, $value['user_id']);
 	    	$list[$key]['myrate'] = $myrate;
-		$list[$key]['mycommission'] = bcdiv(bcmul($list[$key]['win_balance'], $myrate, 4), 100, 2);
+			$list[$key]['mycommission'] = bcdiv(bcmul($list[$key]['win_balance'], $myrate, 4), 100, 2);
 	    	$total_income = bcadd($total_income, $list[$key]['mycommission'], 2);
         }
 

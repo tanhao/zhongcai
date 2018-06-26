@@ -14,7 +14,6 @@ class IndexController extends BaseController {
      */
 	public function index() {
 		$result = array();
-		$result['id'] = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
 		$result['nickname'] = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
 		$result['balance'] = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
 		$result['register_count'] = M('user')->count();
@@ -63,7 +62,6 @@ class IndexController extends BaseController {
      */
 	public function roomList() {
 		$result = array();
-		$result['id'] = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
 		$result['nickname'] = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
 		$result['balance'] = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
 		$lottery_id = I('get.lottery_id', '', 'intval');
@@ -89,16 +87,22 @@ class IndexController extends BaseController {
 			// 场馆列表
 			$siteList = $siteModel->getSiteList($value['game_id']);
 			foreach ($levelList as $level_key => $level_value) {
-				foreach ($siteList as $site_key => $site_value) {
-					if ($site_value['site_type'] == $level_value['site_type']) {
-						$site_value['game_name'] = $value['game_name'];
-						// 房间ID
-						$site_value['room_id'] = $site_value['site_id'];
-						$site_value['game_id'] = $value['game_id'];
-						// 房间在线人数
-						$site_value['online_count'] = $siteModel->getRoomCount($site_value['site_id']);
-						$levelList[$level_key]['roomList'][] = $site_value;
+				if($level_value['site_type']==1){
+					$idx = 0;
+					foreach ($siteList as $site_key => $site_value) {
+						if ($site_value['site_type'] == $level_value['site_type'] && $idx<2) {
+							$site_value['game_name'] = $value['game_name'];
+							// 房间ID
+							$site_value['room_id'] = $site_value['site_id'];
+							$site_value['game_id'] = $value['game_id'];
+							// 房间在线人数
+							$site_value['online_count'] = $siteModel->getRoomCount($site_value['site_id']);
+							$levelList[$level_key]['roomList'][] = $site_value;
+						}
+						$idx=$idx+1;
 					}
+				}else{
+					$levelList[$level_key]['roomList'] = [];
 				}
 			}
 			$gameList[$key]['levelList'] = $levelList;

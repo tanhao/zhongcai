@@ -55,6 +55,7 @@
 						<th>ID</th>
 						<th>账号类型</th>
 						<th>用户账号</th>
+						<th>支付宝</th>
 						<th>提现金额</th>
 						<th>实际金额</th>
 						<th>用户余额</th>
@@ -70,6 +71,13 @@
 						<td>{$data['id']}</td>
 						<td>{$data['typeName']}</td>
 						<td>{$data['user_name']}</td>
+						<td>
+							<if condition="$data['typeName'] eq '会员'">
+								{$data['zfb_account']} （{$data['zfb_name']}）
+							<else />
+								--
+							</if>
+						</td>
 						<td>{$data['apply_cash']}</td>
 						<td>{$data['real_cash']}</td>
 						<td>{$data['balance']}</td>

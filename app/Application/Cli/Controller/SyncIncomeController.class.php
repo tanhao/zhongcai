@@ -68,7 +68,7 @@ class SyncIncomeController extends Controller {
 	}
 
 	// 根据用户ID获取全部的代理ID和佣金率
-	private function getAdminList($user_id, $all_commission, $realComm) {
+	private function getAdminList($user_id, $all_commission,$realComm) {
 		// 找出user对应的所有的代理
 		$invite_code = M('user')->where(['user_id'=> $user_id])->getField('invite_code');  //找出用户的上一级直接代理；
 		
@@ -88,31 +88,31 @@ class SyncIncomeController extends Controller {
 		
 		$sizeNum = sizeof($adminList) ;
 		$win_UserMoney  = bcdiv($all_commission, $this->rate, 2);  //抽水总钱；
-		//var_dump($all_commission . '  ==='.$win_balance );
 		
 		// 分钱
-		$tempSum = 0;
+		//下级佣金总合（不包括公司）
+		$tempSum = 0; 
 		$last_rate = 0;
 		$tempIndex = 0 ;
 		foreach ($adminList as $key => $value) {
-			$userComs = 0; //其它代理用点结算
+			$userComs = 0; //其它代理佣金结算
 			if($tempIndex < $sizeNum - 1 ){
-					//从上一级开始算起；
-					$thisRate = isset($value['rate'] ) ? bcsub($value['rate'] , $last_rate,3 ) : 0 ;
-					$userRate = ($thisRate) ?  bcdiv($thisRate  , 100, 5 ) : 0;			
-					$userComs =  bcmul( $win_UserMoney  ,$userRate, 2 ) ;  //用户抽水点
-					//$commission = bcdiv(bcmul(bcdiv($all_commission, $this->rate, 2), $value['rate'], 2), 100, 2);
-					$tempSum = bcadd($tempSum, $userComs, 2);
-					//var_dump($userComs . '  ==='.$userRate );
+				//从上一级开始算起；
+				$thisRate = isset($value['rate'] ) ? bcsub($value['rate'] , $last_rate,3 ) : 0 ;
+				$userRate = ($thisRate) ?  bcdiv($thisRate  , 100, 5 ) : 0;			
+				$userComs =  bcmul( $win_UserMoney  ,$userRate, 2 ) ;  //用户抽水点
+				//$commission = bcdiv(bcmul(bcdiv($all_commission, $this->rate, 2), $value['rate'], 2), 100, 2);
+				$tempSum = bcadd($tempSum, $userComs, 2);
 			}else{
+				//最后一个是公司入账
 				//$userComs = bcsub($all_commission, $tempSum, 2);  //最后一个是公司入账
 				$userComs = bcsub($realComm, $tempSum, 2);  //最后一个是公司入账
 			}
 			$last_rate = $value['rate'];
-			$adminList[$key]['commission'] = $userComs;  //$commission  用户抽水金额
+			//$commission  用户抽水金额
+			$adminList[$key]['commission'] = $userComs; 
 			$tempIndex ++ ;
 		} 		
-		//print_r($adminList);exit ;
 		return $adminList;
 	}
 

@@ -52,6 +52,7 @@ class IndexController extends BaseController {
         // 平台总佣金
         $total_commission = M('admin_income')->sum('commission');
         $total_commission = !empty($total_commission) ? $total_commission : "0.00";
+		
         // 公司总收入
         $user_id = M('admin_user')->where(['pid'=>0])->getField('user_id');
         $my_commission = M('admin_income')->where(['admin_id'=>$user_id])->sum('commission');

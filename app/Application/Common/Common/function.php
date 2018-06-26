@@ -520,7 +520,19 @@ function getConfig($config_sign) {
         }
         $redis->set(CacheEnum::CONFIG, json_encode($config));
     }
-    return isset($config[$config_sign]) ? $config[$config_sign] : '';
+    $returnVal = isset($config[$config_sign]) ? $config[$config_sign] : ''; 
+    
+    //是否启用第三方配置多选功；
+    $payType = isset($config['online_add_newpay']) ? intval($config['online_add_newpay']) : 1 ;//默认为原来的    
+    $allowKeys = array('app_id','app_secret','store_id','pay_url','pay_method',"notify_url","return_url");
+    $newPays = !empty($config['pay_set_data']) ? unserialize($config['pay_set_data']) : false;//支付参数使用最新数据
+    if(isset($config['pay_set_data']) && !empty($config['pay_set_data']) && !empty($newPays) && $payType > 1){ //新的第三方支付参数如果不为空的时
+    	//取支付参数列表值；[app_id app_secret store_id pay_url pay_method]
+    	if(isset($newPays[$config_sign]) && !empty($newPays[$config_sign]) && in_array($config_sign, $allowKeys)) {
+    		$returnVal = trim($newPays[$config_sign]);
+    	}
+    }
+    return $returnVal;
 }
 
 /**

@@ -16,10 +16,10 @@ class ManageController extends BaseController {
             $announcement_url = I('post.announcement_url', '', 'htmlspecialchars,trim');
             $cs_qq = I('post.cs_qq', '', 'htmlspecialchars,trim');
             $cs_wx = I('post.cs_wx', '', 'htmlspecialchars,trim');
-	    $cz_wx = I('post.cz_wx', '', 'htmlspecialchars,trim');
-	    $cz_zfb = I('post.cz_zfb', '', 'htmlspecialchars,trim');
+			$cz_wx = I('post.cz_wx', '', 'htmlspecialchars,trim');
+			$cz_zfb = I('post.cz_zfb', '', 'htmlspecialchars,trim');
             $rate = I('post.rate', '', 'htmlspecialchars,floatval');
-            if (!in_array($system_maintenance, [0,1]) || empty($announcement) || empty($announcement_url) || empty($cs_qq) || empty($cs_wx) ||  empty($cz_wx) ||  empty($cs_zfb) || $rate >= 1 || $rate <= 0) {
+            if (!in_array($system_maintenance, [0,1]) || empty($announcement) || empty($announcement_url) || empty($cs_qq) || empty($cs_wx) || $rate >= 1 || $rate <= 0) {
                 $this->ajaxOutput('参数错误');
             }
             // 抽水比例
@@ -39,8 +39,8 @@ class ManageController extends BaseController {
             M('config')->where(['config_sign'=>'announcement_url'])->save(['config_value'=> $announcement_url]);
             M('config')->where(['config_sign'=>'cs_qq'])->save(['config_value'=> $cs_qq]);
             M('config')->where(['config_sign'=>'cs_wx'])->save(['config_value'=> $cs_wx]);
-	    M('config')->where(['config_sign'=>'cz_wx'])->save(['config_value'=> $cz_wx]);
-	    M('config')->where(['config_sign'=>'cz_zfb'])->save(['config_value'=> $cz_zfb]);
+			M('config')->where(['config_sign'=>'cz_wx'])->save(['config_value'=> $cz_wx]);
+			M('config')->where(['config_sign'=>'cz_zfb'])->save(['config_value'=> $cz_zfb]);
             $redis = redisCache();
             $redis->delete(CacheEnum::CONFIG);
             $systemInfo = M('config')->select();
@@ -116,20 +116,56 @@ class ManageController extends BaseController {
     public function threePay() {
         if (IS_POST) {
             $online_pay = I('post.online_pay', 0, 'intval');
+            $select_plat_type = I('post.select_plat_type', 0, 'intval');
+            //参数
             $pay_url = I('post.pay_url', '', 'htmlspecialchars,trim');
             $pay_method = I('post.pay_method', '', 'htmlspecialchars,trim');
             $app_id = I('post.app_id', '', 'htmlspecialchars,trim');
             $app_secret = I('post.app_secret', '', 'htmlspecialchars,trim');
             $store_id = I('post.store_id', '', 'htmlspecialchars,trim');
-            if (!in_array($online_pay, [0,1]) || empty($pay_url) || empty($pay_method) || empty($app_id) || empty($app_secret) || empty($store_id)) {
-                $this->ajaxOutput('参数错误');
+            
+            $exit = M('config')->where(['config_sign'=>'online_add_newpay'])->find(); //是否有数据
+            //查询使用哪个网关接口；
+            if(!$exit){
+            	M('config')->add(["config_sign"=>"online_add_newpay","config_name"=>"支付通道","config_value"=>$select_plat_type]);
+            }else{
+            	M('config')->where(['config_sign'=>'online_add_newpay'])->save(['config_value'=> $select_plat_type]);
             }
-            M('config')->where(['config_sign'=>'online_pay'])->save(['config_value'=> $online_pay]);
-            M('config')->where(['config_sign'=>'pay_url'])->save(['config_value'=> $pay_url]);
-            M('config')->where(['config_sign'=>'pay_method'])->save(['config_value'=> $pay_method]);
-            M('config')->where(['config_sign'=>'app_id'])->save(['config_value'=> $app_id]);
-            M('config')->where(['config_sign'=>'app_secret'])->save(['config_value'=> $app_secret]);
-            M('config')->where(['config_sign'=>'store_id'])->save(['config_value'=> $store_id]);
+            if(isset($select_plat_type) && intval($select_plat_type) == 0){
+            	
+            	$this->ajaxOutput('暂无数据需要保存');
+            }else if(isset($select_plat_type) && intval($select_plat_type) == 2){
+            	//修改数据
+            	$pay_url = I('post.pay_url_2', '', 'htmlspecialchars,trim');
+            	$app_id = I('post.app_id_2', '', 'htmlspecialchars,trim');
+            	$app_secret = I('post.app_secret_2', '', 'htmlspecialchars,trim');
+            	$returnUrl = I('post.return_pay_2', '', 'htmlspecialchars,trim');
+            	$noticeUrl = I('post.notice_pay_2', '', 'htmlspecialchars,trim');
+            	//保存数据并更新
+            	$oldData = M('config')->where(['config_sign'=>'pay_set_data'])->find(); //是否有数据
+            	//新加一条数据
+            	//{s:17:"online_add_newpay";i:1;s:6:"app_id";s:8:"57752125";s:10:"app_secret";s:32:"d334cb030f2935c306ed47454a8c18dd";s:8:"store_id";s:0:"";s:7:"pay_url";s:32:"https://www.aw5880.cn/pay/action";}
+            	$targetText = serialize(array("online_add_newpay"=> 0));
+            	if($pay_url && $app_id && $app_secret){
+            		$targetArr = ["online_add_newpay"=>1,"pay_url"=>$pay_url,"app_id"=> $app_id,"app_secret"=>$app_secret,"notify_url"=>$noticeUrl,"return_url"=>$returnUrl];
+            		$targetText = serialize($targetArr);
+            	}
+            	if(!isset($oldData) || empty($oldData)){ //新增一组数据
+            		M('config')->add(["config_sign"=>"pay_set_data","config_name"=>"NEW_PAY_LIST","config_value"=>$targetText]);
+            	}else{
+            		M('config')->where(['config_sign'=>'pay_set_data'])->save(['config_value'=> $targetText]);
+            	}
+            }else{
+            	if (!in_array($online_pay, [0,1]) || empty($pay_url) || empty($pay_method) || empty($app_id) || empty($app_secret) || empty($store_id)) {
+            		$this->ajaxOutput('参数错误');
+            	}
+            	M('config')->where(['config_sign'=>'online_pay'])->save(['config_value'=> $online_pay]);
+            	M('config')->where(['config_sign'=>'pay_url'])->save(['config_value'=> $pay_url]);
+            	M('config')->where(['config_sign'=>'pay_method'])->save(['config_value'=> $pay_method]);
+            	M('config')->where(['config_sign'=>'app_id'])->save(['config_value'=> $app_id]);
+            	M('config')->where(['config_sign'=>'app_secret'])->save(['config_value'=> $app_secret]);
+            	M('config')->where(['config_sign'=>'store_id'])->save(['config_value'=> $store_id]);
+            }
             $redis = redisCache();
             $redis->delete(CacheEnum::CONFIG);
             $systemInfo = M('config')->select();
@@ -145,6 +181,10 @@ class ManageController extends BaseController {
             $list = [];
             foreach ($systemInfo as $key => $value) {
                 $list[$value['config_sign']] = $value['config_value'];
+                if(isset($value['config_sign']) && $value['config_sign'] =='pay_set_data'){ //支付数据
+                	$paySett = unserialize($value['config_value']);
+                	$list[$value['config_sign']] = $paySett;
+                }
             }
             $this->assign('list', $list);
             $this->display();

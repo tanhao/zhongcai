@@ -8,6 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="__PUBLIC__/Cs/frame/layui/css/layui.css"  media="all">
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+  	.layui-form-label {width:150px;}
+  	.navItem{display:none;}
+  </style>
 </head>
 <body>            
 <!--fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -20,42 +24,105 @@
       <input name="online_pay" type="checkbox" lay-skin="switch" lay-text="开|关" <if condition="$list['online_pay'] eq 1">checked</if> value="1"> 
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">pay url</label>
-    <div class="layui-input-inline" style="width: 400px;">
-      <input name="pay_url" class="layui-input" type="text" placeholder="请输入接口URL" autocomplete="off" lay-verify="required" value="{$list['pay_url']}">
-    </div>
-  </div>
-
-  <div class="layui-form-item">
-    <label class="layui-form-label">pay method</label>
-    <div class="layui-input-inline" style="width: 400px;">
-      <input name="pay_method" class="layui-input" type="text" placeholder="请输入接口方法名" autocomplete="off" lay-verify="required" value="{$list['pay_method']}">
-    </div>
-  </div>
-
-  <div class="layui-form-item">
-    <label class="layui-form-label">app id</label>
-    <div class="layui-input-inline" style="width: 400px;">
-      <input name="app_id" class="layui-input" type="text" placeholder="请输入接口ID" autocomplete="off" lay-verify="required" value="{$list['app_id']}">
-    </div>
-  </div>
   
   <div class="layui-form-item">
-    <label class="layui-form-label">app secret</label>
-    <div class="layui-input-inline" style="width: 400px;">
-      <input name="app_secret" class="layui-input" type="text" placeholder="请输入接口密匙" autocomplete="off" lay-verify="required" value="{$list['app_secret']}">
+    <label class="layui-form-label">支付平台</label>
+    <div class="layui-input-inline" style="width: 200px;">
+      <select name="select_plat_type" lay-filter="select_plat_type"> 
+       		<option value="0">请选择平台</option>
+       		<if condition="($list['online_add_newpay'] eq 1)">
+       			<option value="1" selected="selected">平台默认网关</option>
+			<else />
+				<option value="1">平台默认网关</option>
+			</if>
+			<if condition="($list['online_add_newpay'] eq 2)">
+       			<option value="2" selected="selected">智能云收银</option>
+			<else />
+				<option value="2">智能云收银</option>
+			</if>
+      </select>
     </div>
+  </div>
+  <!-- 默认平台 -->
+  <div id="navList_Item_1" class="navItem" <if condition="($list['online_add_newpay'] eq 1)">style="display:block;"</if>>
+  	<div class="layui-form-item">
+	    <label class="layui-form-label">默认网关：</label>
+	    <div class="layui-input-inline" style="width: 400px;">
+	      <input name="pay_url" class="layui-input" type="text" placeholder="请输入接口URL" autocomplete="off" lay-verify="required" value="{$list['pay_url']}">
+	    </div>
+	  </div>
+	
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">pay method</label>
+	    <div class="layui-input-inline" style="width: 400px;">
+	      <input name="pay_method" class="layui-input" type="text" placeholder="请输入接口方法名" autocomplete="off" lay-verify="required" value="{$list['pay_method']}">
+	    </div>
+	  </div>
+	
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">app id</label>
+	    <div class="layui-input-inline" style="width: 400px;">
+	      <input name="app_id" class="layui-input" type="text" placeholder="请输入接口ID" autocomplete="off" lay-verify="required" value="{$list['app_id']}">
+	    </div>
+	  </div>
+	  
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">app secret</label>
+	    <div class="layui-input-inline" style="width: 400px;">
+	      <input name="app_secret" class="layui-input" type="text" placeholder="请输入接口密匙" autocomplete="off" lay-verify="required" value="{$list['app_secret']}">
+	    </div>
+	  </div>
+	  
+	  <div class="layui-form-item">
+	    <div class="layui-inline">
+	      <label class="layui-form-label">store id</label>
+	      <div class="layui-input-inline" style="width: 100px;">
+	        <input name="store_id" class="layui-input" type="text" autocomplete="off"  placeholder="请输入店铺ID" value="{$list['store_id']}">
+	      </div>
+	    </div>
+	  </div>
   </div>
   
-  <div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">store id</label>
-      <div class="layui-input-inline" style="width: 100px;">
-        <input name="store_id" class="layui-input" type="text" autocomplete="off"  placeholder="请输入店铺ID" value="{$list['store_id']}">
-      </div>
-    </div>
+  <!-- 新加平台 -->
+  <div id="navList_Item_2" class="navItem" <if condition="($list['online_add_newpay'] eq 2)">style="display:block;"</if> >
+  		<div class="layui-form-item">
+	    	<label class="layui-form-label">* 智能云网关：</label>
+		    <div class="layui-input-inline" style="width: 400px;">
+		      <input name="pay_url_2" class="layui-input" type="text" placeholder="请输入接口URL" autocomplete="off" lay-verify="required" value="{$list['pay_set_data']['pay_url']}">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">* 智能云UID：</label>
+		    <div class="layui-input-inline" style="width: 400px;">
+		      <input name="app_id_2" class="layui-input" type="text" placeholder="请输入接口ID" autocomplete="off" lay-verify="required" value="{$list['pay_set_data']['app_id']}">
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">* 云Token：</label>
+		    <div class="layui-input-inline" style="width: 400px;">
+		      <input name="app_secret_2" class="layui-input" type="text" placeholder="请输入接口密匙" autocomplete="off" lay-verify="required" value="{$list['pay_set_data']['app_secret']}">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <div class="layui-inline">
+		      <label class="layui-form-label">订单通知地址：</label>
+		      <div class="layui-input-inline" style="width: 400px;">
+		        <input name="notice_pay_2" class="layui-input" type="text" autocomplete="off"  placeholder="请输入店铺ID" value="{$list['pay_set_data']['notify_url']}">
+		      </div>
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <div class="layui-inline">
+		      <label class="layui-form-label">支付成功跳转地址：</label>
+		      <div class="layui-input-inline" style="width: 400px;">
+		        <input name="return_pay_2" class="layui-input" type="text" autocomplete="off"  placeholder="请输入店铺ID" value="{$list['pay_set_data']['return_url']}">
+		      </div>
+		    </div>
+		  </div>
   </div>
+  
+  <!-- 提交 -->
   <div class="layui-form-item">
     <div class="layui-input-block">
       <button class="layui-btn" lay-filter="demo1" lay-submit="">保存设置</button>
@@ -66,6 +133,8 @@
   		当关闭第三方支付后，客户端APP则不能使用第三方充值功能.
 	</blockquote>
 
+ 
+
 
 <script src="__PUBLIC__/Cs/frame/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -75,10 +144,9 @@ layui.use(['form', 'layer'], function () {
 
   //监听提交
   form.on('submit(demo1)', function(data){
-    // layer.alert(JSON.stringify(data.field), {
-    //   title: '最终的提交信息'
-    // });
-    // console.log(data.field);
+    /* layer.alert(JSON.stringify(data.field), {
+       title: '最终的提交信息'
+    }); */
     $.post("{:U('Manage/threePay')}",data.field,function(res){
         if(res.code > 0){
             layer.msg(res.msg,{time:1800,icon: 1},function(){
@@ -89,6 +157,16 @@ layui.use(['form', 'layer'], function () {
         }
     },'json');
     return false;
+  });
+  //事件 
+  form.on('select(select_plat_type)', function(data){
+	  var thisVal = data.value;
+	  if(null != thisVal && "" != thisVal && parseInt(thisVal) > 0){
+		  $(".navItem").hide();
+		  $("#navList_Item_" + thisVal).show();
+	  }else{
+		  $(".navItem").hide();		  
+	  }
   });
   
   

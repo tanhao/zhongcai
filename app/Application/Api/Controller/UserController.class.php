@@ -866,4 +866,35 @@ class UserController extends BaseController {
             'random_code' => $random_code,
         ]));
     }
+	
+	 /**
+     * @desc 获支付宝信息
+     * @param client_id     客户端ID
+     * @param token         用户TOKEN
+     */
+	public function getAlipayInfo() {
+		$zfb_name = $this->userInfo['zfb_name'];
+        $zfb_account = $this->userInfo['zfb_account'];
+        $this->ajaxReturn(output(CodeEnum::SUCCESS, [
+            'zfb_name' => $zfb_name,
+			'zfb_account' => $zfb_account,
+        ]));
+    }
+	
+	 /**
+     * @desc 保存支付宝信息
+     * @param client_id     客户端ID
+     * @param token         用户TOKEN
+     */
+	public function saveAlipayInfo() {
+		$zfb_name = I('get.zfb_name','', 'trim');
+        $zfb_account = I('get.zfb_account','', 'trim');
+		if (empty($zfb_name) || empty($zfb_account)) {
+            $this->ajaxReturn(output(CodeEnum::PARAM_ERROR));
+        }
+		M('user')->where(['user_id'=> C('USER_ID')])->save(['zfb_name'=> $zfb_name,'zfb_account'=> $zfb_account]);
+        $this->addUserLog('修改支付宝信息', "修改支付宝信息：{$zfb_account}({$zfb_name})");
+        $this->ajaxReturn(output(CodeEnum::SUCCESS));
+    }
+
 }

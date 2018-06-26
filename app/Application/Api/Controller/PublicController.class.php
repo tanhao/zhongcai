@@ -20,6 +20,36 @@ class PublicController extends Controller {
         C('TOKEN', $token);
         $this->ajaxReturn(output(CodeEnum::SUCCESS));
     }
+    
+    
+    /**
+     * 查询接口并验证签名通知订单成功
+     * @param string $postData
+     */
+    protected function secondCallBack($postData=FALSE){
+    	$returnData = false;
+    	//验证签名个值顺序拼接：orderid + orderuid + ordno + price + realprice + token，再进行 md5 加密（小写），
+    	$getPayToken = getConfig("app_secret");
+    	//$getPayToken = "d334cb030f2935c306ed47454a8c18dd";
+    	$sign = isset($postData['key']) ? $postData['key'] : '';
+    	
+    	//接口数据
+    	if(isset($postData['ordno']) && !empty($postData['ordno']) && isset($postData['price'])  && floatval($postData['price']) > 0 && !empty($sign)){
+    		$newsign = md5($postData['orderid'] . $postData['orderuid'] . $postData['ordno'] . $postData['price'] . $postData['realprice'] . $getPayToken);
+    		//echo $newsign;
+    		if(!empty($newsign) && $newsign == $sign){
+    			//返回有效数据；orderid您在发起付款接口传入的您的自定义订单号
+    			$returnData = array("merchant_order_sn"=> $postData['orderid'],"total_fee"=>$postData['price'],"order_no"=>$postData['ordno'] );
+    		}else{
+    			file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付2回调验证签名失败：".print_r($postData, 1), FILE_APPEND);
+    			exit;
+    		}
+    	}else{
+    		file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付2回调失败：".print_r($postData, 1), FILE_APPEND);
+    		exit;
+    	}
+    	return $returnData;
+    }
 
     /**
      * @desc 线上支付回调
@@ -30,18 +60,33 @@ class PublicController extends Controller {
      * @return echo 'success';
      */
     public function payCallback() {
-        $post = $_POST;
-        if (!isset($post['result_code']) || $post['result_code'] != 200) {
-            file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付回调失败：".print_r($post, 1), FILE_APPEND);
-            exit;
+    	$payType = getConfig('online_add_newpay');
+    	$post = $_POST;
+	file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".$payType." ]回调：".print_r($post, 1), FILE_APPEND);
+        //默认第三方支付的参数配置和签名方案
+        $data = false ;
+        if($payType==1){
+        	if (!isset($post['result_code']) || $post['result_code'] != 200) {
+        		file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付回调失败：".print_r($post, 1), FILE_APPEND);
+        		exit;
+        	}
+        	// 验证签名
+        	$sign = $post['sign'];
+        	if ($sign != getPaySign($post)) {
+        		file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付回调验证签名失败：".print_r($post, 1), FILE_APPEND);
+        		exit;
+        	}
+        	$data = json_decode($post['data'], true);
+        }else{
+        	$data = $this->secondCallBack($post);
         }
-        // 验证签名
-        $sign = $post['sign'];
-        if ($sign != getPaySign($post)) {
-            file_put_contents('./Application/Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付回调验证签名失败：".print_r($post, 1), FILE_APPEND);
-            exit;
+        
+        //订单号是否正常
+        if(!$data || !isset($data['merchant_order_sn']) || empty($data['merchant_order_sn'])){
+        	file_put_contents(APP_PATH.'Runtime/onlinePay.txt',  "[ ".date('Y-m-d H:i:s')." ]支付回调没有数据：".print_r($data, 1), FILE_APPEND);
+        	exit;
         }
-        $data = json_decode($post['data'], true);
+        
         // 商户的订单号
         $merchant_order_sn = $data['merchant_order_sn'];
         // 订单金额(元)
@@ -50,6 +95,7 @@ class PublicController extends Controller {
         $pay_order = M('pay_order');
         $user = M('user');
         $mysql = M();
+        
         // 判断订单是否存在
         $orderInfo = $pay_order->where(['merchant_order_sn'=> $merchant_order_sn, 'is_pay'=> 0])->find();
         if (empty($orderInfo)) {
@@ -182,4 +228,45 @@ class PublicController extends Controller {
         $list = M('draw_cash')->where(['sync'=>0])->field('id,user_id,user_name,apply_cash,real_cash,account_number,bank_name,branch_bank,real_name,add_time')->select();
         $this->ajaxReturn(output(CodeEnum::SUCCESS,$list));
     }
+
+	
+    /**
+     * 微信二维码页面
+     */
+    public function wechatCode(){
+    	$qrcode = I('get.uuid',""); 				//获取微信码
+    	$paytype = I('get.paytype',"wechat"); 		//获取类型
+    	$sign = I('get.sign',""); 					//获取签名
+    	$realpp = I('get.tp',"");
+    	$payType=($paytype=="wechat") ? 20001 : 10001;
+    	
+    	//不能修改数据
+    	$newSign = strtoupper(md5($qrcode."CHECK[PAY]".$paytype));
+    	if(empty($qrcode))exit('非法请求');
+    	if(empty($sign))exit('非法请求');
+    	if($newSign && $newSign == $sign){
+    		$realPrice = 0 ;
+    		if($realpp && !empty($realpp)){
+    			$realpp = base64_decode($realpp);
+    			$realPrice = $realpp ? floatval($realpp) : 0 ; //要支付的金额
+    		}
+		//支付成功页面
+    		//默认使用自己平台的扫码内容
+    		$wetchatCode = 'http://'.C('DOMAIN').'/api/public/qrcode?url='.urlencode($qrcode);
+    		//使用在线URL  :https://pan.baidu.com/share/qrcode?w=210&h=210&url=
+    		if(C('USE_BDPAN') == 1){
+    			$wetchatCode = 'https://pan.baidu.com/share/qrcode?w=210&h=210&url='.urlencode($qrcode); //使用外网在线支付
+    		} 
+    		$this->assign('payType', $payType);  //支付宝
+    		$this->assign('wetchatUUID', $qrcode);
+    		$this->assign('wetchatCode', $wetchatCode);
+    		$this->assign('realPrice', $realPrice);
+    		$this->display();
+    	}else{
+    		exit('恶意篡改数据,非法请求');
+    	}
+    }
+
+
+
 }

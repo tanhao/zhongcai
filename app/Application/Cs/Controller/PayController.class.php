@@ -73,6 +73,21 @@ class PayController extends BaseController {
         }
     }
 
+	// 取消充值
+	public function cancelRecharge() {
+		$id = I('post.id',0,'intval');
+		$recharge = M('recharge');
+		$user = M('user');
+        $rechargeInfo = $recharge->where(['id'=> $id])->find();
+		$recharge->where(['id'=>$id])->save([
+	        	'sync'=> 2,
+	        	'sync_time'=> time(),
+	    ]);
+		$userInfo = $user->where(['user_id'=> $rechargeInfo['user_id']])->field('user_name')->find();
+	    $this->addAtionLog("取消会员:{$userInfo['user_name']} 线下充值:{$rechargeInfo['real_cash']}");
+        $this->ajaxOutput("充值成功", 1, U('Pay/recharge'));
+	  
+	}
     // 充值
     public function syncRecharge() {
         if (IS_POST) {
@@ -158,6 +173,8 @@ class PayController extends BaseController {
         foreach ($list as $key => $value) {
         	if ($value['type'] == 1) {
         		$list[$key]['balance'] = $user->where(['user_id'=>$value['user_id']])->getField('balance');
+				$list[$key]['zfb_account'] = $user->where(['user_id'=>$value['user_id']])->getField('zfb_account');
+				$list[$key]['zfb_name'] = $user->where(['user_id'=>$value['user_id']])->getField('zfb_name');
         	} else {
         		$list[$key]['balance'] = $admin_user->where(['user_id'=>$value['user_id']])->getField('balance');
         	}

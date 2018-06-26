@@ -126,7 +126,7 @@ class CodeEnum {
 		self::ACCOUNT_NUMBER_ERROR => "银行帐号输入有误，请重新输入",
 		self::BALANCE_IS_OVER_HOST => "超过本房间最大上庄金额??",
 		self::RECHARGE_BALANCE_ERROR => "充值金额范围??~??",
-		self::GET_PAY_URL_ERROR => "获取支付链接失败，请重新获取",
+		self::GET_PAY_URL_ERROR => "获取支付链接失败; ?? ",
 		self::SERVER_IS_STOP => "当前服务器维护中，请稍候登录...",
 		self::FREEZE_USER => "您的账号资金暂被冻结，请咨询客服",
 		self::NOT_SUPPORT_ONLINE_PAY => "不支持线上充值",

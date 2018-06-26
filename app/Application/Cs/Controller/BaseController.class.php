@@ -57,7 +57,7 @@ class BaseController extends Controller {
         305 => ['name'=>'实时注单','list'=>['Game-nowBetDetail']],
         306 => ['name'=>'报表查询','list'=>['Game-reportForm','Game-reportSheet']],
         // 充值提现
-        401 => ['name'=>'充值管理','list'=>['Pay-recharge','Pay-syncRecharge','Pay-bankInfo','Pay-lockOperateUser']],
+        401 => ['name'=>'充值管理','list'=>['Pay-recharge','Pay-syncRecharge','Pay-bankInfo','Pay-lockOperateUser','Pay-cancelRecharge']],
         402 => ['name'=>'提现管理','list'=>['Pay-draw','Pay-changeDrawStatus','Pay-checkDraw']],
     ];
 

@@ -254,7 +254,8 @@ class RoomController extends BaseController {
 			$this->ajaxReturn(output(CodeEnum::NEXT_ISSUE_AUTO_DOWN_HOST));
 		}
 		// 用户能不能在本局下庄
-		if ($hostInfo['status'] == 1 && $this->isBetInRoom($room_id)) {
+		//&& $this->isBetInRoom($room_id)
+		if ($hostInfo['status'] == 1 ) {
 			$hostModel->where(['user_id'=> C('USER_ID'), 'room_id'=> $room_id])->save(['status'=> 2]);
 			$this->ajaxReturn(output(CodeEnum::NEXT_ISSUE_AUTO_DOWN_HOST));
 		}
@@ -390,6 +391,9 @@ class RoomController extends BaseController {
     	$cancel_time = 30;
     	$bet_balance_total = 0;
     	$room_balance_total = 0;
+		
+		$zone_balance_total = 0;
+
     	$betDetail = $redis->lrange(CacheEnum::BET_DETAIL.$room_id, 0, -1);
     	if (!empty($betDetail)) {
     		foreach ($betDetail as $key => $value) {
@@ -406,6 +410,10 @@ class RoomController extends BaseController {
 						$if_cenceled = 1;
 					}
     			}
+				
+				if($zone == $betInfo['zone']){
+					$zone_balance_total = bcadd($zone_balance_total, $betInfo['balance'], 2);
+				}
     		}
     		$temp_time = $cancel_time + $bet_first_time - time();
     		if ($temp_time > 0 && $if_cenceled == 0) {
@@ -417,6 +425,12 @@ class RoomController extends BaseController {
     		$cancelInfo['cancel_button'] = 1;
     		$cancelInfo['cancel_countdown'] = $cancel_time > $countdownInfo['countdown'] ? $countdownInfo['countdown'] : $cancel_time;
     	}
+		//tanhao
+		// 判断是否达到当区最 大下注3W
+    	if ($zone_balance_total + $bet_balance >30000) {
+    		$this->ajaxReturn(output(CodeEnum::OVER_MAX_BET_BALANCE,[],[30000]));
+    	}
+
     	// 判断是否达到房间最大下注金额
     	if ($bet_balance_total + $bet_balance > $siteInfo['max_bet_banlance']) {
     		$this->ajaxReturn(output(CodeEnum::OVER_MAX_BET_BALANCE,[],[(int)$siteInfo['max_bet_banlance']]));
@@ -813,15 +827,17 @@ class RoomController extends BaseController {
         if (empty($date) || !preg_match('/^\d{4}\-\d{1,2}\-\d{1,2}$/', $date)) {
             $date = date('Y-m-d');
         }
-	$id = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
         $user_name = C('IS_TEMP') ? C('USER_ID') : $this->userInfo['user_name'];
         $nickname = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
         $balance = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
+		$zfb_name = C('IS_TEMP') ? "" : $this->userInfo['zfb_name'];
+		$zfb_account = C('IS_TEMP') ? "" : $this->userInfo['zfb_account'];
         $result = [
-	    'id'=> $id,
             'user_name'=> $user_name,
             'nickname'=> $nickname,
             'balance'=> $balance,
+			'zfb_name'=> $zfb_name,
+			'zfb_account'=> $zfb_account,
             'change_balance'=> "0.00",
             'date' => $date,
             'list' => []
@@ -867,7 +883,6 @@ class RoomController extends BaseController {
      */
 	public function switchRoomList() {
 		$result = array();
-		$result['id'] = C('IS_TEMP') ? "-1" : $this->userInfo['user_id'];
 		$result['nickname'] = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
 		$result['balance'] = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
 		$lottery_id = I('get.lottery_id', '', 'intval');

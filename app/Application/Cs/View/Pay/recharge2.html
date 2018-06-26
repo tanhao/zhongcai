@@ -31,7 +31,6 @@
 					        <option value="-1" <if condition="$sync eq -1">selected</if>>全部状态</option>
 					        <option value="0" <if condition="$sync eq 0">selected</if>>未到账</option>
 					        <option value="1" <if condition="$sync eq 1">selected</if>>已到账</option>
-							<option value="2" <if condition="$sync eq 1">selected</if>>已取消</option>
 					      </select>
 					    </div>
 					  </div>
@@ -89,7 +88,7 @@
 						<td>{$data['add_time']|date="Y-m-d H:i:s",###}</td>
 						<td>{$data['real_cash']}</td>
 						<td><if condition="$data['pay_time']">{$data['pay_time']|date="Y-m-d H:i:s",###}</if></td>
-						<td><if condition="$data['sync'] eq 1">已到账<elseif condition="$data['sync'] eq 2"/><font color="red">已取消</font><else/><font color="red">未到账</font></if></td>
+						<td><if condition="$data['sync'] eq 1">已到账<else/><font color="red">未到账</font></if></td>
 						<td>{$data['mm_name']}</td>
 						<td>
 							<if condition="$data['show_button']">
@@ -97,7 +96,6 @@
 							<input type="hidden" class="real_name" value="{$data['real_name']}">
 							<input type="hidden" class="account_number" value="{$data['account_number']}">
 							<a class="layui-btn layui-btn-mini layui-btn-warm recharge-btn" data-balance="{$data['recharge_cash']}">充值</a>
-							<a class="layui-btn layui-btn-mini layui-btn-warm cancel-btn" data-balance="{$data['recharge_cash']}">取消</a>
 							</if>
 						</td>
 					</tr>
@@ -216,24 +214,7 @@
 				    },'json');
 						
 				});
-				
-				//取消充值
-				$('.cancel-btn').click(function(){
-					var id = $(this).parents('tr').find('.id').text();
-					$.post("{:U('Pay/cancelRecharge')}",{id:id},function(res){
-				        if(res.code > 0){
-				            layer.msg(res.msg,{time:1800,icon: 1},function(){
-								location.reload();
-							});
-				        }else{
-				            layer.msg(res.msg,{time:1800,icon: 5},function(){
-				            	location.reload();
-				            });
-				        }
-				    },'json');
-				});
-				
-				
+
 				// 查看下线充值银行卡
   				$('.look-bank').on('click',function(){
   					var bank_id = $(this).attr('data-id');

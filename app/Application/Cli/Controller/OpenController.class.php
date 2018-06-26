@@ -139,7 +139,7 @@ class OpenController extends Controller {
                 $this->action_name = $result['action_name'];//人工开奖客服
             }
         }
-        if(true || empty($result)) {
+        if(empty($result)) {
             // 购买API开奖
             $result = json_decode(api_curl($url), true);
         	//$result = json_decode($this->getJsonPost($url,null), true);
@@ -153,9 +153,40 @@ class OpenController extends Controller {
                 $result = !empty($result) && strtotime($result['open_time']) >= $this->nowTime ? $result : [];
             }
         }
-        if (empty($result)) {
+		if (empty($result)) {
             return false;
         }
+		/*
+        if (empty($result)) {
+        	$valuesList = array(); //随机开奖
+        	$targetList = array(0,1,2,3,4,5,6,7,8,9,10);  //显示5位数
+        	$ttartNum = $cqum =  0;
+        	$length = ($this->lottery_id == 2) ? 5 : 10 ;
+        	do{
+        		$curkey = array_rand($targetList);
+        		$curVal = isset($targetList[$curkey]) ? intval($targetList[$curkey]) : false;
+        		if(isset($curVal) && $curVal !==false  ){
+        			if( $this->lottery_id == 2 &&  $curVal >=0 &&  $curVal < 10){  //SSC
+        				
+        				$valuesList[] = $curVal;  //可以重复        				
+        			}else if($this->lottery_id != 2 &&  $curVal >0 &&  $curVal <= 10){ //PK10
+        				if(empty($valuesList)   || (!empty($valuesList)  &&  ! in_array($curVal, $valuesList) )){  //不可重复
+        					$valuesList[] = $curVal;
+        				}
+        			}
+        			$ttartNum  =$valuesList ? sizeof($valuesList) : 0;  
+        		}
+        		$cqum ++ ;
+        		if($cqum >500) 
+        			break; //死循环
+        		
+        	}while($ttartNum  <  $length);
+        	
+        	if(empty($valuesList)){    return false;  }
+        	
+        	$result = array('expect' => getIssue($this->lottery_id) , "opencode" => implode(',',$valuesList));
+        }
+        */
         $this->issue = $result['expect'];
         $this->opencode = explode(',', $result['opencode']);
         foreach ($this->opencode as $key => $value) {
@@ -422,7 +453,7 @@ class OpenController extends Controller {
             }
             
             //有庄家的情况下就自动申请下庄；2018 - 01-06
-            $hostInfo["status"] = 2  ; // 申请下庄           
+            //$hostInfo["status"] = 2  ; // 申请下庄           
             
         } else {
             // 没有庄家的情况
@@ -480,6 +511,11 @@ class OpenController extends Controller {
         }
         // 用户在房间下注情况
         if (!empty($hostInfo)) {
+			
+			//tanhao 庄输赢的钱直接回账号
+			$th_host_balance=$hostInfo['host_balance'];
+			
+			
             // 计算庄家收入
             $final_balance = bcsub($zoneDetailSort[$hostInfo['host_zone']]['cal_balance'], $hostInfo['deduction']);
             $hostInfo['profit_balance'] = bcsub($final_balance, $zoneDetailSort[$hostInfo['host_zone']]['balance'], 2);
@@ -569,7 +605,29 @@ class OpenController extends Controller {
                     'add_time'=> time(),
                 ]);
             } else {
-                D('Host')->continueHost($room_id, $final_balance);
+				//tanhao start 庄赢的钱直接回账号===================================
+				$change_balance= bcsub($final_balance, $th_host_balance , 2);
+				$before_balance = M('user')->where(['user_id'=> $hostInfo['user_id']])->getField('balance');
+                $balance = bcadd($before_balance,$change_balance, 2);
+                M('user')->where(['user_id'=> $hostInfo['user_id']])->save(['balance'=> $balance]);
+                $client_id = M('user_token')->where(['user_id'=> $hostInfo['user_id']])->getField('client_id');
+				// 推送用户余额给用户
+                sendToClient($client_id, CodeEnum::LEFT_BALANCE, ['balance'=> $balance]);
+				 // 流水LOG
+                M('user_waste_book')->add([
+                    'user_id'=> $hostInfo['user_id'],
+                    'before_balance'=> $before_balance,
+                    'after_balance'=> $balance,
+                    'change_balance'=> $change_balance,
+                    'type'=> 7,
+                    'add_time'=> time(),
+                ]);
+				
+				//th_host_balance
+				D('Host')->continueHost($room_id, $th_host_balance);
+				//tanhao end===================================
+				
+                //D('Host')->continueHost($room_id, $final_balance);
             }
         } else {
             D('Host')->changeHost($room_id);

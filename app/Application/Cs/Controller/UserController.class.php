@@ -44,6 +44,7 @@ class UserController extends BaseController {
             // 上级
             $list[$key]['admin_name'] = $admin_user->where(['user_id'=>$value['pid']])->getField('user_name');
             $list[$key]['up_agent'] = $admin_user->getAllUpAgent($value['pid']);
+			
         }
         $parent = [];
         if ($pid > 0) {
