@@ -173,8 +173,6 @@ class PayController extends BaseController {
         foreach ($list as $key => $value) {
         	if ($value['type'] == 1) {
         		$list[$key]['balance'] = $user->where(['user_id'=>$value['user_id']])->getField('balance');
-				$list[$key]['zfb_account'] = $user->where(['user_id'=>$value['user_id']])->getField('zfb_account');
-				$list[$key]['zfb_name'] = $user->where(['user_id'=>$value['user_id']])->getField('zfb_name');
         	} else {
         		$list[$key]['balance'] = $admin_user->where(['user_id'=>$value['user_id']])->getField('balance');
         	}
