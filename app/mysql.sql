@@ -444,6 +444,7 @@ INSERT INTO `zc_config` (`config_sign`, `config_name`, `config_value`) VALUES ('
 INSERT INTO `zc_config` (`config_sign`, `config_name`, `config_value`) VALUES ('max_draw', '最高提现', '5000');
 INSERT INTO `zc_config` (`config_sign`, `config_name`, `config_value`) VALUES ('water_times', '流水倍数', '2');
 INSERT INTO `zc_config` (`config_sign`, `config_name`, `config_value`) VALUES ('cz_wx', '充值客户微信', '2');
+INSERT INTO `zc_config` (`config_sign`, `config_name`, `config_value`) VALUES ('cz_zfb', '充值客户微信', '2');
 
 CREATE TABLE `zc_admin_waste_book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

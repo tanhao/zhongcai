@@ -761,7 +761,9 @@ class UserController extends BaseController {
         $user_name = C('IS_TEMP') ? C('USER_ID') : $this->userInfo['user_name'];
         $nickname = C('IS_TEMP') ? getTempNickname(C('USER_ID')) : $this->userInfo['nickname'];
         $balance = C('IS_TEMP') ? "0.00" : $this->userInfo['balance'];
+        $user_id = C('IS_TEMP') ? "--" : $this->userInfo['user_id'];
         $result = [
+            'id'=> $user_id,
             'user_name'=> $user_name,
             'nickname'=> $nickname,
             'balance'=> $balance,
